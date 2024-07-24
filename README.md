@@ -1,1 +1,3 @@
-# kuma
+# Kuma
+---
+### Inventory Management Software
