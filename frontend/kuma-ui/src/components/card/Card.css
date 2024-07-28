@@ -1,0 +1,44 @@
+.card {
+    width: 300px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.card-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card-title {
+    font-size: 1.5em;
+    color: black;
+    text-align: left;
+}
+
+.bottom-desc {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+}
+
+.card-count {
+    font-size: 1.5em;
+    color: #555;
+}
+
+.add-icon {
+    color: black;
+    font-style: bold;
+    font-size: 30px;
+    cursor: pointer;
+}

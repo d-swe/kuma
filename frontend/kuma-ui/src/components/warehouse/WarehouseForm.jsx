@@ -39,47 +39,60 @@ export default function WarehouseForm() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
+
+    <div id='input-box'>
       <label htmlFor='name'>Warehouse Name</label>
       <input
         id='name'
         type='text'
         {...register('name', { required: 'Warehouse name is required' })} />
       {errors.name && <p style={{ color: 'red' }}>{errors.name.message}</p>}
+    </div>
 
+    <div id='input-box'>
       <label htmlFor='streetAddress'>Street Address</label>
       <input
         id='streetAddress'
         type='text'
         {...register('streetAddress', { required: 'Street address is required' })} />
       {errors.streetAddress && <p style={{ color: 'red' }}>{errors.streetAddress.message}</p>}
+    </div>
 
+    <div id='input-box'>
       <label htmlFor='city'>City</label>
       <input
         id='city'
         type='text'
         {...register('city', { required: 'City is required' })} />
       {errors.city && <p style={{ color: 'red' }}>{errors.city.message}</p>}
+    </div>
 
+    <div id='input-box'>
       <label htmlFor='state'>State</label>
       <input
         id='state'
         type='text'
         {...register('state', { required: 'State is required' })} />
       {errors.state && <p style={{ color: 'red' }}>{errors.state.message}</p>}
+    </div>
 
+    <div id='input-box'>
       <label htmlFor='zipCode'>Zip Code</label>
       <input
         id='zipCode'
         type='text'
         {...register('zipCode', { required: 'Zip code is required' })} />
       {errors.zipCode && <p style={{ color: 'red' }}>{errors.zipCode.message}</p>}
+    </div>
 
+    <div id='input-box'>
       <label htmlFor='capacity'>Capacity</label>
       <input
         id='capacity'
         type='text'
         {...register('capacity', { required: 'Capacity is required' })} />
       {errors.capacity && <p style={{ color: 'red' }}>{errors.capacity.message}</p>}
+    </div>
 
       <button type='submit'>Add Warehouse</button>
     </form>

@@ -2,3 +2,20 @@ form {
     display: flex;
     flex-direction: column;
 }
+
+#input-box {
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    width: 400px;
+}
+
+button {
+    background-color: #39e6da;
+    transition: background-color 0.3s ease-in-out;
+    border:none;
+}
+
+button:hover {
+    background-color: #3eada6;
+}
