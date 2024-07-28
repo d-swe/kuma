@@ -1,66 +1,52 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Card from './Card';
 import './CardContainer.css';
+import {useNavigate } from 'react-router-dom'
 import Modal from '../modal/Modal';
 import WarehouseForm from '../warehouse/WarehouseForm'
 
 function CardContainer() {
-    const [isModalOpen, setModalOpen] = useState(false);
+    const [data, setData] = useState([]);
 
-    const openModal = () => setModalOpen(true);
-    const closeModal = () => setModalOpen(false);
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await fetch('http://localhost:8080/warehouses');
 
-    const warehouseButtonClick = () => {
-       openModal();
+                if(!response.ok) {
+                    throw new Error(`Failed to fetch data: ${response.statusText}`);
+                }
+                const result = await response.json();
+                console.log(result);
+                setData(result);
+            } catch(error) {
+                    console.log(error);
+            }
+        }
+        fetchData();
+    },[]);
+
+    const handleEdit = () => {
+        alert('Edit Clicked!')
     };
 
-    const inventoryButtonClick = () => {
-        alert('Inventory Clicked!')
-    }
-
-    const productButtonClick = () => {
-        alert('Product Clicked!')
-    }
-
-    const handleFormSubmit = () => {
-        closeModal();
+    const handleDelete = () => {
+        alert('Delete Clicked')
     };
-
-    const handleCancel = () => {
-        closeModal();
-    };
-
-  const cardsData = [
-    {
-      title: 'Warehouse',
-      count: 2,
-      onButtonClick: warehouseButtonClick
-    },
-    {
-      title: 'Inventory',
-      count: 2,
-      onButtonClick: inventoryButtonClick
-    },
-    {
-      title: 'Product',
-      count: 2,
-      onButtonClick: productButtonClick
-    }
-  ];
 
   return (
     <div className="card-container">
-      {cardsData.map((card, index) => (
+      {data.map((item) => (
         <Card
-          key={index}
-          title={card.title}
-          count={card.count}
-          onButtonClick={card.onButtonClick}
+          key={item.id}
+          name={item.name}
+          onEditClick={() => handleEdit()}
+          onDeleteClick={() => handleDelete()}
         />
       ))}
-      <Modal isOpen={isModalOpen} onClose={closeModal}>
+      {/* <Modal isOpen={isModalOpen} onClose={closeModal}>
         <WarehouseForm onSubmit={handleFormSubmit} onCancel={handleCancel}/>
-      </Modal>
+      </Modal> */}
     </div>
   );
 }

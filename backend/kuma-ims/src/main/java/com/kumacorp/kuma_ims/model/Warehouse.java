@@ -26,6 +26,10 @@ public class Warehouse {
 
     private int capacity;
 
+    public Warehouse() {
+
+    }
+
     public Warehouse(int id, String name, String street, String city, String state, int zip, int capacity) {
         this.id = id;
         this.name = name;

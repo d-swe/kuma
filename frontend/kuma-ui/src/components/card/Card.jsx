@@ -1,16 +1,16 @@
 // src/components/Card.jsx
 import React from 'react';
 import './Card.css';
-import { PiPlusBold } from "react-icons/pi";
+import { PiTrash, PiNotePencil } from "react-icons/pi";
 
-function Card({ title, count, onButtonClick}) {
+function Card({ name, onEditClick, onDeleteClick}) {
   return (
     <div className="card">
       <div className="card-content">
-        <h1 className="card-title">{title}</h1>
-        <div className='bottom-desc'>
-                <h2 className="card-count">Count: {count}</h2>
-                <div className="card-button" ><PiPlusBold className='add-icon' onClick={onButtonClick}/></div>
+        <h1 className="card-name">Warehouse: {name}</h1>
+        <div className='warehouse-options'>
+                <div className="edit-button"><PiNotePencil className='icon' onClick={onEditClick} /></div>
+                <div className="delete-button" ><PiTrash className='icon' onClick={onDeleteClick}/></div>
         </div>
       </div>
     </div>

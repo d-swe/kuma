@@ -20,7 +20,6 @@ function App() {
       <main className="main-content">
         {selectedMenu === 'home' && (
         <>
-        <SearchBar query={searchQuery} setQuery={setSearchQuery} />
         <CardContainer />
         </>
         )}
