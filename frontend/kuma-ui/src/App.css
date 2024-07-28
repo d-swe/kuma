@@ -4,6 +4,7 @@
 
 body {
   font-family: 'Zain', sans-seif;
+  background-color: white;
 }
 
 .app {
@@ -28,4 +29,8 @@ body {
     flex: 1;
     padding: 20px;
     overflow: auto;
+  }
+
+  .create-button {
+    padding-left: 20px;
   }

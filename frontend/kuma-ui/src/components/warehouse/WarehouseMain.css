@@ -4,3 +4,10 @@
     gap: 20px;
     padding: 16px;
   }
+.form-button {
+  padding-left: 20px;
+}
+  .form-button button {
+    background-color: #39e6da;
+  }
+

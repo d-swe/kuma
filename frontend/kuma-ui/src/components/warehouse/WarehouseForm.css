@@ -1,6 +1,26 @@
-form {
+.form-container {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
     display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+form {
     flex-direction: column;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    color: black;
+}
+
+.title {
+    text-align: center;
 }
 
 #input-box {
@@ -10,7 +30,19 @@ form {
     width: 400px;
 }
 
-button {
+#input-box input {
+    background-color: white;
+    border: solid 1px gray;
+    width: 60%;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+.buttons button{
     background-color: #39e6da;
     transition: background-color 0.3s ease-in-out;
     border:none;

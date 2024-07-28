@@ -21,4 +21,8 @@ public class WarehouseService {
     public Warehouse createWarehouse(Warehouse warehouse) {
         return warehouseRepository.save(warehouse);
     }
+
+    public void deleteWarehouse(int id) {
+        warehouseRepository.deleteById(id);
+    }
 }

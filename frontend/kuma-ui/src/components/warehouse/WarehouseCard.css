@@ -1,0 +1,88 @@
+.card {
+    width: 100%;
+    background-color: white;
+    border: solid .5px #ebe8e8;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+}
+
+.card-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.card-name {
+    padding-left: 20px;
+    font-size: 1.5em;
+    color: black;
+    text-align: left;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+.card-name:hover {
+    transform: scale(1.1);
+}
+
+.warehouse-options {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding-right: 40px;
+    gap: 20px;
+}
+
+.card-count {
+    font-size: 1.5em;
+    color: #555;
+}
+
+.icon {
+    display: flex;
+    padding: 3px;
+    font-style: bold;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.edit-button {
+    color: white;
+    border-radius: 5px;
+    background-color: #39e6da;
+    transition: transform 0.3s ease;
+}
+
+.delete-button {
+    color: white;
+    border-radius: 5px;
+    background-color: red;
+    transition: transform 0.3s ease;
+}
+
+.delete-button:hover, .edit-button:hover{
+    transform: scale(1.2);
+}
+
+.small-card {
+    color: black;
+    font-size: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    padding-left: 30px;
+    transition: max-height 0.7s ease, opacity 0.5s ease;
+  }
+  
+  .small-card.show {
+    max-height: 300px; /* Adjust as needed */
+    opacity: 1;
+  }

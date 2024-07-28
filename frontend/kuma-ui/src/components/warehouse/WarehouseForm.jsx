@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import './WarehouseForm.css'
 
-export default function WarehouseForm({ onSubmit, onCancel }) {
+export default function WarehouseForm({ onCancel }) {
   const { register, handleSubmit, reset, formState: { errors } } = useForm();
   // useForm initializes: 
   // register: input fields with validation
@@ -20,7 +20,7 @@ export default function WarehouseForm({ onSubmit, onCancel }) {
       capacity: data.capacity,
     };
 
-    try {
+    try { // attempts to post warehouse data into db with user specified content
       const response = await fetch('http://localhost:8080/warehouses', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' }, // this tells the server the body is in JSON
@@ -32,8 +32,7 @@ export default function WarehouseForm({ onSubmit, onCancel }) {
       const result = await response.json();
       console.log(result);
       toast.success('Warehouse added successfully!');
-      reset();
-      onSubmit();
+      onCancel();
     } catch (error) {
       console.error("Error: ", error);
       toast.error("Warehouse not added!");
@@ -42,64 +41,69 @@ export default function WarehouseForm({ onSubmit, onCancel }) {
 
   return (
     // warehouse form structure
-    <form onSubmit={handleSubmit(onSubmitForm)}>
+    <div className="form-container">
+      <form onSubmit={handleSubmit(onSubmitForm)}>
+        <h2 className='title'>Create Warehouse</h2>
 
-    <div id='input-box'>
-      <label htmlFor='name'>Warehouse Name</label>
-      <input
-        id='name'
-        type='text'
-        {...register('name', { required: 'Warehouse name is required' })} />
-      {errors.name && <p style={{ color: 'red' }}>{errors.name.message}</p>}
-    </div>
+      <div id='input-box'>
+        <label htmlFor='name'>Warehouse Name</label>
+        <input
+          id='name'
+          type='text'
+          {...register('name', { required: 'Warehouse name is required' })} />
+        {errors.name && <p style={{ color: 'red' }}>{errors.name.message}</p>}
+      </div>
 
-    <div id='input-box'>
-      <label htmlFor='streetAddress'>Street Address</label>
-      <input
-        id='streetAddress'
-        type='text'
-        {...register('streetAddress', { required: 'Street address is required' })} />
-      {errors.streetAddress && <p style={{ color: 'red' }}>{errors.streetAddress.message}</p>}
-    </div>
+      <div id='input-box'>
+        <label htmlFor='streetAddress'>Street Address</label>
+        <input
+          id='streetAddress'
+          type='text'
+          {...register('streetAddress', { required: 'Street address is required' })} />
+        {errors.streetAddress && <p style={{ color: 'red' }}>{errors.streetAddress.message}</p>}
+      </div>
 
-    <div id='input-box'>
-      <label htmlFor='city'>City</label>
-      <input
-        id='city'
-        type='text'
-        {...register('city', { required: 'City is required' })} />
-      {errors.city && <p style={{ color: 'red' }}>{errors.city.message}</p>}
-    </div>
+      <div id='input-box'>
+        <label htmlFor='city'>City</label>
+        <input
+          id='city'
+          type='text'
+          {...register('city', { required: 'City is required' })} />
+        {errors.city && <p style={{ color: 'red' }}>{errors.city.message}</p>}
+      </div>
 
-    <div id='input-box'>
-      <label htmlFor='state'>State</label>
-      <input
-        id='state'
-        type='text'
-        {...register('state', { required: 'State is required' })} />
-      {errors.state && <p style={{ color: 'red' }}>{errors.state.message}</p>}
-    </div>
+      <div id='input-box'>
+        <label htmlFor='state'>State</label>
+        <input
+          id='state'
+          type='text'
+          {...register('state', { required: 'State is required' })} />
+        {errors.state && <p style={{ color: 'red' }}>{errors.state.message}</p>}
+      </div>
 
-    <div id='input-box'>
-      <label htmlFor='zipCode'>Zip Code</label>
-      <input
-        id='zipCode'
-        type='text'
-        {...register('zipCode', { required: 'Zip code is required' })} />
-      {errors.zipCode && <p style={{ color: 'red' }}>{errors.zipCode.message}</p>}
-    </div>
+      <div id='input-box'>
+        <label htmlFor='zipCode'>Zip Code</label>
+        <input
+          id='zipCode'
+          type='text'
+          {...register('zipCode', { required: 'Zip code is required' })} />
+        {errors.zipCode && <p style={{ color: 'red' }}>{errors.zipCode.message}</p>}
+      </div>
 
-    <div id='input-box'>
-      <label htmlFor='capacity'>Capacity</label>
-      <input
-        id='capacity'
-        type='text'
-        {...register('capacity', { required: 'Capacity is required' })} />
-      {errors.capacity && <p style={{ color: 'red' }}>{errors.capacity.message}</p>}
-    </div>
+      <div id='input-box'>
+        <label htmlFor='capacity'>Capacity</label>
+        <input
+          id='capacity'
+          type='text'
+          {...register('capacity', { required: 'Capacity is required' })} />
+        {errors.capacity && <p style={{ color: 'red' }}>{errors.capacity.message}</p>}
+      </div>
 
-      <button type='submit'>Add Warehouse</button>
-      <button type='button' onClick={onCancel}>Cancel</button>
+<div className="buttons">
+        <button type='submit'>Create</button>
+        <button type='button' onClick={onCancel}>Cancel</button>
+</div>
     </form>
+    </div>
   );
 }

@@ -1,0 +1,31 @@
+.delete-container {
+    position: fixed;
+    top: 0;
+    left: 10%;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.delete-modal {
+    background-color: gray;
+    max-width: 500px;
+    height: 150;
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.delete-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.button {
+    background-color: red;
+
+}
