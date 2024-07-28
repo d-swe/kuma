@@ -1,17 +1,18 @@
 // src/components/Card.jsx
 import React from 'react';
 import './WarehouseCard.css';
-import { PiTrash, PiNotePencil } from "react-icons/pi";
+import { PiTrash, PiNotePencil, PiListNumbers } from "react-icons/pi";
 
-function WarehouseCard({ name, street, city, state, zip, capacity, onNameClick, onEditClick, onDeleteClick, showSmallCard}) {
+function WarehouseCard({ name, street, city, state, zip, capacity, onNameClick, onInventoryClick, onEditClick, onDeleteClick, showSmallCard}) {
 
   return (
-    <div className="card">
+    <div className="card" onClick={onNameClick}>
       <div className="card-content">
-        <h1 className="card-name" onClick={onNameClick}>{name}</h1>
+        <h1 className="card-name">{name}</h1>
         <div className='warehouse-options'>
-                <div className="edit-button"><PiNotePencil className='icon' onClick={onEditClick} /></div>
-                <div className="delete-button" ><PiTrash className='icon' onClick={onDeleteClick}/></div>
+          <div className="inventory-button"><PiListNumbers className='icon' onClick={onInventoryClick} /></div>
+          <div className="edit-button"><PiNotePencil className='icon' onClick={onEditClick} /></div>
+          <div className="delete-button" ><PiTrash className='icon' onClick={onDeleteClick} /></div>
         </div>
       </div>
       <div className={`small-card ${showSmallCard ? 'show' : 'hide'}`}>

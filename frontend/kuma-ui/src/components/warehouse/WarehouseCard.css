@@ -7,6 +7,7 @@
     flex-direction: column;
     justify-content: space-between;
     position: relative;
+    cursor: pointer;
 }
 
 .card-content {
@@ -20,12 +21,10 @@
     font-size: 1.5em;
     color: black;
     text-align: left;
-    transition: transform 0.3s ease;
-    cursor: pointer;
 }
 
-.card-name:hover {
-    transform: scale(1.1);
+.card:hover {
+    background-color: #f5f2f7;
 }
 
 .warehouse-options {
@@ -50,6 +49,13 @@
     cursor: pointer;
 }
 
+.inventory-button {
+    color: white;
+    border-radius: 5px;
+    background-color: #aa72cc;
+    transition: transform 0.3s ease;
+}
+
 .edit-button {
     color: white;
     border-radius: 5px;
@@ -64,7 +70,7 @@
     transition: transform 0.3s ease;
 }
 
-.delete-button:hover, .edit-button:hover{
+.delete-button:hover, .edit-button:hover, .inventory-button:hover{
     transform: scale(1.2);
 }
 
