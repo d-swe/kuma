@@ -1,11 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Card from './Card';
 import './CardContainer.css';
+import Modal from '../modal/Modal';
+import WarehouseForm from '../warehouse/WarehouseForm'
 
 function CardContainer() {
+    const [isModalOpen, setModalOpen] = useState(false);
+
+    const openModal = () => setModalOpen(true);
+    const closeModal = () => setModalOpen(false);
+
     const warehouseButtonClick = () => {
-        alert('Warehouse Clicked!')
-    }
+       openModal();
+    };
 
     const inventoryButtonClick = () => {
         alert('Inventory Clicked!')
@@ -14,6 +21,14 @@ function CardContainer() {
     const productButtonClick = () => {
         alert('Product Clicked!')
     }
+
+    const handleFormSubmit = () => {
+        closeModal();
+    };
+
+    const handleCancel = () => {
+        closeModal();
+    };
 
   const cardsData = [
     {
@@ -43,6 +58,9 @@ function CardContainer() {
           onButtonClick={card.onButtonClick}
         />
       ))}
+      <Modal isOpen={isModalOpen} onClose={closeModal}>
+        <WarehouseForm onSubmit={handleFormSubmit} onCancel={handleCancel}/>
+      </Modal>
     </div>
   );
 }

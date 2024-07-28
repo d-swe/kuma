@@ -3,14 +3,14 @@ import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import './WarehouseForm.css'
 
-export default function WarehouseForm() {
-  const { register, handleSubmit, formState: { errors } } = useForm();
+export default function WarehouseForm({ onSubmit, onCancel }) {
+  const { register, handleSubmit, reset, formState: { errors } } = useForm();
   // useForm initializes: 
   // register: input fields with validation
   // handleSubmit: handles form submission
 
   // data: holds key value pairs of form data collected from register func
-  const onSubmit = async (data) => {
+  const onSubmitForm = async (data) => {
     const warehouseData = {
       name: data.name,
       street: data.streetAddress,
@@ -31,14 +31,18 @@ export default function WarehouseForm() {
       }
       const result = await response.json();
       console.log(result);
-      toast.success('Warehouse added successfully!')
+      toast.success('Warehouse added successfully!');
+      reset();
+      onSubmit();
     } catch (error) {
       console.error("Error: ", error);
+      toast.error("Warehouse not added!");
     }
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    // warehouse form structure
+    <form onSubmit={handleSubmit(onSubmitForm)}>
 
     <div id='input-box'>
       <label htmlFor='name'>Warehouse Name</label>
@@ -95,6 +99,7 @@ export default function WarehouseForm() {
     </div>
 
       <button type='submit'>Add Warehouse</button>
+      <button type='button' onClick={onCancel}>Cancel</button>
     </form>
   );
 }

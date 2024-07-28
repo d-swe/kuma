@@ -3,7 +3,6 @@ import React from 'react';
 import './Card.css';
 import { PiPlusBold } from "react-icons/pi";
 
-
 function Card({ title, count, onButtonClick}) {
   return (
     <div className="card">
