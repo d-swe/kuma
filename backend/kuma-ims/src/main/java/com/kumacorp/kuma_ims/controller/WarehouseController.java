@@ -25,7 +25,7 @@ public class WarehouseController {
     private WarehouseService warehouseService;
 
     @GetMapping
-    public List<Warehouse> getAllWarehouse() {
+    public List<Warehouse> getAllWarehouses() {
         return warehouseService.getAllWarehouse();
     }
     

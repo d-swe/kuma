@@ -1,13 +1,22 @@
 package com.kumacorp.kuma_ims.model;
 
+import java.util.Set;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "warehouses")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Warehouse {
 
     @Id
@@ -25,6 +34,10 @@ public class Warehouse {
     private int zip;
 
     private int capacity;
+
+    @OneToMany(mappedBy = "warehouse", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JsonIgnore
+    private Set<Inventory> inventories;
 
     public Warehouse() {
 
@@ -95,4 +108,13 @@ public class Warehouse {
     public void setCapacity(int capacity) {
         this.capacity = capacity;
     }
+
+    public Set<Inventory> getInventories() {
+        return inventories;
+    }
+
+    public void setInventories(Set<Inventory> inventories) {
+        this.inventories = inventories;
+    }
+
 }
