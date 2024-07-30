@@ -1,8 +1,19 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import DefaultForm from '../form/DefaultForm';
-import PostRequest from '../webAPI/PostRequest';
+import ApiRequest from '../webAPI/ApiRequest';
+import GetRequest from '../webAPI/GetRequest'; // Assuming this is the component to fetch data
 
-function WarehouseForm() {
+function WarehouseForm({ warehouseId }) {
+  const [isVisible, setIsVisible] = useState(true);
+  const [initialData, setInitialData] = useState(null);
+
+  useEffect(() => {
+    if (warehouseId) {
+      const url = `http://localhost:8080/warehouses/${warehouseId}`;
+      GetRequest({ url, onSuccess: setInitialData });
+    }
+  }, [warehouseId]);
+
   const fields = [
     { name: 'name', label: 'Warehouse Name', required: true, select: false, type: 'text'},
     { name: 'street', label: 'Street Address', required: true, select: false, type: 'text'},
@@ -66,15 +77,28 @@ function WarehouseForm() {
   ];
 
   const handleSubmit = (data) => {
-    PostRequest({ url: 'http://localhost:8080/warehouses', formData: data})
+    const url = warehouseId ? `http://localhost:8080/warehouses/${warehouseId}` : 'http://localhost:8080/warehouses';
+    const requestType = warehouseId ? 'PUT' : 'POST';
+    ApiRequest({ url, formData: data, requestType });
+  };
+
+  const handleCancel = () => {
+    setIsVisible(false);
   };
 
   return (
-    <DefaultForm 
-    formName="Warehouse Form" 
-    fields={fields} 
-    onSubmit={handleSubmit} 
-    buttonText="Create Warehouse" />
+    <>
+      {isVisible && (
+        <DefaultForm 
+          formName="Warehouse Form" 
+          fields={fields} 
+          initialData={initialData}
+          onSubmit={handleSubmit} 
+          onCancel={handleCancel}
+          buttonText={warehouseId ? "Update Warehouse" : "Create Warehouse"}
+        />
+      )}
+    </>
   );
 }
 

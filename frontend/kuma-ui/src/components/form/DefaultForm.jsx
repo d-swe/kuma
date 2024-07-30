@@ -1,5 +1,4 @@
-// src/components/form/DefaultForm.jsx
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { Fieldset, Form, Label, Button, RequiredMarker } from '@trussworks/react-uswds';
 import TextInput from './TextInput';
@@ -9,11 +8,20 @@ import './DefaultForm.css';
 function DefaultForm({ 
   formName, 
   fields, 
+  initialData,
   onSubmit, 
   onCancel, 
   buttonText = 'Submit' 
 }) {
-  const { register, handleSubmit, formState: { errors } } = useForm();
+  const { register, handleSubmit, setValue, formState: { errors } } = useForm();
+
+  useEffect(() => {
+    if (initialData) {
+      Object.keys(initialData).forEach(key => {
+        setValue(key, initialData[key]);
+      });
+    }
+  }, [initialData, setValue]);
 
   return (
     <div className="form-container">

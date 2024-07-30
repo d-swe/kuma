@@ -1,9 +1,9 @@
 import { PiPencil } from "react-icons/pi";
-import { useState } from 'react'
+import { useState } from 'react';
 import WarehouseForm from "../warehouse/WarehouseForm";
-import './EditButton.css'
+import './EditButton.css';
 
-function EditButton({ table, itemId }) {
+function EditButton({ itemId }) {
     const [isEdit, setIsEdit] = useState(false);
 
     const handleEdit = () => {
@@ -13,9 +13,9 @@ function EditButton({ table, itemId }) {
     return (
         <>
         <div className="edit-button"><PiPencil className="icon" onClick={handleEdit}/></div>
-        {isEdit && <WarehouseForm itemId={itemId} />}
+        {isEdit && <WarehouseForm warehouseId={itemId} />}
         </>
     )
 }
 
-export default EditButton
+export default EditButton;

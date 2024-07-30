@@ -1,8 +1,11 @@
 package com.kumacorp.kuma_ims.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,10 +29,19 @@ public class WarehouseController {
     private WarehouseService warehouseService;
 
     @GetMapping
-    public List<Warehouse> getAllWarehouses() {
-        return warehouseService.getAllWarehouse();
+    public List<Warehouse> findAllWarehouses() {
+        return warehouseService.findAllWarehouse();
     }
-    
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Warehouse> findWarehouseById(@PathVariable int id) {
+        Optional<Warehouse> warehouse = warehouseService.findWarehouseById(id);
+        if (warehouse.isPresent())
+        return ResponseEntity.ok(warehouse.get());
+        else
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
     @PostMapping
     public Warehouse createWarehouse(@RequestBody Warehouse warehouse) {
         return warehouseService.createWarehouse(warehouse);

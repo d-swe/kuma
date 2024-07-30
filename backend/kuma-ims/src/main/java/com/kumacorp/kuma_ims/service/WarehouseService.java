@@ -1,6 +1,7 @@
 package com.kumacorp.kuma_ims.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,8 +18,12 @@ public class WarehouseService {
     @Autowired
     private WarehouseRepository warehouseRepository;
 
-    public List<Warehouse> getAllWarehouse() {
+    public List<Warehouse> findAllWarehouse() {
         return warehouseRepository.findAll();
+    }
+
+    public Optional<Warehouse> findWarehouseById(int id) {
+        return warehouseRepository.findById(id);
     }
 
     public Warehouse createWarehouse(Warehouse warehouse) {

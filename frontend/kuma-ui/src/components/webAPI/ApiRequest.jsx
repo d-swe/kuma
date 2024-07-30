@@ -1,7 +1,7 @@
-function PostRequest({ url, formData }) {
+function PostRequest({ url, formData, requestType }) {
     
     fetch(url,  {
-        method: 'POST',
+        method: requestType,
         headers: {
             "Content-Type": "application/json"
         },
@@ -9,10 +9,10 @@ function PostRequest({ url, formData }) {
     })
     .then(response => response.json())
     .then(data => {
-        console.log('Succesfully added:', data);
+        console.log('Request Successful:', data);
     })
     .catch(error => {
-        console.error('Error adding movies:', error);
+        console.error('Request Failed:', error);
     })
 }
 

@@ -24,7 +24,7 @@ function WarehouseView() {
         { Header: 'Actions', accessor: 'actions',
             Cell: ({ row }) => (
                 <div className="buttons">
-                    <EditButton table='warehouses' itemdId={row.original.id} />
+                    <EditButton table='warehouses' itemId={row.original.id} />
                     <DeleteButton table='warehouses' itemId={row.original.id} />
                 </div>
             )
