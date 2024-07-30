@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import Card from './WarehouseCard';
+import Card from '../warehouse/WarehouseCard';
 import './WarehouseMain.css';
 import DeleteModal from '../modal/DeleteModal';
-import WarehouseForm from './WarehouseForm';
+import WarehouseForm from '../warehouse/WarehouseForm';
 
 function WarehouseMain() {
     const [data, setData] = useState([]);

@@ -1,0 +1,77 @@
+.form-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+Form {
+    width: 500px;
+    max-height: 900px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.usa-legend--large {
+    padding-top: 20px;
+    padding-left: 13px;
+}
+
+.usa-input {
+    background-color: white;
+    padding: 10px;
+    color: black;
+}
+
+input {
+    border: solid 1px gray;
+}
+
+.title {
+    font-size: 35px;
+    border: none;
+}
+
+.usa-select {
+    height: 2.5rem;
+    background-color: white;
+    color: black;
+    padding: 10px;
+}
+
+.form-group {
+    font-size: 20px;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+Fieldset {
+    color: black;
+}
+
+.usa-hint {
+    color: red;
+}
+
+.form-buttons {
+    padding-left: 45px;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 20px;
+}
+
+.usa-button {
+    background-color: #72e5f7;
+    border: none;
+}
+
+.usa-button:hover {
+    background-color: #67c5d4;
+}

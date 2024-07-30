@@ -1,5 +1,6 @@
 // src/components/Card.jsx
 import React from 'react';
+import './Card.css';
 import { PiTrash, PiNotePencil, PiListNumbers } from "react-icons/pi";
 
 function WarehouseCard({ 
@@ -18,7 +19,7 @@ function WarehouseCard({
   return (
     <div className="card" onClick={onNameClick}>
       <div className="card-content">
-        <h1 className="card-name">{name}</h1>
+        <h1 className="card-name">Warehouse</h1>
         <div className='warehouse-options'>
           <div className="inventory-button"><PiListNumbers className='icon' onClick={onInventoryClick} /></div>
           <div className="edit-button"><PiNotePencil className='icon' onClick={onEditClick} /></div>

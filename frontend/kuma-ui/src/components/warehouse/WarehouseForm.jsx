@@ -1,109 +1,81 @@
 import React from 'react';
-import { useForm } from 'react-hook-form';
-import { toast } from 'react-toastify';
-import './WarehouseForm.css'
+import DefaultForm from '../form/DefaultForm';
+import PostRequest from '../webAPI/PostRequest';
 
-export default function WarehouseForm({ onCancel }) {
-  const { register, handleSubmit, reset, formState: { errors } } = useForm();
-  // useForm initializes: 
-  // register: input fields with validation
-  // handleSubmit: handles form submission
+function WarehouseForm() {
+  const fields = [
+    { name: 'name', label: 'Warehouse Name', required: true, select: false, type: 'text'},
+    { name: 'street', label: 'Street Address', required: true, select: false, type: 'text'},
+    { name: 'city', label: 'City', required: true, select: false, type: 'text'},
+    { name: 'state', label: 'State', required: true, select: true, type: 'text', options: [
+        { value: 'AL', label: 'Alabama' },
+        { value: 'AK', label: 'Alaska' },
+        { value: 'AZ', label: 'Arizona' },
+        { value: 'AR', label: 'Arkansas' },
+        { value: 'CA', label: 'California' },
+        { value: 'CO', label: 'Colorado' },
+        { value: 'CT', label: 'Connecticut' },
+        { value: 'DE', label: 'Delaware' },
+        { value: 'DC', label: 'District of Columbia' },
+        { value: 'FL', label: 'Florida' },
+        { value: 'GA', label: 'Georgia' },
+        { value: 'HI', label: 'Hawaii' },
+        { value: 'ID', label: 'Idaho' },
+        { value: 'IL', label: 'Illinois' },
+        { value: 'IN', label: 'Indiana' },
+        { value: 'IA', label: 'Iowa' },
+        { value: 'KS', label: 'Kansas' },
+        { value: 'KY', label: 'Kentucky' },
+        { value: 'LA', label: 'Louisiana' },
+        { value: 'ME', label: 'Maine' },
+        { value: 'MD', label: 'Maryland' },
+        { value: 'MA', label: 'Massachusetts' },
+        { value: 'MI', label: 'Michigan' },
+        { value: 'MN', label: 'Minnesota' },
+        { value: 'MS', label: 'Mississippi' },
+        { value: 'MO', label: 'Missouri' },
+        { value: 'MT', label: 'Montana' },
+        { value: 'NE', label: 'Nebraska' },
+        { value: 'NV', label: 'Nevada' },
+        { value: 'NH', label: 'New Hampshire' },
+        { value: 'NJ', label: 'New Jersey' },
+        { value: 'NM', label: 'New Mexico' },
+        { value: 'NY', label: 'New York' },
+        { value: 'NC', label: 'North Carolina' },
+        { value: 'ND', label: 'North Dakota' },
+        { value: 'OH', label: 'Ohio' },
+        { value: 'OK', label: 'Oklahoma' },
+        { value: 'OR', label: 'Oregon' },
+        { value: 'PA', label: 'Pennsylvania' },
+        { value: 'RI', label: 'Rhode Island' },
+        { value: 'SC', label: 'South Carolina' },
+        { value: 'SD', label: 'South Dakota' },
+        { value: 'TN', label: 'Tennessee' },
+        { value: 'TX', label: 'Texas' },
+        { value: 'UT', label: 'Utah' },
+        { value: 'VT', label: 'Vermont' },
+        { value: 'VA', label: 'Virginia' },
+        { value: 'WA', label: 'Washington' },
+        { value: 'WV', label: 'West Virginia' },
+        { value: 'WI', label: 'Wisconsin' },
+        { value: 'WY', label: 'Wyoming' },
+    ]},
+    { name: 'zip', label: 'Zip Code', required: true, select: false, type: 'text'},
+    { name: 'capacity', label: 'Max Capacity', required: true, select: false, type: 'text'},
 
-  // data: holds key value pairs of form data collected from register func
-  const onSubmitForm = async (data) => {
-    const warehouseData = {
-      name: data.name,
-      street: data.streetAddress,
-      city: data.city,
-      state: data.state,
-      zip: data.zipCode,
-      capacity: data.capacity,
-    };
+  ];
 
-    try { // attempts to post warehouse data into db with user specified content
-      const response = await fetch('http://localhost:8080/warehouses', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' }, // this tells the server the body is in JSON
-        body: JSON.stringify(warehouseData),
-      });
-      if (!response.ok) {
-        throw new Error('Response unsuccessful, not OK');
-      }
-      const result = await response.json();
-      console.log(result);
-      toast.success('Warehouse added successfully!');
-      onCancel();
-    } catch (error) {
-      console.error("Error: ", error);
-      toast.error("Warehouse not added!");
-    }
+  const handleSubmit = (data) => {
+    PostRequest({ url: 'http://localhost:8080/warehouses', formData: data})
   };
 
   return (
-    // warehouse form structure
-    <div className="form-container">
-      <form onSubmit={handleSubmit(onSubmitForm)}>
-        <h2 className='title'>Create Warehouse</h2>
-
-      <div id='input-box'>
-        <label htmlFor='name'>Warehouse Name</label>
-        <input
-          id='name'
-          type='text'
-          {...register('name', { required: 'Warehouse name is required' })} />
-        {errors.name && <p style={{ color: 'red' }}>{errors.name.message}</p>}
-      </div>
-
-      <div id='input-box'>
-        <label htmlFor='streetAddress'>Street Address</label>
-        <input
-          id='streetAddress'
-          type='text'
-          {...register('streetAddress', { required: 'Street address is required' })} />
-        {errors.streetAddress && <p style={{ color: 'red' }}>{errors.streetAddress.message}</p>}
-      </div>
-
-      <div id='input-box'>
-        <label htmlFor='city'>City</label>
-        <input
-          id='city'
-          type='text'
-          {...register('city', { required: 'City is required' })} />
-        {errors.city && <p style={{ color: 'red' }}>{errors.city.message}</p>}
-      </div>
-
-      <div id='input-box'>
-        <label htmlFor='state'>State</label>
-        <input
-          id='state'
-          type='text'
-          {...register('state', { required: 'State is required' })} />
-        {errors.state && <p style={{ color: 'red' }}>{errors.state.message}</p>}
-      </div>
-
-      <div id='input-box'>
-        <label htmlFor='zipCode'>Zip Code</label>
-        <input
-          id='zipCode'
-          type='text'
-          {...register('zipCode', { required: 'Zip code is required' })} />
-        {errors.zipCode && <p style={{ color: 'red' }}>{errors.zipCode.message}</p>}
-      </div>
-
-      <div id='input-box'>
-        <label htmlFor='capacity'>Capacity</label>
-        <input
-          id='capacity'
-          type='text'
-          {...register('capacity', { required: 'Capacity is required' })} />
-        {errors.capacity && <p style={{ color: 'red' }}>{errors.capacity.message}</p>}
-      </div>
-
-<div className="buttons">
-        <button type='submit'>Create</button>
-        <button type='button' onClick={onCancel}>Cancel</button>
-</div>
-    </form>
-    </div>
+    <DefaultForm 
+    formName="Warehouse Form" 
+    fields={fields} 
+    onSubmit={handleSubmit} 
+    buttonText="Create Warehouse" />
   );
 }
+
+export default WarehouseForm;

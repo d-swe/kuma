@@ -9,5 +9,4 @@ public class KumaImsApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(KumaImsApplication.class, args);
 	}
-
 }

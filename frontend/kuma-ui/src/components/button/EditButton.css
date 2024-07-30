@@ -1,0 +1,16 @@
+.edit-button {
+    width: 30px;
+    height: 30px;
+    color: white;
+    background-color: green;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+.edit-button:hover {
+    transform: scale(1.2);
+}
