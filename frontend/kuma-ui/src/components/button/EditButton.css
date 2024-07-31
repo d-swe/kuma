@@ -2,7 +2,7 @@
     width: 30px;
     height: 30px;
     color: white;
-    background-color: green;
+    background: linear-gradient(135deg, #03a152, #36e3b2);
     border-radius: 5px;
     display: flex;
     justify-content: center;

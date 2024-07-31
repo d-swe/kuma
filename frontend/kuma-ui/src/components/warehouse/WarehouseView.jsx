@@ -1,3 +1,6 @@
+/**
+ * Main table view of warehouse data.
+ */
 import { useEffect, useState } from "react";
 import TableView from "../table/TableView";
 import GetRequest from "../webAPI/GetRequest";
@@ -15,7 +18,7 @@ function WarehouseView() {
     }, []);
 
     const columns = [
-        { Header: 'Warehouse Name', accessor: 'name' },
+        { Header: 'Warehouse', accessor: 'name' },
         { Header: 'Street Address', accessor: 'street' },
         { Header: 'City', accessor: 'city' },
         { Header: 'State', accessor: 'state' },

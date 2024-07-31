@@ -1,3 +1,12 @@
+/**
+ * Uses DefaultForm.jsx to create a WarehouseForm with custom input fields.
+ * Has two main functions:
+ * 1. Allows user to create warehouse and add to the database.
+ * 2. Allows user to edit existing warehouse and update to the database.
+ * 
+ * NOTE: WarehouseForm functions are based on input it receives.
+ * Its function converts from CREATE to EDIT if a warehouseId input is received.
+ */
 import React, { useEffect, useState } from 'react';
 import DefaultForm from '../form/DefaultForm';
 import ApiRequest from '../webAPI/ApiRequest';
@@ -83,7 +92,7 @@ function WarehouseForm({ warehouseId }) {
   };
 
   const handleCancel = () => {
-    setIsVisible(false);
+    setIsVisible(falciwse);
   };
 
   return (

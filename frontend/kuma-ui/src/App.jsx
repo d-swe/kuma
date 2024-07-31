@@ -1,23 +1,24 @@
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { SideBar } from './components/sidebar/SideBar'
-import './App.css'
-import Card from './components/card/Card'
-import TableView from './components/table/TableView'
 import WarehouseView from './components/warehouse/WarehouseView'
+import WarehouseCard from './components/warehouse/WarehouseCard'
+import './App.css'
 
 function App() {
 
   return (
-    <WarehouseView />
-  //  <div className="app">
-  //     <SideBar/> 
-  //     <main className="main-content">
-  //       <CardContainer />
-  //       {/* {selectedMenu === 'services' && <div>Services Content</div>}
-  //       {selectedMenu === 'clients' && <div>Clients Content</div>}
-  //       {selectedMenu === 'contact' && <div>Contact Content</div>} */}
-  //     </main>
-  //   </div>
-  )
+    <Router>
+      <div className='app'>
+      <SideBar/>
+      <Routes>
+        <Route path="/" element={<WarehouseCard/>} />
+        <Route path="/warehouse" element={<WarehouseView />} />
+        <Route path="/inventory" element="" />
+        <Route path="/product" element="" />
+      </Routes>
+      </div>
+   </Router>
+  );
 }
 
 export default App

@@ -3,3 +3,10 @@
     align-items: center;
     gap: 10px;
 }
+.table-container {
+    width: 100%;
+    padding: 30px;
+}
+.table-view {
+    color: black;
+}

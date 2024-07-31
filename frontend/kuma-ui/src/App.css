@@ -3,8 +3,8 @@
 }
 
 body {
-  font-family: 'Zain', sans-seif;
-  background-color: #f1f6f2;
+  font-family: 'Inter', sans-seif;
+  background-color: #e8ebed;
 }
 
 .app {
@@ -12,13 +12,7 @@ body {
     flex: 1;
     flex-direction: row;
     height: 100%;
-  }
-  
-  .sidebar {
-    width: 200px;
-    background-color: #f8f9fa;
-    height: 100vh; /* Full height of the viewport */
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    width: 100%;
   }
  
   main {
@@ -34,3 +28,4 @@ body {
   .create-button {
     padding-left: 20px;
   }
+ 

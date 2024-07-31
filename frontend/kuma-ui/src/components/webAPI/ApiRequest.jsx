@@ -1,4 +1,4 @@
-function PostRequest({ url, formData, requestType }) {
+function ApiRequest({ url, formData, requestType }) {
     
     fetch(url,  {
         method: requestType,
@@ -16,4 +16,4 @@ function PostRequest({ url, formData, requestType }) {
     })
 }
 
-export default PostRequest
+export default ApiRequest

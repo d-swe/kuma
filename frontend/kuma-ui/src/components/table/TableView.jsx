@@ -11,7 +11,7 @@ function TableView({ columns, data }) {
   return (
     <div className="table-container">
         <table {...getTableProps()} className="table-view">
-        <thead>
+        <thead className='table-head'>
             {headerGroups.map((headerGroup, key) => (
                 <tr {...headerGroup.getHeaderGroupProps()} key={key}>
                 {headerGroup.headers.map((column) => (
@@ -20,7 +20,7 @@ function TableView({ columns, data }) {
                 </tr>
             ))}
         </thead>
-            <tbody {...getTableBodyProps()}>
+            <tbody {...getTableBodyProps()} className='table-body'>
                 {rows.map((row, rowKey) => {
                     prepareRow(row)
                     return (
