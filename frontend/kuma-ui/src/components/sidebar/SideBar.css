@@ -26,11 +26,10 @@ li {
     width: 70%;
     border-radius: 10px;
     cursor: pointer;
-    transition: background-color 0.5s ease-in-out 0.3s;
 }
 
 .menu-tab:hover {
-    background-color: rgba(255, 0, 0, 0.3);
+    background-color: #CDDCDE;
 }
 
 .menu-icon {

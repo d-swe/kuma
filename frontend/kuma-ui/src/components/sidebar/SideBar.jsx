@@ -30,15 +30,27 @@ export const SideBar = () => {
             <span>Inventory</span>
           </div>
         </div>
-        <div className='menu-tab' onClick={() => navigate('/')}>
+        <div className='menu-tab' onClick={() => navigate('/product')}>
           <div className='menu-icon'><PiTote className='icon'/></div>
           <div className='menu-title'>
             <span>Product</span>
           </div>
         </div>
+        <div className='menu-tab' onClick={() => navigate('/product')}>
+          <div className='menu-icon'><PiTote className='icon'/></div>
+          <div className='menu-title'>
+            <span>Purchase Order</span>
+          </div>
+        </div>
       <div className="head-box">
         <span className='account-title'>ACCOUNT</span>
       </div>
+        <div className='menu-tab' onClick={() => navigate('/product')}>
+          <div className='menu-icon'><PiTote className='icon'/></div>
+          <div className='menu-title'>
+            <span>Profile</span>
+          </div>
+        </div>
     </div>
     </>
   )

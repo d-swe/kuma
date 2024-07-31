@@ -18,16 +18,16 @@ function WarehouseView() {
     }, []);
 
     const columns = [
-        { Header: 'Warehouse', accessor: 'name' },
-        { Header: 'Street Address', accessor: 'street' },
-        { Header: 'City', accessor: 'city' },
-        { Header: 'State', accessor: 'state' },
-        { Header: 'Zip Code', accessor: 'zip' },
-        { Header: 'Capacity', accessor: 'capacity' },
-        { Header: 'Actions', accessor: 'actions',
+        { Header: 'WAREHOUSE NAME', accessor: 'name' },
+        { Header: 'STREET ADDRESS', accessor: 'street' },
+        { Header: 'CITY', accessor: 'city' },
+        { Header: 'STATE', accessor: 'state' },
+        { Header: 'ZIP CODE', accessor: 'zip' },
+        { Header: 'CAPACITY', accessor: 'capacity' },
+        { Header: 'OPTION', accessor: 'option',
             Cell: ({ row }) => (
                 <div className="buttons">
-                    <EditButton table='warehouses' itemId={row.original.id} />
+                    <EditButton table='warehouses' itemId={row.original.id} formType='warehoues'/>
                     <DeleteButton table='warehouses' itemId={row.original.id} />
                 </div>
             )

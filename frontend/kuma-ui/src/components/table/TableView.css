@@ -1,10 +1,12 @@
 .table-container {
-  margin-top: 30px;
+  margin-top: 80px;
   margin-right: 30px;
   background: #f5f5f5;
   border-radius: 15px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
-
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 15px;
+  margin-bottom: 80px;
+  padding-bottom: 30px;
 }
 
 .table-view {
@@ -14,14 +16,16 @@
 
 .table-view th, .table-view td {
   padding: 12px;
-  border-bottom: 1px solid #eee;
+  border-bottom: 2px solid #eee;
 }
 
 .table-view th {
   font-weight: bold;
   text-align: left;
+  color: gray;
+  font-size: 12px;
 }
 
 .table-body tr:hover {
-  background-color: #f1f1f1;
+  background-color: #CDDCDE;
 }

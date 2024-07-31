@@ -1,38 +1,31 @@
 // src/components/Card.jsx
 import React from 'react';
 import './Card.css';
-import { PiTrash, PiNotePencil, PiListNumbers } from "react-icons/pi";
 
-function WarehouseCard({ 
-  name, 
-  street, 
-  city, 
-  state, 
-  zip, 
-  capacity, 
-  onNameClick, 
-  onInventoryClick, 
-  onEditClick, 
-  onDeleteClick, 
-  showSmallCard}) {
+function Card({ title, icon, count1, description1, count2, description2 }) {
 
   return (
-    <div className="card" onClick={onNameClick}>
+    <>
+    <div className="card">
       <div className="card-content">
-        <h1 className="card-name">Warehouse</h1>
-        <div className='warehouse-options'>
-          <div className="inventory-button"><PiListNumbers className='icon' onClick={onInventoryClick} /></div>
-          <div className="edit-button"><PiNotePencil className='icon' onClick={onEditClick} /></div>
-          <div className="delete-button" ><PiTrash className='icon' onClick={onDeleteClick} /></div>
+        <div className="card-title">
+          <div className='card-icon'>{icon}</div>
+          <h3 className="title">{title}</h3>
+        </div>
+        <div className="card-description">
+          <div className="description-item">
+            <h5 className='count'>{count1}</h5>
+            <h5 className='description'>{description1}</h5>
+          </div>
+          <div className="description-item">
+            <h5 className='count'>{count2}</h5>
+            <h5 className='description'>{description2}</h5>
+          </div>
         </div>
       </div>
-      <div className={`small-card ${showSmallCard ? 'show' : 'hide'}`}>
-        <h4>Warehouse Information {name}</h4>
-        <p>Location: <br/>{street}<br/>{city}, {state} {zip}</p>
-        <p>Max Capacity: {capacity} units</p>
-      </div>
     </div>
+    </>
   );
 }
 
-export default WarehouseCard;
+export default Card;
