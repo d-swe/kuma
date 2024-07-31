@@ -36,6 +36,17 @@ public class Inventory {
     @Column(name = "last_update")
     private OffsetDateTime lastUpdate;
 
+    public Inventory() {
+    }
+
+    public Inventory(int id, Warehouse warehouse, Product product, long quantity, OffsetDateTime lastUpdate) {
+        this.id = id;
+        this.warehouse = warehouse;
+        this.product = product;
+        this.quantity = quantity;
+        this.lastUpdate = lastUpdate;
+    }
+
     public int getId() {
         return id;
     }

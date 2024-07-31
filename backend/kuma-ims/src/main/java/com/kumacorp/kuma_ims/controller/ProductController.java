@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.kumacorp.kuma_ims.service.ProductService;
 import com.kumacorp.kuma_ims.model.Product;
-import com.kumacorp.kuma_ims.model.Product;
 
 @RestController
 @RequestMapping("/products")
@@ -41,6 +40,12 @@ public class ProductController {
         else
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
+
+    @GetMapping("/count")
+    public long getProductCount() {
+        return productService.getProductCount();
+    }
+
     @PostMapping
     public Product createProduct(@RequestBody Product product) {
         return productService.createProduct(product);

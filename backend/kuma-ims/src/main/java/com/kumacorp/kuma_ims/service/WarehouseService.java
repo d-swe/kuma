@@ -46,4 +46,8 @@ public class WarehouseService {
                 return warehouseRepository.save(warehouse);
             }).orElseThrow(() -> new EntityNotFoundException("Warehouse with id: " + id + " not found"));
     }
+
+    public long getWarehouseCount() {
+        return warehouseRepository.count();
+    }
 }

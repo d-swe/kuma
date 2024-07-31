@@ -31,5 +31,9 @@ public class InventoryController {
     public Inventory createInventory(@RequestBody Inventory inventory) {
         return inventoryService.createInventory(inventory);
     }
-    
+
+    @GetMapping("/count")
+    public long getInventoryCount() {
+        return inventoryService.getInventoryCount();
+    } 
 }

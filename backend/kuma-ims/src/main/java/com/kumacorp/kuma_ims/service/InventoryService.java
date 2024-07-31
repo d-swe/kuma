@@ -24,6 +24,10 @@ public class InventoryService {
         return inventoryRepository.save(inventory);
     }
 
+    public long getInventoryCount() {
+        return inventoryRepository.count();
+    }
+
     public void deleteInventory(int id) {
         inventoryRepository.deleteById(id);
     }

@@ -46,4 +46,8 @@ public class ProductService {
                 return productRepository.save(product);
             }).orElseThrow(() -> new EntityNotFoundException("Product with id: " + id + " not found"));
     }
+
+    public long getProductCount() {
+        return productRepository.count();
+    }
 }

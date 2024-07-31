@@ -42,6 +42,11 @@ public class WarehouseController {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
+    @GetMapping("/count")
+    public long getWarehouseCount() {
+        return warehouseService.getWarehouseCount();
+    }
+
     @PostMapping
     public Warehouse createWarehouse(@RequestBody Warehouse warehouse) {
         return warehouseService.createWarehouse(warehouse);
@@ -56,4 +61,6 @@ public class WarehouseController {
     public Warehouse updateWarehouse(@PathVariable int id, @RequestBody Warehouse warehouse) {
         return warehouseService.updateWarehouse(id, warehouse);
     }
+
+
 }

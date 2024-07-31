@@ -36,10 +36,10 @@ export const SideBar = () => {
             <span>Product</span>
           </div>
         </div>
-        <div className='menu-tab' onClick={() => navigate('/product')}>
+        <div className='menu-tab' onClick={() => navigate('/order')}>
           <div className='menu-icon'><PiTote className='icon'/></div>
           <div className='menu-title'>
-            <span>Purchase Order</span>
+            <span>Order</span>
           </div>
         </div>
       <div className="head-box">
