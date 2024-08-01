@@ -2,7 +2,8 @@
     width: 30px;
     height: 30px;
     color: white;
-    background: linear-gradient(135deg, #03a152, #36e3b2);
+    background: linear-gradient(135deg, #c7b218, #ede185);
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 0px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
     border-radius: 5px;
     display: flex;
     justify-content: center;

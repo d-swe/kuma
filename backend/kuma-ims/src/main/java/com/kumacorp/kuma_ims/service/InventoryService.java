@@ -21,7 +21,6 @@ public class InventoryService {
     }
 
     public Inventory createInventory(Inventory inventory) {
-        inventory.setLastUpdate(OffsetDateTime.now());
         return inventoryRepository.save(inventory);
     }
 

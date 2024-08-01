@@ -43,7 +43,7 @@ public class ProductService {
                 product.setPrice(newProduct.getPrice());
                 product.setSku(newProduct.getSku());
                 product.setCategory(newProduct.getCategory());
-                product.setLastUpdate(OffsetDateTime.now());
+                product.setLastUpdate(newProduct.getLastUpdate());
                 return productRepository.save(product);
             }).orElseThrow(() -> new EntityNotFoundException("Product with id: " + id + " not found"));
     }

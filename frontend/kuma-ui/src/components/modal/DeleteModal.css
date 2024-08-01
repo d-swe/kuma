@@ -31,24 +31,22 @@
 .delete-buttons {
     display: flex;
     justify-content: center;
-    gap: 40px;
+    align-items: center;
+    gap: 25px;
 }
 
-.yes-button {
+.yes-button, .no-button {
     border: none;
     background: linear-gradient(135deg, #e33d3d, #feb47b);
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
     transition: 0.3s ease-in-out;
     font-weight: 700;
 }
 
 .no-button {
-    border: none;
     background: linear-gradient(135deg, #898E90, #B8BFC1);
-    transition: 0.3s ease-in-out;
-    font-weight: 700;
 }
 
 .yes-button:hover, .no-button:hover {
-    background-color: red;
     transform: scale(1.1);
 }

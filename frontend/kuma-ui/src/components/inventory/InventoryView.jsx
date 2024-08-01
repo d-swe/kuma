@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import TableView from "../table/TableView";
 import GetRequest from "../webAPI/GetRequest";
 import { useNavigate } from "react-router-dom";
+import CreateButton from '../button/CreateButton'
 
 function InventoryView({ warehouseId }) {
   const [data, setData] = useState([]);
@@ -35,7 +36,10 @@ function InventoryView({ warehouseId }) {
   }, [data])
 
   return (
-    <TableView columns={columns} data={data} />
+    <>
+      <div className="view-title">Inventory</div>
+      <TableView columns={columns} data={data} />
+    </>
   );
 }
 

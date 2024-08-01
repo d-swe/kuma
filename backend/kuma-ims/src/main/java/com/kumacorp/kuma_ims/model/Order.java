@@ -1,6 +1,7 @@
 package com.kumacorp.kuma_ims.model;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.OffsetDateTime;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -44,13 +45,13 @@ public class Order {
     private String notes;
 
     @Column(name = "order_date")
-    private OffsetDateTime orderDate;
+    private LocalDate orderDate;
 
     public Order() {
     }
 
     public Order(int id, int customerId, BigDecimal totalAmount, String street, String city, String state, int zip,
-            String notes) {
+            Warehouse warehouse, String notes, LocalDate orderDate) {
         this.id = id;
         this.customerId = customerId;
         this.totalAmount = totalAmount;
@@ -58,7 +59,9 @@ public class Order {
         this.city = city;
         this.state = state;
         this.zip = zip;
+        this.warehouse = warehouse;
         this.notes = notes;
+        this.orderDate = orderDate;
     }
 
     public int getId() {
@@ -133,12 +136,12 @@ public class Order {
         this.notes = notes;
     }
 
-    public OffsetDateTime getOrderDate() {
+    public LocalDate getOrderDate() {
         return orderDate;
     }
 
-    public void setOrderDate(OffsetDateTime orderDate) {
-        this.orderDate = orderDate;
+    public void setOrderDate(LocalDate orderDate) {
+        this.orderDate = LocalDate.now();
     }
 
     

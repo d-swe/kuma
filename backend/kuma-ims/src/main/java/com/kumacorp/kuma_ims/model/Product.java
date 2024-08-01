@@ -1,6 +1,6 @@
 package com.kumacorp.kuma_ims.model;
 
-import java.time.OffsetDateTime;
+import java.time.LocalDate;
 import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -39,13 +39,13 @@ public class Product {
 
     private String category;
 
+    @Column(name = "last_update")
+    private LocalDate lastUpdate;
+
     public Product() {
     }
 
-    @Column(name = "last_update")
-    private OffsetDateTime lastUpdate;
-
-    public Product(int id, Set<Inventory> inventory, String name, String description, float price, String sku, String category, OffsetDateTime lastUpdate) {
+    public Product(int id, Set<Inventory> inventory, String name, String description, float price, String sku, String category, LocalDate lastUpdate) {
         this.id = id;
         this.inventory = inventory;
         this.name = name;
@@ -96,11 +96,11 @@ public class Product {
         this.sku = sku;
     }
 
-    public OffsetDateTime getLastUpdate() {
+    public LocalDate getLastUpdate() {
         return lastUpdate;
     }
 
-    public void setLastUpdate(OffsetDateTime lastUpdate) {
+    public void setLastUpdate(LocalDate lastUpdate) {
         this.lastUpdate = lastUpdate;
     }
 
@@ -111,5 +111,4 @@ public class Product {
     public void setCategory(String category) {
         this.category = category;
     }
-
 }

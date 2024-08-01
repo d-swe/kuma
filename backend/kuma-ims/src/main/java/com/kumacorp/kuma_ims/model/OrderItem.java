@@ -65,8 +65,6 @@ public class OrderItem {
         this.product = product;
     }
 
-
-
     public int getQuantity() {
         return quantity;
     }
@@ -74,6 +72,4 @@ public class OrderItem {
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
-
-    
 }
