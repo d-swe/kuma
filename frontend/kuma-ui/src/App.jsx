@@ -4,6 +4,7 @@ import WarehouseView from './components/warehouse/WarehouseView'
 import ProductView from './components/product/ProductView';
 import Dashboard from './components/dashboard/DashboardView';
 import OrderView from './components/order/OrderView';
+import InventoryView from './components/inventory/InventoryView';
 import './App.css'
 
 function App() {
@@ -14,9 +15,9 @@ function App() {
       <Routes>
         <Route path="/" element={<Dashboard />} />
         <Route path="/warehouse" element={<WarehouseView />} />
-        <Route path="/inventory" element="" />
         <Route path="/product" element={<ProductView />} />
         <Route path="/order" element={<OrderView />} />
+        <Route path="/inventory/warehouse/:warehouseId" element={<InventoryView />} />
       </Routes>
       </div>
    </Router>

@@ -38,7 +38,7 @@ public class WarehouseController {
         Optional<Warehouse> warehouse = warehouseService.findWarehouseById(id);
         if (warehouse.isPresent())
         return ResponseEntity.ok(warehouse.get());
-        else
+            else
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 

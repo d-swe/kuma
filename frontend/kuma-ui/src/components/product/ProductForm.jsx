@@ -24,14 +24,10 @@ function ProductForm({ productId }) {
   }, [productId]);
 
   const fields = [
-    { name: 'name', label: 'PRODUCT NAME', required: true, select: false, type: 'text'},
-    { name: 'category', label: 'CATEGORY', required: true, select: false, type: 'text', options: [
-        { value: '1', label: 'Clothes' },
-        { value: '2', label: 'Furniture' },
-        { value: '3', label: 'Food' },
-    ]},
-    { name: 'description', label: 'DESCRIPTION', required: true, select: false, type: 'text'},
-    { name: 'price', label: 'PRICE', required: true, select: false, type: 'number'},
+    { name: 'name', label: 'Product Name', required: true, select: false, type: 'text'},
+    { name: 'category', label: 'Category', required: false, select: false, type: 'text'},
+    { name: 'description', label: 'Description', required: true, select: false, type: 'text'},
+    { name: 'price', label: 'Price', required: true, select: false, type: 'number'},
     { name: 'sku', label: 'SKU', required: true, select: false, type: 'text'},
   ];
 

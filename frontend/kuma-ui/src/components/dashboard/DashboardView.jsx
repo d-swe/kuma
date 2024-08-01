@@ -8,6 +8,7 @@ function DashboardView() {
     const [warehouseCount, setWarehouseCount] = useState(0);
     const [inventoryCount, setInventoryCount] = useState(0);
     const [productCount, setProductCount] = useState(0);
+    const [categoryCount, setCategoryCount] = useState(0);
     const [orderCount, setOrderCount] = useState(0);
     const [orderTotal, setOrderTotal] = useState(0);
 
@@ -16,12 +17,13 @@ function DashboardView() {
         GetRequest({ url: 'http://localhost:8080/inventories/count', onSuccess: setInventoryCount})
 
         GetRequest({ url: 'http://localhost:8080/products/count', onSuccess: setProductCount})
+        GetRequest({ url: 'http://localhost:8080/products/count-category', onSuccess: setCategoryCount})
 
         GetRequest({ url: 'http://localhost:8080/orders/count', onSuccess: setOrderCount})
         GetRequest({ url: 'http://localhost:8080/orders/total-amount', onSuccess: setOrderTotal})
     })
 
-    const formattedTotal = '$' + orderTotal.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    const formattedTotal = '$' + orderTotal;
     
     return(
         <>
@@ -36,8 +38,8 @@ function DashboardView() {
                 icon={<PiTote />} 
                 count1={productCount}
                 description1='PRODUCTS' 
-                count2='4' 
-                description2='INVENTORY' />
+                count2={categoryCount}
+                description2='CATEGORIES' />
             <Card title='Order' 
                 icon={<PiStorefront/>} 
                 count1={orderCount}

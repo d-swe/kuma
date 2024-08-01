@@ -1,0 +1,16 @@
+.create-item-button {
+    width: 30px;
+    height: 30px;
+    color: white;
+    background: linear-gradient(135deg, #4e78c7, #89a8e0);
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+.create-item-button:hover {
+    transform: scale(1.2);
+}

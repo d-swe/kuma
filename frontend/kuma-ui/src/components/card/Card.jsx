@@ -1,6 +1,7 @@
 // src/components/Card.jsx
 import React from 'react';
 import './Card.css';
+import CreateButton from '../button/CreateButton';
 
 function Card({ title, icon, count1, description1, count2, description2 }) {
 
@@ -21,6 +22,9 @@ function Card({ title, icon, count1, description1, count2, description2 }) {
             <h5 className='count'>{count2}</h5>
             <h5 className='description'>{description2}</h5>
           </div>
+        </div>
+        <div className="button">
+          <CreateButton isIcon={true} formType={title}/>
         </div>
       </div>
     </div>

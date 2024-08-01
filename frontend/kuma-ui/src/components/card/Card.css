@@ -1,7 +1,7 @@
 .card {
   background-color: white;
   width: 30%;
-  height: 200px;
+  height: 245px;
   border-radius: 18px;
   box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 15px;
 }
@@ -16,8 +16,9 @@
 .card-title {
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
+  padding-left: 10px;
   gap: 20px;
 }
 
@@ -32,14 +33,14 @@
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 .title {
-  color: gray;
+  color: #3D4141;
   font-size: 30px;
   margin: 0;
   text-align: center;
 }
 
 .card-description {
-  color: gray;
+  color: #3D4141;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -61,4 +62,11 @@
 
 .description {
   margin: 0;
+}
+
+.button {
+  display: flex;
+  justify-content: end;
+  padding-right: 5px;
+  padding-bottom: 5px;
 }

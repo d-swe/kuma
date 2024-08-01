@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Fieldset, Form, Label, Button, RequiredMarker } from '@trussworks/react-uswds';
+import { Fieldset, Form, Label, Button, RequiredMarker, ComboBox, Table } from '@trussworks/react-uswds';
 import TextInput from './TextInput';
 import Select from './Select';
 import './DefaultForm.css';
@@ -11,6 +11,8 @@ function DefaultForm({
   initialData,
   onSubmit, 
   onCancel, 
+  isOrder,
+  productsData,
   buttonText = 'Submit' 
 }) {
   const { register, handleSubmit, setValue, formState: { errors } } = useForm();
@@ -62,13 +64,53 @@ function DefaultForm({
               )}
             </div>
           ))}
-        </Fieldset>
+          {isOrder && (
+          <div className="product-table">
+            <Label htmlFor="product-table">Available Products</Label>
+            <Table bordered>
+              <thead>
+                <tr>
+                  <th>Select</th>
+                  <th>ID</th>
+                  <th>Name</th>
+                  <th>Price</th>
+                  <th>SKU</th>
+                  <th>Category</th>
+                  <th>Quantity</th>
+                </tr>
+              </thead>
+              <tbody>
+                {productsData.map(product => (
+                  <tr key={product.id}>
+                    <td className='checkbox'>
+                      <input type="checkbox" name={`product-${product.id}`} value={product.id} />
+                    </td>
+                    <td>{product.id}</td>
+                    <td>{product.name}</td>
+                    <td>{product.price}</td>
+                    <td>{product.sku}</td>
+                    <td>{product.category}</td>
+                    <td>
+                      <input
+                        type="number"
+                        name={`quantity-${product.id}`}
+                        min="1"
+                        className="quantity-input"
+                      />
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </Table>
+          </div> )}
         <div className="form-buttons">
           <Button type="submit">{buttonText}</Button>
           <Button type="button" onClick={onCancel}>Cancel</Button>
         </div>
-      </Form>
+        </Fieldset>
+      </Form>    
     </div>
+
   );
 }
 

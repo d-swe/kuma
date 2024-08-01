@@ -6,7 +6,7 @@ import TableView from "../table/TableView";
 import GetRequest from "../webAPI/GetRequest";
 import DeleteButton from "../button/DeleteButton";
 import EditButton from "../button/EditButton";
-import './ProductView.css'
+import CreateButton from "../button/CreateButton";
 
 function ProductView() {
     const [data, setData] = useState([]);
@@ -35,8 +35,13 @@ function ProductView() {
     ]
 
     return (
-
-        <TableView columns={columns} data={data} />
+        <>
+            <div className="view-title">Product</div>
+            <div className="cr-item-button">
+            <CreateButton isIcon={false} formType='Product' />
+            </div>
+            <TableView columns={columns} data={data} />
+        </>
     )
 
 }

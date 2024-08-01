@@ -7,24 +7,34 @@
  * NOTE: WarehouseForm functions are based on input it receives.
  * Its function converts from CREATE to EDIT if a warehouseId input is received.
  */
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import DefaultForm from '../form/DefaultForm';
 import ApiRequest from '../webAPI/ApiRequest';
-import GetRequest from '../webAPI/GetRequest'; // Assuming this is the component to fetch data
+import GetRequest from '../webAPI/GetRequest';
+import { Label, Table } from '@trussworks/react-uswds';
+import './OrderForm.css'
 
-function WarehouseForm({ warehouseId }) {
+function OrderForm( ) {
   const [isVisible, setIsVisible] = useState(true);
-  const [initialData, setInitialData] = useState(null);
+  const [productsData, setProducts] = useState([]);
 
   useEffect(() => {
-    if (warehouseId) {
-      const url = `http://localhost:8080/warehouses/${warehouseId}`;
-      GetRequest({ url, onSuccess: setInitialData });
-    }
-  }, [warehouseId]);
+    const url = 'http://localhost:8080/products';
+    GetRequest({ url, onSuccess: setProducts});
+  }, [])
+
+  const productList = Array.isArray(productsData) ? productsData.map(item => ({
+    id: item.id,
+    name: item.name,
+    price: item.price,
+    sku: item.sku,
+    category: item.category,
+  })) : [];
+
+  console.log('product list:',productList)
 
   const fields = [
-    { name: 'name', label: 'Warehouse Name', required: true, select: false, type: 'text'},
+    { name: 'customer_id', label: 'Customer Id', required: true, select: false, type: 'text'},
     { name: 'street', label: 'Street Address', required: true, select: false, type: 'text'},
     { name: 'city', label: 'City', required: true, select: false, type: 'text'},
     { name: 'state', label: 'State', required: true, select: true, type: 'text', options: [
@@ -81,14 +91,11 @@ function WarehouseForm({ warehouseId }) {
         { value: 'WY', label: 'Wyoming' },
     ]},
     { name: 'zip', label: 'Zip Code', required: true, select: false, type: 'text'},
-    { name: 'capacity', label: 'Max Capacity', required: true, select: false, type: 'text'},
-
   ];
 
   const handleSubmit = (data) => {
-    const url = warehouseId ? `http://localhost:8080/warehouses/${warehouseId}` : 'http://localhost:8080/warehouses';
-    const requestType = warehouseId ? 'PUT' : 'POST';
-    ApiRequest({ url, formData: data, requestType });
+    const url = 'http://localhost:8080/orders';
+    ApiRequest({ url, formData: data, requestType:'POST' });
   };
 
   const handleCancel = () => {
@@ -98,17 +105,22 @@ function WarehouseForm({ warehouseId }) {
   return (
     <>
       {isVisible && (
-        <DefaultForm 
-          formName="Warehouse Form" 
-          fields={fields} 
-          initialData={initialData}
-          onSubmit={handleSubmit} 
-          onCancel={handleCancel}
-          buttonText={warehouseId ? "Update Warehouse" : "Create Warehouse"}
-        />
+        <>
+          <DefaultForm 
+            formName="Order Form" 
+            fields={fields} 
+            onSubmit={handleSubmit} 
+            onCancel={handleCancel}
+            isOrder={true}
+            productsData={productsData}
+            buttonText='Create Order'
+          />
+
+        </>
       )}
     </>
   );
 }
 
-export default WarehouseForm;
+
+export default OrderForm;

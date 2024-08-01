@@ -51,7 +51,7 @@ public class ProductController {
         return productService.createProduct(product);
     }
 
-        @DeleteMapping("/{id}")
+    @DeleteMapping("/{id}")
     public void deleteProduct(@PathVariable int id) {
         productService.deleteProduct(id);
     }
@@ -59,5 +59,10 @@ public class ProductController {
     @PutMapping("/{id}")
     public Product updateProduct(@PathVariable int id, @RequestBody Product product) {
         return productService.updateProduct(id, product);
+    }
+
+    @GetMapping("/count-category")
+    public long getCategoryCount() {
+        return productService.getCategoryCount();
     }
 }

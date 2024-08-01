@@ -9,10 +9,10 @@ function DeleteModal({ show, onClose, onConfirm, name }) {
   return (
     <div className="delete-container">
       <div className="delete-modal">
-        <h2>Are you sure you want to delete {name}?</h2>
+        <h2 className='delete-msg'>Are you sure you want to delete this item?</h2>
         <div className="delete-buttons">
-          <button className="button" onClick={onConfirm}>Yes</button>
-          <button className="button" onClick={onClose}>No</button>
+          <button className="yes-button" onClick={onConfirm}>Yes</button>
+          <button className="no-button" onClick={onClose}>No</button>
         </div>
       </div>
     </div>

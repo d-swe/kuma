@@ -1,0 +1,16 @@
+.inventory-button {
+    width: 30px;
+    height: 30px;
+    color: white;
+    background: linear-gradient(135deg, #c7b218, #ede185);
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+.inventory-button:hover {
+    transform: scale(1.2);
+}

@@ -24,12 +24,6 @@ export const SideBar = () => {
             <span>Warehouse</span>
           </div>
         </div>
-        <div className='menu-tab' onClick={() => navigate('/')}>
-          <div className='menu-icon'><PiListNumbers className='icon'/></div>
-          <div className='menu-title'>
-            <span>Inventory</span>
-          </div>
-        </div>
         <div className='menu-tab' onClick={() => navigate('/product')}>
           <div className='menu-icon'><PiTote className='icon'/></div>
           <div className='menu-title'>

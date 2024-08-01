@@ -9,6 +9,8 @@ function TableView({ columns, data }) {
   });
 
   return (
+    <>
+    <div className="title"></div>
     <div className="table-container">
         <table {...getTableProps()} className="table-view">
         <thead className='table-head'>
@@ -36,6 +38,7 @@ function TableView({ columns, data }) {
             </tbody>
         </table>
     </div>
+    </>
   );
 }
 

@@ -7,6 +7,8 @@ import GetRequest from "../webAPI/GetRequest";
 import DeleteButton from "../button/DeleteButton";
 import EditButton from "../button/EditButton";
 import './WarehouseView.css'
+import InventoryButton from '../button/InventoryButton'
+import CreateButton from "../button/CreateButton";
 
 function WarehouseView() {
     const [data, setData] = useState([]);
@@ -27,7 +29,8 @@ function WarehouseView() {
         { Header: 'OPTION', accessor: 'option',
             Cell: ({ row }) => (
                 <div className="buttons">
-                    <EditButton table='warehouses' itemId={row.original.id} formType='warehoues'/>
+                    <InventoryButton table='warehouses' itemId={row.original.id} />
+                    <EditButton table='warehouses' itemId={row.original.id} formType='warehouse'/>
                     <DeleteButton table='warehouses' itemId={row.original.id} />
                 </div>
             )
@@ -35,8 +38,13 @@ function WarehouseView() {
     ]
 
     return (
-
-        <TableView columns={columns} data={data} />
+        <>
+            <div className="view-title">Warehouse</div>
+            <div className="cr-item-button">
+            <CreateButton isIcon={false} formType='Warehouse' />
+            </div>
+            <TableView columns={columns} data={data} />
+        </>
     )
 
 }

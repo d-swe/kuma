@@ -37,20 +37,24 @@ public class Product {
 
     private String sku;
 
-    public Product() {
-    }
+    private String category;
 
-    public Product(int id, String name, String description, float price, String sku, OffsetDateTime lastUpdate) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
-        this.price = price;
-        this.sku = sku;
-        this.lastUpdate = lastUpdate;
+    public Product() {
     }
 
     @Column(name = "last_update")
     private OffsetDateTime lastUpdate;
+
+    public Product(int id, Set<Inventory> inventory, String name, String description, float price, String sku, String category, OffsetDateTime lastUpdate) {
+        this.id = id;
+        this.inventory = inventory;
+        this.name = name;
+        this.description = description;
+        this.price = price;
+        this.sku = sku;
+        this.category = category;
+        this.lastUpdate = lastUpdate;
+    }
 
     public int getId() {
         return id;
@@ -58,14 +62,6 @@ public class Product {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public Set<Inventory> getInventory() {
-        return inventory;
-    }
-
-    public void setInventory(Set<Inventory> inventory) {
-        this.inventory = inventory;
     }
 
     public String getName() {
@@ -106,6 +102,14 @@ public class Product {
 
     public void setLastUpdate(OffsetDateTime lastUpdate) {
         this.lastUpdate = lastUpdate;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 
 }

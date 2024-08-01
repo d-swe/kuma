@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import TableView from "../table/TableView";
 import GetRequest from "../webAPI/GetRequest";
 import DeleteButton from "../button/DeleteButton";
-import EditButton from "../button/EditButton";
+import CreateButton from "../button/CreateButton";
 
 function OrderView() {
     const [data, setData] = useState([]);
@@ -15,7 +15,6 @@ function OrderView() {
 
         GetRequest({ url, onSuccess: setData });
     }, []);
-
     const columns = [
         { Header: 'ORDER ID', accessor: 'id' },
         { Header: 'CUSTOMER ID', accessor: 'customerId' },
@@ -36,7 +35,13 @@ function OrderView() {
     ]
 
     return (
-        <TableView columns={columns} data={data} />
+        <>
+            <div className="view-title">Order</div>
+            <div className="cr-item-button">
+            <CreateButton isIcon={false} formType='Order' />
+            </div>
+            <TableView columns={columns} data={data} />
+        </>
     )
 
 }

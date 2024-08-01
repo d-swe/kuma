@@ -108,13 +108,4 @@ public class Warehouse {
     public void setCapacity(int capacity) {
         this.capacity = capacity;
     }
-
-    public Set<Inventory> getInventories() {
-        return inventories;
-    }
-
-    public void setInventories(Set<Inventory> inventories) {
-        this.inventories = inventories;
-    }
-
 }

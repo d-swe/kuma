@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.kumacorp.kuma_ims.repository.InventoryRepository;
 import com.kumacorp.kuma_ims.model.Inventory;
+import com.kumacorp.kuma_ims.model.Product;
 
 @Service
 public class InventoryService {
@@ -30,5 +31,9 @@ public class InventoryService {
 
     public void deleteInventory(int id) {
         inventoryRepository.deleteById(id);
+    }
+
+    public List<Product> findProductsByWarehouse(int warehouseId) {
+        return inventoryRepository.findProductsByWarehouse(warehouseId);
     }
 }
