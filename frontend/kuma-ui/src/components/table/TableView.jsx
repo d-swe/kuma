@@ -1,7 +1,6 @@
 import React from 'react';
 import { useTable } from 'react-table';
 import './TableView.css';
-import SearchBar from '../search/SearchBar'
 
 function TableView({ columns, data }) {
   const { title, getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } = useTable({

@@ -64,6 +64,7 @@ li {
 
 .menu-tab.active {
     background-color: white; /* Highlight the active tab */
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 
     .menu-icon {
         background: linear-gradient(135deg, #4e78c7, #89a8e0);

@@ -38,10 +38,8 @@ public class WarehouseService {
         return warehouseRepository.findById(id)
             .map(warehouse -> {
                 warehouse.setName(newWarehouse.getName());
-                warehouse.setStreet(newWarehouse.getStreet());
                 warehouse.setCity(newWarehouse.getCity());
                 warehouse.setState(newWarehouse.getState());
-                warehouse.setZip(newWarehouse.getZip());
                 warehouse.setCapacity(newWarehouse.getCapacity());
                 return warehouseRepository.save(warehouse);
             }).orElseThrow(() -> new EntityNotFoundException("Warehouse with id: " + id + " not found"));

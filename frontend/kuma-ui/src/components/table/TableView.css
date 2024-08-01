@@ -16,6 +16,7 @@
 .table-view th, .table-view td {
   padding: 10px;
   border-bottom: 2px solid #eee;
+  font-weight: 500;
 }
 
 .table-view th {

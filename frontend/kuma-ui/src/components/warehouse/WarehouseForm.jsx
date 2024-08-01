@@ -11,6 +11,7 @@ import React, { useEffect, useState } from 'react';
 import DefaultForm from '../form/DefaultForm';
 import ApiRequest from '../webAPI/ApiRequest';
 import GetRequest from '../webAPI/GetRequest'; // Assuming this is the component to fetch data
+import { toast } from 'react-toastify';
 
 function WarehouseForm({ warehouseId }) {
   const [isVisible, setIsVisible] = useState(true);
@@ -25,7 +26,6 @@ function WarehouseForm({ warehouseId }) {
 
   const fields = [
     { name: 'name', label: 'Warehouse Name', required: true, select: false, type: 'text'},
-    { name: 'street', label: 'Street Address', required: true, select: false, type: 'text'},
     { name: 'city', label: 'City', required: true, select: false, type: 'text'},
     { name: 'state', label: 'State', required: true, select: true, type: 'text', options: [
         { value: 'AL', label: 'Alabama' },
@@ -80,7 +80,6 @@ function WarehouseForm({ warehouseId }) {
         { value: 'WI', label: 'Wisconsin' },
         { value: 'WY', label: 'Wyoming' },
     ]},
-    { name: 'zip', label: 'Zip Code', required: true, select: false, type: 'text'},
     { name: 'capacity', label: 'Max Capacity', required: true, select: false, type: 'text'},
 
   ];
@@ -89,6 +88,8 @@ function WarehouseForm({ warehouseId }) {
     const url = warehouseId ? `http://localhost:8080/warehouses/${warehouseId}` : 'http://localhost:8080/warehouses';
     const requestType = warehouseId ? 'PUT' : 'POST';
     ApiRequest({ url, formData: data, requestType });
+    setIsVisible(false);
+    toast.success(`Warehouse ${(warehouseId ? 'updated' : 'created')} successfully!`)
   };
 
   const handleCancel = () => {

@@ -10,7 +10,8 @@
 import React, { useEffect, useState } from 'react';
 import DefaultForm from '../form/DefaultForm';
 import ApiRequest from '../webAPI/ApiRequest';
-import GetRequest from '../webAPI/GetRequest'; // Assuming this is the component to fetch data
+import GetRequest from '../webAPI/GetRequest'; 
+import { toast } from 'react-toastify';
 
 function ProductForm({ productId }) {
   const [isVisible, setIsVisible] = useState(true);
@@ -25,8 +26,15 @@ function ProductForm({ productId }) {
 
   const fields = [
     { name: 'name', label: 'Product Name', required: true, select: false, type: 'text'},
-    { name: 'category', label: 'Category', required: false, select: false, type: 'text'},
-    { name: 'description', label: 'Description', required: true, select: false, type: 'text'},
+    { name: 'category', label: 'Category', required: false, select: true, type: 'text', options: [
+      { value: 'Vegetables', label: 'Vegetables' },
+      { value: 'Fruits', label: 'Fruits' },
+      { value: 'Meats', label: 'Meats' },
+      { value: 'Seafood', label: 'Seafood' },
+      { value: 'Poultry', label: 'Poultry' },
+      { value: 'Sweets', label: 'Sweets' },
+      { value: 'Bread', label: 'Bread' },
+  ]},
     { name: 'price', label: 'Price', required: true, select: false, type: 'number'},
     { name: 'sku', label: 'SKU', required: true, select: false, type: 'text'},
   ];
@@ -35,6 +43,8 @@ function ProductForm({ productId }) {
     const url = productId ? `http://localhost:8080/products/${productId}` : 'http://localhost:8080/products';
     const requestType = productId ? 'PUT' : 'POST';
     ApiRequest({ url, formData: data, requestType });
+    toast.success(`Product ${(productId ? 'updated' : 'created')} successfully!`)
+    setIsVisible(false);
   };
 
   const handleCancel = () => {

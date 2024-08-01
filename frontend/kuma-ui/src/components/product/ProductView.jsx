@@ -18,12 +18,11 @@ function ProductView() {
     }, []);
 
     const columns = [
+        { Header: 'PRODUCT ID', accessor: 'id' },
         { Header: 'PRODUCT NAME', accessor: 'name' },
         { Header: 'CATEGORY', accessor: 'category' },
-        { Header: 'DESCRIPTION', accessor: 'description' },
         { Header: 'PRICE', accessor: 'price' },
         { Header: 'SKU', accessor: 'sku' },
-        { Header: 'LAST UPDATED', accessor: 'lastUpdate' },
         { Header: 'OPTION', accessor: 'option',
             Cell: ({ row }) => (
                 <div className="buttons">

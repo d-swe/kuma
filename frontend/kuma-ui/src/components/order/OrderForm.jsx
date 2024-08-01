@@ -11,7 +11,7 @@ import React, { useState, useEffect } from 'react';
 import DefaultForm from '../form/DefaultForm';
 import ApiRequest from '../webAPI/ApiRequest';
 import GetRequest from '../webAPI/GetRequest';
-import { Label, Table } from '@trussworks/react-uswds';
+import { toast } from 'react-toastify';
 import './OrderForm.css'
 
 function OrderForm( ) {
@@ -35,7 +35,6 @@ function OrderForm( ) {
 
   const fields = [
     { name: 'customer_id', label: 'Customer Id', required: true, select: false, type: 'text'},
-    { name: 'street', label: 'Street Address', required: true, select: false, type: 'text'},
     { name: 'city', label: 'City', required: true, select: false, type: 'text'},
     { name: 'state', label: 'State', required: true, select: true, type: 'text', options: [
         { value: 'AL', label: 'Alabama' },
@@ -90,12 +89,13 @@ function OrderForm( ) {
         { value: 'WI', label: 'Wisconsin' },
         { value: 'WY', label: 'Wyoming' },
     ]},
-    { name: 'zip', label: 'Zip Code', required: true, select: false, type: 'text'},
   ];
 
   const handleSubmit = (data) => {
     const url = 'http://localhost:8080/orders';
     ApiRequest({ url, formData: data, requestType:'POST' });
+    toast.success(`Warehouse ${(warehouseId ? 'updated' : 'created')} successfully!`)
+    setIsVisible(false);
   };
 
   const handleCancel = () => {

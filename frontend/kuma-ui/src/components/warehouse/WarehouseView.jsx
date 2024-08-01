@@ -20,11 +20,10 @@ function WarehouseView() {
     }, []);
 
     const columns = [
+        { Header: 'WAREHOUSE ID', accessor: 'id' },
         { Header: 'WAREHOUSE NAME', accessor: 'name' },
-        { Header: 'STREET ADDRESS', accessor: 'street' },
         { Header: 'CITY', accessor: 'city' },
         { Header: 'STATE', accessor: 'state' },
-        { Header: 'ZIP CODE', accessor: 'zip' },
         { Header: 'CAPACITY', accessor: 'capacity' },
         { Header: 'OPTION', accessor: 'option',
             Cell: ({ row }) => (

@@ -1,31 +1,32 @@
 #root {
-    width: 100%;
+  width: 100%;
 }
 
 body {
-  font-family: 'Inter', sans-seif;
-  background-color: #d3e9eb;
+font-family: 'Inter', sans-seif;
+background-color: #d3e9eb;
+background-color: #D5E4EE;
+background-color: #E7EEF2;
 }
 
 .app {
-    display: flex;
-    flex: 1;
-    flex-direction: row;
-    height: 100%;
-    width: 100%;
-  }
- 
-  main {
-    width: 100%;
-  }
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  height: 100%;
+  width: 100%;
+}
 
-  .main-content {
-    flex: 1;
-    padding: 20px;
-    overflow: auto;
-  }
+main {
+  width: 100%;
+}
 
-  .create-button {
-    padding-left: 20px;
-  }
- 
+.main-content {
+  flex: 1;
+  padding: 20px;
+  overflow: auto;
+}
+
+.create-button {
+  padding-left: 20px;
+}

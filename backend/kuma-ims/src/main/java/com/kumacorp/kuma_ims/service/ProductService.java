@@ -39,11 +39,9 @@ public class ProductService {
         return productRepository.findById(id)
                 .map(product -> {
                 product.setName(newProduct.getName());
-                product.setDescription(newProduct.getDescription());
                 product.setPrice(newProduct.getPrice());
                 product.setSku(newProduct.getSku());
                 product.setCategory(newProduct.getCategory());
-                product.setLastUpdate(newProduct.getLastUpdate());
                 return productRepository.save(product);
             }).orElseThrow(() -> new EntityNotFoundException("Product with id: " + id + " not found"));
     }

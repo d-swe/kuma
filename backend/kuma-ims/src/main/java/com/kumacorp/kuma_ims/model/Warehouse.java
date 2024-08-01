@@ -15,7 +15,7 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "warehouses")
+@Table(name = "warehouse")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Warehouse {
 
@@ -25,13 +25,9 @@ public class Warehouse {
 
     private String name;
 
-    private String street;
-
     private String city;
 
     private String state;
-
-    private int zip;
 
     private int capacity;
 
@@ -43,14 +39,13 @@ public class Warehouse {
 
     }
 
-    public Warehouse(int id, String name, String street, String city, String state, int zip, int capacity) {
+    public Warehouse(int id, String name, String city, String state, int capacity, Set<Inventory> inventories) {
         this.id = id;
         this.name = name;
-        this.street = street;
         this.city = city;
         this.state = state;
-        this.zip = zip;
         this.capacity = capacity;
+        this.inventories = inventories;
     }
 
     public int getId() {
@@ -69,14 +64,6 @@ public class Warehouse {
         this.name = name;
     }
 
-    public String getStreet() {
-        return street;
-    }
-
-    public void setStreet(String street) {
-        this.street = street;
-    }
-
     public String getCity() {
         return city;
     }
@@ -93,14 +80,6 @@ public class Warehouse {
         this.state = state;
     }
 
-    public int getZip() {
-        return zip;
-    }
-
-    public void setZip(int zip) {
-        this.zip = zip;
-    }
-
     public int getCapacity() {
         return capacity;
     }
@@ -108,4 +87,13 @@ public class Warehouse {
     public void setCapacity(int capacity) {
         this.capacity = capacity;
     }
+
+    public Set<Inventory> getInventories() {
+        return inventories;
+    }
+
+    public void setInventories(Set<Inventory> inventories) {
+        this.inventories = inventories;
+    }
+
 }

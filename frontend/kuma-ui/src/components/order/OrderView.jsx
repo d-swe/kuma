@@ -18,12 +18,9 @@ function OrderView() {
     const columns = [
         { Header: 'ORDER ID', accessor: 'id' },
         { Header: 'CUSTOMER ID', accessor: 'customerId' },
-        { Header: 'STREET ADDRESS', accessor: 'street' },
         { Header: 'CITY', accessor: 'city' },
         { Header: 'STATE', accessor: 'state' },
-        { Header: 'ZIP CODE', accessor: 'zip' },
         { Header: 'TOTAL', accessor: 'totalAmount' },
-        { Header: 'NOTES', accessor: 'notes' },
         { Header: 'ORDER DATE', accessor: 'orderDate' },
         { Header: 'DELETE', accessor: 'option',
             Cell: ({ row }) => (
