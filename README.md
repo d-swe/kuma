@@ -2,6 +2,15 @@
 ---
 ### Inventory Management Software
 
+Our management system is designed to efficiently oversee warehouses and their inventories, specifically catering to food ingredients and food-related products. However, its versatile functionality makes it suitable for managing any type of products you wish to use it for!
+
+### Technologies Used
+#### Backend:
+  - Java Spring Boot
+  - Postgresql
+#### Frontend:
+  - React
+
 ### Installation:
 
 Clone the repository:
