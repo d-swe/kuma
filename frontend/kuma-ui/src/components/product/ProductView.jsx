@@ -23,6 +23,7 @@ function ProductView() {
         { Header: 'CATEGORY', accessor: 'category' },
         { Header: 'PRICE', accessor: 'price' },
         { Header: 'SKU', accessor: 'sku' },
+        { Header: 'WAREHOUSE ID', accessor: 'warehouseId' },
         { Header: 'OPTION', accessor: 'option',
             Cell: ({ row }) => (
                 <div className="buttons">

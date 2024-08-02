@@ -37,15 +37,26 @@ function ProductForm({ productId }) {
   ]},
     { name: 'price', label: 'Price', required: true, select: false, type: 'number'},
     { name: 'sku', label: 'SKU', required: true, select: false, type: 'text'},
+    { name: 'quantity', label: 'Quantity', required: true, select: false, type: 'number'},
+    { name: 'warehouse_id', label: 'Warehouse Id', required: true, select: false, type: 'number'},
   ];
 
   const handleSubmit = (data) => {
+    const productData = {
+      name: data.name,
+      category: data.category,
+      price: data.price,
+      sku: data.sku,
+      quantity: data.quantity,
+      warehouseId: data.warehouse_id,
+    }
+
     const url = productId ? `http://localhost:8080/products/${productId}` : 'http://localhost:8080/products';
     const requestType = productId ? 'PUT' : 'POST';
-    ApiRequest({ url, formData: data, requestType });
-    toast.success(`Product ${(productId ? 'updated' : 'created')} successfully!`)
-    setIsVisible(false);
-  };
+    ApiRequest({ url, formData: productData, requestType })
+      toast.success(`Product ${(productId ? 'updated' : 'created')} successfully!`)
+      setIsVisible(false);
+    };
 
   const handleCancel = () => {
     setIsVisible(false);

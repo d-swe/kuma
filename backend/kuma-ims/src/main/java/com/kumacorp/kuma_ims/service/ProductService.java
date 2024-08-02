@@ -1,6 +1,5 @@
 package com.kumacorp.kuma_ims.service;
 
-import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -42,6 +41,7 @@ public class ProductService {
                 product.setPrice(newProduct.getPrice());
                 product.setSku(newProduct.getSku());
                 product.setCategory(newProduct.getCategory());
+                product.setWarehouseId(newProduct.getWarehouseId());
                 return productRepository.save(product);
             }).orElseThrow(() -> new EntityNotFoundException("Product with id: " + id + " not found"));
     }

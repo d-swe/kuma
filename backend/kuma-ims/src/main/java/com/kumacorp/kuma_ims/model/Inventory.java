@@ -1,7 +1,6 @@
 package com.kumacorp.kuma_ims.model;
 
 import java.time.LocalDate;
-import java.time.OffsetDateTime;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -25,11 +24,11 @@ public class Inventory {
     private int id;
     
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "warehouse_id")
+    @JoinColumn(name = "warehouse_id", referencedColumnName = "id")
     private Warehouse warehouse;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "product_id")
+    @JoinColumn(name = "product_id", referencedColumnName = "id")
     private Product product;
 
     private long quantity;
@@ -56,11 +55,11 @@ public class Inventory {
         this.id = id;
     }
 
-    public Product getProductId() {
+    public Product getProduct() {
         return product;
     }
 
-    public void setProductId(Product product) {
+    public void setProduct(Product product) {
         this.product = product;
     }
 
@@ -76,8 +75,8 @@ public class Inventory {
         return lastUpdate;
     }
 
-    public void setLastUpdate() {
-        this.lastUpdate = LocalDate.now();
+    public void setLastUpdate(LocalDate lastUpdate) {
+        this.lastUpdate = lastUpdate;
     }
 
     public Warehouse getWarehouse() {
@@ -87,5 +86,4 @@ public class Inventory {
     public void setWarehouse(Warehouse warehouse) {
         this.warehouse = warehouse;
     }
-    
 }

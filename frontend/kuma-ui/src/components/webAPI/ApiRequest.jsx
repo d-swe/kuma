@@ -1,6 +1,5 @@
 function ApiRequest({ url, formData, requestType }) {
-    
-    fetch(url,  {
+    return fetch(url,  {
         method: requestType,
         headers: {
             "Content-Type": "application/json"
@@ -13,7 +12,8 @@ function ApiRequest({ url, formData, requestType }) {
     })
     .catch(error => {
         console.error('Request Failed:', error);
-    })
+        throw error; // Rethrow the error to be caught by the caller
+    });
 }
 
-export default ApiRequest
+export default ApiRequest;

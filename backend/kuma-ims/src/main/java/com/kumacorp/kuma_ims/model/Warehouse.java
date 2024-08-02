@@ -31,9 +31,9 @@ public class Warehouse {
 
     private int capacity;
 
-    @OneToMany(mappedBy = "warehouse", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JsonIgnore
-    private Set<Inventory> inventories;
+    // @OneToMany(mappedBy = "warehouse", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    // @JsonIgnore
+    // private Set<Inventory> inventories;
 
     public Warehouse() {
 
@@ -45,7 +45,7 @@ public class Warehouse {
         this.city = city;
         this.state = state;
         this.capacity = capacity;
-        this.inventories = inventories;
+        // this.inventories = inventories;
     }
 
     public int getId() {
@@ -88,12 +88,12 @@ public class Warehouse {
         this.capacity = capacity;
     }
 
-    public Set<Inventory> getInventories() {
-        return inventories;
-    }
+    // public Set<Inventory> getInventories() {
+    //     return inventories;
+    // }
 
-    public void setInventories(Set<Inventory> inventories) {
-        this.inventories = inventories;
-    }
+    // public void setInventories(Set<Inventory> inventories) {
+    //     this.inventories = inventories;
+    // }
 
 }

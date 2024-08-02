@@ -32,6 +32,11 @@ public class ProductController {
         return productService.getAllProduct();
     }
 
+    @PostMapping
+    public Product createProduct(@RequestBody Product product) {
+        return productService.createProduct(product);
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<Product> findProductById(@PathVariable int id) {
         Optional<Product> product = productService.findProductById(id);
@@ -44,11 +49,6 @@ public class ProductController {
     @GetMapping("/count")
     public long getProductCount() {
         return productService.getProductCount();
-    }
-
-    @PostMapping
-    public Product createProduct(@RequestBody Product product) {
-        return productService.createProduct(product);
     }
 
     @DeleteMapping("/{id}")
@@ -65,4 +65,10 @@ public class ProductController {
     public long getCategoryCount() {
         return productService.getCategoryCount();
     }
+
+    // @PostMapping
+    // public ResponseEntity<Product> createProduct(@RequestBody Product product) {
+    //     Product createdProduct = productService.createProductAndInventory(product);
+    //     return ResponseEntity.ok(createdProduct);
+    // }
 }

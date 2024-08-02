@@ -1,19 +1,11 @@
 package com.kumacorp.kuma_ims.model;
 
-import java.time.LocalDate;
-import java.util.Set;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -25,9 +17,7 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JsonIgnore
-    Set<Inventory> inventory;
+    private int warehouseId;
 
     private String name;
 
@@ -37,16 +27,19 @@ public class Product {
 
     private String category;
 
+    private int quantity;
+
     public Product() {
     }
 
-    public Product(int id, Set<Inventory> inventory, String name, float price, String sku, String category) {
+    public Product(int id, int warehouseId, String name, float price, String sku, String category, int quantity) {
         this.id = id;
-        this.inventory = inventory;
+        this.warehouseId = warehouseId;
         this.name = name;
         this.price = price;
         this.sku = sku;
         this.category = category;
+        this.quantity = quantity;
     }
 
     public int getId() {
@@ -57,12 +50,12 @@ public class Product {
         this.id = id;
     }
 
-    public Set<Inventory> getInventory() {
-        return inventory;
+    public int getWarehouseId() {
+        return warehouseId;
     }
 
-    public void setInventory(Set<Inventory> inventory) {
-        this.inventory = inventory;
+    public void setWarehouseId(int warehouseId) {
+        this.warehouseId = warehouseId;
     }
 
     public String getName() {
@@ -96,5 +89,13 @@ public class Product {
     public void setCategory(String category) {
         this.category = category;
     }
-    
-}
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+} 
