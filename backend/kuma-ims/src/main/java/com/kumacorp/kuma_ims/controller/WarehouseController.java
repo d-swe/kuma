@@ -61,6 +61,4 @@ public class WarehouseController {
     public Warehouse updateWarehouse(@PathVariable int id, @RequestBody Warehouse warehouse) {
         return warehouseService.updateWarehouse(id, warehouse);
     }
-
-
 }
