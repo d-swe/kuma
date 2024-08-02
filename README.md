@@ -2,8 +2,8 @@
 ---
 ### Inventory Management Software
 
-### TODO
-    - [ ] Create a database
-    - [ ] Create basic UI
-    - [ ] Connect UI to database
+### Installation:
 
+Clone this repository in your terminal:
+
+`git clone https://github.com/d-swe/kuma.git`
