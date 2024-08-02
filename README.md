@@ -34,4 +34,6 @@ cd /kuma/frontend/kuma-ui
 npm install
 npm run dev
 ```
-***Note: you will need to create your own local database *preferably* on PgAdmin and create mock data***
+***Note: you will need to create your own local database *preferably* on PgAdmin and create mock data. Example diagram below:***
+
+![Mock Database Schema](images/kims-db-schema.png)
