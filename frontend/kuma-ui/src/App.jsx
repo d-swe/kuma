@@ -17,7 +17,7 @@ function App() {
         <Route path="/warehouse" element={<WarehouseView />} />
         <Route path="/product" element={<ProductView />} />
         <Route path="/order" element={<OrderView />} />
-        <Route path="/inventory/warehouse/:warehouseId" element={<InventoryView />} />
+        <Route path="/inventory/:warehouseId" element={<InventoryView />} />
       </Routes>
       </div>
    </Router>

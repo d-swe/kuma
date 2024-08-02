@@ -75,4 +75,9 @@ public class ProductController {
     public long findTotalQuantity() {
         return productService.findTotalQuantity();
     }
+
+    @GetMapping("/warehouse/{id}")
+    public List<Product> findProductsByWarehouseId(@PathVariable int id) {
+        return productService.findProductsByWarehouseId(id);
+    }
 }

@@ -8,10 +8,13 @@ import DeleteButton from "../button/DeleteButton";
 import EditButton from "../button/EditButton";
 import CreateButton from "../button/CreateButton";
 
-function ProductView() {
+function ProductView( isInventory ) {
     const [data, setData] = useState([]);
 
     useEffect(() => {
+        if (isInventory) {
+            const url = ''
+        }
         const url = 'http://localhost:8080/products';
 
         GetRequest({ url, onSuccess: setData });

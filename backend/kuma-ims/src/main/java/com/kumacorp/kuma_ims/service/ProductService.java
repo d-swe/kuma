@@ -61,4 +61,8 @@ public class ProductService {
     public long findTotalQuantity() {
         return productRepository.findTotalQuantity();
     }
+
+    public List<Product> findProductsByWarehouseId(int warehouseId) {
+        return productRepository.findProductsByWarehouseId(warehouseId);
+    }
 }
