@@ -1,10 +1,7 @@
 package com.kumacorp.kuma_ims.repository;
 
-import java.math.BigDecimal;
-
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 
 import com.kumacorp.kuma_ims.model.Order;
 

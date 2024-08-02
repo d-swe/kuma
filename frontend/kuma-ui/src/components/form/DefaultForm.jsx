@@ -70,11 +70,12 @@ function DefaultForm({
             <Table bordered>
               <thead>
                 <tr>
-                  <th>Select</th>
-                  <th>ID</th>
+                  <th>Product Id</th>
                   <th>Name</th>
                   <th>Price</th>
                   <th>SKU</th>
+                  <th>Category</th>
+                  <th>Quantity</th>
                 </tr>
               </thead>
               <tbody>
@@ -85,6 +86,7 @@ function DefaultForm({
                     <td>{product.price}</td>
                     <td>{product.sku}</td>
                     <td>{product.category}</td>
+                    <td>{product.quantity}</td>
                     <td>
                     </td>
                   </tr>
