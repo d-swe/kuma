@@ -6,4 +6,4 @@
 
 Clone this repository in your terminal:
 
-(`git clone https://github.com/d-swe/kuma.git`)
+```git clone https://github.com/d-swe/kuma.git```
