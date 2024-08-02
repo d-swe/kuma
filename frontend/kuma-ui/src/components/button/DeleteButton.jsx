@@ -6,6 +6,7 @@ import DeleteRequest from "../webAPI/DeleteRequest";
 import './DeleteButton.css'
 import { useState } from "react";
 import DeleteModal from '../modal/DeleteModal'; 
+import { toast } from 'react-toastify';
 
 function DeleteButton({ table, itemId }) {
     const [showModal, setShowModal] = useState(false);
@@ -17,7 +18,7 @@ function DeleteButton({ table, itemId }) {
     const handleDelete = () => {
         const url = `http://localhost:8080/${table}/${itemId}`;
         DeleteRequest({ url })
-        
+        toast.success(`Item deleted successfully!`)
         setShowModal(false);
     }
 

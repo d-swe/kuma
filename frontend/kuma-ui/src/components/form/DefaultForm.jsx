@@ -1,3 +1,6 @@
+/**
+ * Default form is used as the base for all forms.
+ */
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Fieldset, Form, Label, Button, RequiredMarker, ComboBox, Table } from '@trussworks/react-uswds';
@@ -17,6 +20,7 @@ function DefaultForm({
 }) {
   const { register, handleSubmit, setValue, formState: { errors } } = useForm();
 
+  // setting data for edit form
   useEffect(() => {
     if (initialData) {
       Object.keys(initialData).forEach(key => {
@@ -27,13 +31,16 @@ function DefaultForm({
 
   return (
     <div className="form-container">
+      {/** onSubmit will take inputs and send it on post or put depending on use case */}
       <Form onSubmit={handleSubmit(onSubmit)} large>
         <Fieldset legend={formName} className="title" legendStyle="large">
+          {/** fields retrieved from previous form */}
           {fields.map((field, index) => (
             <div key={index} className="form-group">
               <Label htmlFor={field.name}>
                 {field.label} {field.required && <RequiredMarker />}
               </Label>
+              {/** any fields with select: true provided will trigger this to create a select drop down in form */}
               {field.select ? (
                 <Select className='usa-select'
                   id={field.name}

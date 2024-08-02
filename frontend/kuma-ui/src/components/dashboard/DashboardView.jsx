@@ -1,4 +1,4 @@
-import { PiStorefront, PiTote } from 'react-icons/pi';
+import { PiListNumbers, PiStorefront, PiTote } from 'react-icons/pi';
 import Card from '../card/Card'
 import './DashboardView.css'
 import { useEffect, useState } from 'react';
@@ -42,7 +42,7 @@ function DashboardView() {
                 count2={totalCount}
                 description2='TOTAL STOCK' />
             <Card title='Order' 
-                icon={<PiStorefront/>} 
+                icon={<PiListNumbers/>} 
                 count1={orderCount}
                 description1='ORDERS' 
                 count2={formattedTotal}

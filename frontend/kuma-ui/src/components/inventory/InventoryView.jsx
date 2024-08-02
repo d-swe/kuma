@@ -24,6 +24,7 @@ function InventoryView({  }) {
     { Header: 'CATEGORY', accessor: 'category' },
     { Header: 'PRICE', accessor: 'price' },
     { Header: 'SKU', accessor: 'sku' },
+    { Header: 'QUANTITY', accessor: 'quantity' },
     { Header: 'WAREHOUSE ID', accessor: 'warehouseId' },
   ];
 

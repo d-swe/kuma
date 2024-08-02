@@ -18,6 +18,7 @@ function ProductForm({ productId }) {
   const [initialData, setInitialData] = useState(null);
   const [warehouseData, setWarehouseData] = useState([]);
 
+  // post new product data
   useEffect(() => {
     if (productId) {
       const url = `http://localhost:8080/products/${productId}`;
@@ -25,16 +26,19 @@ function ProductForm({ productId }) {
     }
   }, [productId]);
 
+  // retrieves warehouse data
   useEffect(() => {
     const url = 'http://localhost:8080/warehouses';
     GetRequest({ url, onSuccess: setWarehouseData })
   }, []);
 
+  // map just the ids and names of warehouses for drop down
   const warehouseOptions = warehouseData.map(warehouse => ({
     value: warehouse.id,
     label: warehouse.name
   }));
 
+  // store fields with necessary details according to fieldset
   const fields = [
     { name: 'name', label: 'Product Name', required: true, select: false, type: 'text'},
     { name: 'category', label: 'Category', required: false, select: true, type: 'text', options: [
@@ -52,16 +56,8 @@ function ProductForm({ productId }) {
     { name: 'warehouseId', label: 'Warehouse Id', required: true, select: true, type: 'number', options: warehouseOptions},
   ];
 
+  // handling put or post request
   const handleSubmit = (data) => {
-    // const productData = {
-    //   name: data.name,
-    //   category: data.category,
-    //   price: data.price,
-    //   sku: data.sku,
-    //   quantity: data.quantity,
-    //   warehouseId: data.warehouse_id,
-    // }
-
     const url = productId ? `http://localhost:8080/products/${productId}` : 'http://localhost:8080/products';
     const requestType = productId ? 'PUT' : 'POST';
     ApiRequest({ url, formData: data, requestType })

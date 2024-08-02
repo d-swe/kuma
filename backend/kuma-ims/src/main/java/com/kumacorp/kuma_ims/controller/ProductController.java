@@ -82,7 +82,7 @@ public class ProductController {
         return productService.findProductsByWarehouseId(id);
     }
 
-        @PutMapping("/{id}/decrement")
+    @PutMapping("/{id}/decrement")
     public ResponseEntity<String> decrementProductQuantity(@PathVariable("id") Long productId, @RequestParam("amount") int amount) {
         try {
             productService.decreaseProductQuantity(productId, amount);
