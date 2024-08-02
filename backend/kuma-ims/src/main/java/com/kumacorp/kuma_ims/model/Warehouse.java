@@ -39,7 +39,7 @@ public class Warehouse {
 
     }
 
-    public Warehouse(int id, String name, String city, String state, int capacity, Set<Inventory> inventories) {
+    public Warehouse(int id, String name, String city, String state, int capacity) {
         this.id = id;
         this.name = name;
         this.city = city;

@@ -42,15 +42,6 @@ export const SideBar = () => {
             <span>Order</span>
           </div>
         </div>
-        <div className="head-box">
-          <span className='account-title'>ACCOUNT</span>
-        </div>
-        <div className={`menu-tab ${activeTab === '/profile' ? 'active' : ''}`} onClick={() => handleNavigation('/profile')}>
-          <div className='menu-icon'><PiTote className='icon' /></div>
-          <div className='menu-title'>
-            <span>Profile</span>
-          </div>
-        </div>
       </div>
     </>
   );

@@ -16,6 +16,7 @@ import { toast } from 'react-toastify';
 function ProductForm({ productId }) {
   const [isVisible, setIsVisible] = useState(true);
   const [initialData, setInitialData] = useState(null);
+  const [warehouseData, setWarehouseData] = useState([]);
 
   useEffect(() => {
     if (productId) {
@@ -23,6 +24,16 @@ function ProductForm({ productId }) {
       GetRequest({ url, onSuccess: setInitialData });
     }
   }, [productId]);
+
+  useEffect(() => {
+    const url = 'http://localhost:8080/warehouses';
+    GetRequest({ url, onSuccess: setWarehouseData })
+  }, []);
+
+  const warehouseOptions = warehouseData.map(warehouse => ({
+    value: warehouse.id,
+    label: warehouse.name
+  }));
 
   const fields = [
     { name: 'name', label: 'Product Name', required: true, select: false, type: 'text'},
@@ -38,7 +49,7 @@ function ProductForm({ productId }) {
     { name: 'price', label: 'Price', required: true, select: false, type: 'number'},
     { name: 'sku', label: 'SKU', required: true, select: false, type: 'text'},
     { name: 'quantity', label: 'Quantity', required: true, select: false, type: 'number'},
-    { name: 'warehouse_id', label: 'Warehouse Id', required: true, select: false, type: 'number'},
+    { name: 'warehouse_id', label: 'Warehouse Id', required: true, select: true, type: 'number', options: warehouseOptions},
   ];
 
   const handleSubmit = (data) => {

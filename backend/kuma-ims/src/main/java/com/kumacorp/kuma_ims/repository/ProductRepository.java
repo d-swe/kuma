@@ -8,4 +8,10 @@ import com.kumacorp.kuma_ims.model.Product;
 public interface ProductRepository extends JpaRepository<Product, Integer>{
     @Query("SELECT COUNT(DISTINCT p.category) FROM Product p")
     long countCategories();
+
+    @Query("SELECT SUM(p.price * p.quantity) FROM Product p")
+    float findTotalValue();
+
+    @Query("SELECT SUM(p.quantity) FROM Product p")
+    long findTotalQuantity();
 }

@@ -66,9 +66,13 @@ public class ProductController {
         return productService.getCategoryCount();
     }
 
-    // @PostMapping
-    // public ResponseEntity<Product> createProduct(@RequestBody Product product) {
-    //     Product createdProduct = productService.createProductAndInventory(product);
-    //     return ResponseEntity.ok(createdProduct);
-    // }
+    @GetMapping("/total-value")
+    public float findTotalValue() {
+        return productService.findTotalValue();
+    }
+
+    @GetMapping("/total-count")
+    public long findTotalQuantity() {
+        return productService.findTotalQuantity();
+    }
 }

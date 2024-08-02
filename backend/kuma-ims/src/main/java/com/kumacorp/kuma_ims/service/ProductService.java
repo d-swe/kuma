@@ -53,4 +53,12 @@ public class ProductService {
     public long getCategoryCount() {
         return productRepository.countCategories();
     }
+
+    public float findTotalValue() {
+        return productRepository.findTotalValue();
+    }
+
+    public long findTotalQuantity() {
+        return productRepository.findTotalQuantity();
+    }
 }

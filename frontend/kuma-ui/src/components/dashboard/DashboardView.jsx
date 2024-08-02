@@ -6,24 +6,25 @@ import GetRequest from '../webAPI/GetRequest';
 
 function DashboardView() {
     const [warehouseCount, setWarehouseCount] = useState(0);
-    const [inventoryCount, setInventoryCount] = useState(0);
+    const [totalValue, setTotalValue] = useState(0);
     const [productCount, setProductCount] = useState(0);
-    const [categoryCount, setCategoryCount] = useState(0);
+    const [totalCount, setTotalCount] = useState(0);
     const [orderCount, setOrderCount] = useState(0);
     const [orderTotal, setOrderTotal] = useState(0);
 
     useEffect(() => {
         GetRequest({ url: 'http://localhost:8080/warehouses/count', onSuccess: setWarehouseCount})
-        GetRequest({ url: 'http://localhost:8080/inventories/count', onSuccess: setInventoryCount})
+        GetRequest({ url: 'http://localhost:8080/products/total-value', onSuccess: setTotalValue})
 
         GetRequest({ url: 'http://localhost:8080/products/count', onSuccess: setProductCount})
-        GetRequest({ url: 'http://localhost:8080/products/count-category', onSuccess: setCategoryCount})
+        GetRequest({ url: 'http://localhost:8080/products/total-count', onSuccess: setTotalCount})
 
         GetRequest({ url: 'http://localhost:8080/orders/count', onSuccess: setOrderCount})
         GetRequest({ url: 'http://localhost:8080/orders/total-amount', onSuccess: setOrderTotal})
     })
 
     const formattedTotal = '$' + orderTotal;
+    const newTotalValue = '$' + (totalValue / 1000.0) + 'k'
     
     return(
         <>
@@ -32,14 +33,14 @@ function DashboardView() {
                 icon={<PiStorefront/>} 
                 count1={warehouseCount}
                 description1='WAREHOUSES' 
-                count2={inventoryCount}
-                description2='INVENTORIES' />
+                count2={newTotalValue}
+                description2='TOTAL VALUE' />
             <Card title='Product' 
                 icon={<PiTote />} 
                 count1={productCount}
                 description1='PRODUCTS' 
-                count2={categoryCount}
-                description2='CATEGORIES' />
+                count2={totalCount}
+                description2='TOTAL STOCK' />
             <Card title='Order' 
                 icon={<PiStorefront/>} 
                 count1={orderCount}
