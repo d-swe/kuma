@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.kumacorp.kuma_ims.service.ProductService;
@@ -79,5 +80,16 @@ public class ProductController {
     @GetMapping("/warehouse/{id}")
     public List<Product> findProductsByWarehouseId(@PathVariable int id) {
         return productService.findProductsByWarehouseId(id);
+    }
+
+        @PutMapping("/{id}/decrement")
+    public ResponseEntity<String> decrementProductQuantity(@PathVariable("id") Long productId, @RequestParam("amount") int amount) {
+        try {
+            productService.decreaseProductQuantity(productId, amount);
+            return new ResponseEntity<>("Product quantity updated successfully.", HttpStatus.OK);
+        } catch (Exception e) {
+            // Handle exceptions and return an appropriate response
+            return new ResponseEntity<>("Error updating product quantity: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 }

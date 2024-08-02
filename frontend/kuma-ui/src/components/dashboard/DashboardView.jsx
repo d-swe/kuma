@@ -20,7 +20,7 @@ function DashboardView() {
         GetRequest({ url: 'http://localhost:8080/products/total-count', onSuccess: setTotalCount})
 
         GetRequest({ url: 'http://localhost:8080/orders/count', onSuccess: setOrderCount})
-        GetRequest({ url: 'http://localhost:8080/orders/total-amount', onSuccess: setOrderTotal})
+        GetRequest({ url: 'http://localhost:8080/orders/total-cost', onSuccess: setOrderTotal})
     })
 
     const formattedTotal = '$' + orderTotal;

@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import com.kumacorp.kuma_ims.model.Order;
 import com.kumacorp.kuma_ims.repository.OrderRepository;
 
-import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
 
 @Service
 public class OrderService {
@@ -34,24 +34,12 @@ public class OrderService {
         orderRepository.deleteById(id);
     }
 
-    public Order updateorder(int id, Order newOrder) {
-        return orderRepository.findById(id)
-            .map(order -> {
-                order.setId(newOrder.getId());
-                order.setStreet(newOrder.getStreet());
-                order.setCity(newOrder.getCity());
-                order.setState(newOrder.getState());
-                order.setZip(newOrder.getZip());
-                order.setOrderDate(newOrder.getOrderDate());
-                return orderRepository.save(order);
-            }).orElseThrow(() -> new EntityNotFoundException("Order with id: " + id + " not found"));
-    }
-
     public long getOrderCount() {
         return orderRepository.count();
     }
 
-    public BigDecimal getTotalAmount() {
-        return orderRepository.sumTotalAmount();
+    @Transactional
+    public float getTotalCostForAllOrders() {
+        return orderRepository.calculateTotalCostForAllOrders();
     }
 }

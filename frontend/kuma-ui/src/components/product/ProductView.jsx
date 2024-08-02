@@ -27,6 +27,7 @@ function ProductView( isInventory ) {
         { Header: 'PRICE', accessor: 'price' },
         { Header: 'SKU', accessor: 'sku' },
         { Header: 'WAREHOUSE ID', accessor: 'warehouseId' },
+        { Header: 'QUANTITY', accessor: 'quantity' },
         { Header: 'OPTION', accessor: 'option',
             Cell: ({ row }) => (
                 <div className="buttons">

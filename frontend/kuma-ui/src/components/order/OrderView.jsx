@@ -12,16 +12,16 @@ function OrderView() {
 
     useEffect(() => {
         const url = 'http://localhost:8080/orders';
-
         GetRequest({ url, onSuccess: setData });
     }, []);
+
     const columns = [
         { Header: 'ORDER ID', accessor: 'id' },
-        { Header: 'CUSTOMER ID', accessor: 'customerId' },
+        { Header: 'CUSTOMER NAME', accessor: 'customerName' },
         { Header: 'CITY', accessor: 'city' },
         { Header: 'STATE', accessor: 'state' },
-        { Header: 'TOTAL', accessor: 'totalAmount' },
-        { Header: 'ORDER DATE', accessor: 'orderDate' },
+        { Header: 'QUANTITY', accessor: 'quantity' },
+        { Header: 'PRODUCT ID', accessor: 'productId' },
         { Header: 'DELETE', accessor: 'option',
             Cell: ({ row }) => (
                 <div className="buttons">

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.kumacorp.kuma_ims.repository.ProductRepository;
 
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
 
 import com.kumacorp.kuma_ims.model.Product;
 
@@ -64,5 +65,10 @@ public class ProductService {
 
     public List<Product> findProductsByWarehouseId(int warehouseId) {
         return productRepository.findProductsByWarehouseId(warehouseId);
+    }
+
+    @Transactional
+    public void decreaseProductQuantity(Long productId, int amount) {
+        productRepository.decrementProductQuantity(productId, amount);
     }
 }

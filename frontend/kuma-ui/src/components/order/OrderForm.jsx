@@ -23,18 +23,18 @@ function OrderForm( ) {
     GetRequest({ url, onSuccess: setProducts});
   }, [])
 
+
   const productList = Array.isArray(productsData) ? productsData.map(item => ({
     id: item.id,
     name: item.name,
     price: item.price,
     sku: item.sku,
     category: item.category,
+    quantity: item.quantity
   })) : [];
 
-  console.log('product list:',productList)
-
   const fields = [
-    { name: 'customer_id', label: 'Customer Id', required: true, select: false, type: 'text'},
+    { name: 'customerName', label: 'Customer Name', required: true, select: false, type: 'text'},
     { name: 'city', label: 'City', required: true, select: false, type: 'text'},
     { name: 'state', label: 'State', required: true, select: true, type: 'text', options: [
         { value: 'AL', label: 'Alabama' },
@@ -89,15 +89,28 @@ function OrderForm( ) {
         { value: 'WI', label: 'Wisconsin' },
         { value: 'WY', label: 'Wyoming' },
     ]},
+    { name: 'quantity', label: 'Quantity', required: true, select: false, type: 'text' },
+    { name: 'productId', label: 'Product ID', required: true, select: false, type: 'text' }
+
   ];
 
   const handleSubmit = (data) => {
-    const url = 'http://localhost:8080/orders';
-    ApiRequest({ url, formData: data, requestType:'POST' });
-    toast.success(`Warehouse ${(warehouseId ? 'updated' : 'created')} successfully!`)
-    setIsVisible(false);
-  };
+    try {
+      // Create the order
+      const orderUrl = 'http://localhost:8080/orders';
+      ApiRequest({ url: orderUrl, formData: data, requestType: 'POST' });
 
+      // Decrement the product quantity
+      const decrementUrl = `http://localhost:8080/products/${data.productId}/decrement?amount=${data.quantity}`;
+      ApiRequest({ url: decrementUrl, requestType: 'PUT' });
+
+      toast.success('Order created successfully!');
+      setIsVisible(false);
+    } catch (error) {
+      console.error('Error creating order:', error);
+      toast.error('Failed to create order.');
+    }
+  };
   const handleCancel = () => {
     setIsVisible(false);
   };

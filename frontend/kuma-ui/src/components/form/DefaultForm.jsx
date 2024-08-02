@@ -75,28 +75,17 @@ function DefaultForm({
                   <th>Name</th>
                   <th>Price</th>
                   <th>SKU</th>
-                  <th>Category</th>
-                  <th>Quantity</th>
                 </tr>
               </thead>
               <tbody>
                 {productsData.map(product => (
                   <tr key={product.id}>
-                    <td className='checkbox'>
-                      <input type="checkbox" name={`product-${product.id}`} value={product.id} />
-                    </td>
                     <td>{product.id}</td>
                     <td>{product.name}</td>
                     <td>{product.price}</td>
                     <td>{product.sku}</td>
                     <td>{product.category}</td>
                     <td>
-                      <input
-                        type="number"
-                        name={`quantity-${product.id}`}
-                        min="1"
-                        className="quantity-input"
-                      />
                     </td>
                   </tr>
                 ))}

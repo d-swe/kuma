@@ -56,9 +56,9 @@ public class OrderController {
         orderService.deleteOrder(id);
     }
 
-    @GetMapping("/total-amount")
-    public ResponseEntity<BigDecimal> getTotalAmount() {
-        BigDecimal totalAmount = orderService.getTotalAmount();
-        return ResponseEntity.ok(totalAmount);
+    @GetMapping("/total-cost")
+    public ResponseEntity<Float> getTotalCostForAllOrders() {
+        float totalCost = orderService.getTotalCostForAllOrders();
+        return ResponseEntity.ok(totalCost);
     }
 }

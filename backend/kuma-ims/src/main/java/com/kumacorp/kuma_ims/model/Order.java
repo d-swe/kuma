@@ -25,43 +25,27 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    private int customerId;
-
-    @Column(name = "total_amount", precision = 8, scale = 2)
-    private BigDecimal totalAmount;
-
-    private String street;
+    @Column(name = "customer_name")
+    private String customerName;
 
     private String city;
 
     private String state;
 
-    private int zip;
+    private int quantity;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "warehouse_id")
-    private Warehouse warehouse;
-
-    private String notes;
-
-    @Column(name = "order_date")
-    private LocalDate orderDate;
+    private int productId;
 
     public Order() {
     }
 
-    public Order(int id, int customerId, BigDecimal totalAmount, String street, String city, String state, int zip,
-            Warehouse warehouse, String notes, LocalDate orderDate) {
+    public Order(int id, String customerName, String city, String state, int quantity, int productId) {
         this.id = id;
-        this.customerId = customerId;
-        this.totalAmount = totalAmount;
-        this.street = street;
+        this.customerName = customerName;
         this.city = city;
         this.state = state;
-        this.zip = zip;
-        this.warehouse = warehouse;
-        this.notes = notes;
-        this.orderDate = orderDate;
+        this.quantity = quantity;
+        this.productId = productId;
     }
 
     public int getId() {
@@ -72,28 +56,12 @@ public class Order {
         this.id = id;
     }
 
-    public int getCustomerId() {
-        return customerId;
+    public String getCustomerName() {
+        return customerName;
     }
 
-    public void setCustomerId(int customerId) {
-        this.customerId = customerId;
-    }
-
-    public BigDecimal getTotalAmount() {
-        return totalAmount;
-    }
-
-    public void setTotalAmount(BigDecimal totalAmount) {
-        this.totalAmount = totalAmount;
-    }
-
-    public String getStreet() {
-        return street;
-    }
-
-    public void setStreet(String street) {
-        this.street = street;
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
     }
 
     public String getCity() {
@@ -112,37 +80,20 @@ public class Order {
         this.state = state;
     }
 
-    public int getZip() {
-        return zip;
+    public int getQuantity() {
+        return quantity;
     }
 
-    public void setZip(int zip) {
-        this.zip = zip;
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
-    public Warehouse getWarehouse() {
-        return warehouse;
+    public int getProductId() {
+        return productId;
     }
 
-    public void setWarehouse(Warehouse warehouse) {
-        this.warehouse = warehouse;
+    public void setProduct_id(int productId) {
+        this.productId = productId;
     }
-
-    public String getNotes() {
-        return notes;
-    }
-
-    public void setNotes(String notes) {
-        this.notes = notes;
-    }
-
-    public LocalDate getOrderDate() {
-        return orderDate;
-    }
-
-    public void setOrderDate(LocalDate orderDate) {
-        this.orderDate = LocalDate.now();
-    }
-
     
 }
