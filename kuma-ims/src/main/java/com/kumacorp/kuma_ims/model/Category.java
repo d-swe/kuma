@@ -1,5 +1,6 @@
 package com.kumacorp.kuma_ims.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -15,9 +16,6 @@ public class Category {
 
     private String name;
     private String description;
-
-    @OneToOne(mappedBy = "category")
-    private Product product;
 
     public Category() {}
 
@@ -49,13 +47,5 @@ public class Category {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public Product getProduct() {
-        return product;
-    }
-
-    public void setProduct(Product product) {
-        this.product = product;
     }
 }

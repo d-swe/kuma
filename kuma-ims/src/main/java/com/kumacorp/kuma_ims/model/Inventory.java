@@ -24,8 +24,8 @@ public class Inventory {
 
     private LocalDate lastUpdate;
 
-    @OneToMany(mappedBy = "inventory")
-    private List<OrderItem> orderItems;
+    // @OneToMany(mappedBy = "inventory")
+    // private List<OrderItem> orderItems;
 
     @ManyToOne(cascade = CascadeType.ALL)
     private Warehouse warehouse;

@@ -8,13 +8,13 @@
 - Order item is the middle man for modifying inventory stock and main info for orders
 
 ## TODO
-- [ ] Product
-	- [ ] Product:
-		- [ ] Add / change new variables
-	- [ ] R/S/C:
-		- [ ] find product by id
-			- [ ] name, category, price, sku
-		- [ ] find product by category id
+- [x] Product
+	- [x] Product:
+		- [x] Add / change new variables
+	- [x] R/S/C:
+		- [x] find product by id
+			- [x] name, category, price, sku
+		- [x] find product by category id
 - [ ] Inventory
 	- [ ] Inventory:
 		- [ ] Add / change new variables
@@ -27,12 +27,12 @@
 	- [x] R/S/C:
 		- [x] find warehouse by id
 			- [x] name, location, max capacity
-- [ ] Category
-	- [ ] Category:
-		- [ ] Add / change new variables
-	- [ ] R/S/C:
-		- [ ] find category by id
-			- [ ] name, description
+- [x] Category
+	- [x] Category:
+		- [x] Add / change new variables
+	- [x] R/S/C:
+		- [x] find category by id
+			- [x] name, description
 - [ ] Order
 	- [ ] Order:
 		- [ ] Add / change new variables

@@ -1,14 +1,12 @@
 package com.kumacorp.kuma_ims.model;
 
 import java.math.BigDecimal;
-import java.util.Set;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
@@ -21,28 +19,23 @@ public class Product {
     private int id;
 
     private String name;
-
+    private String description;
     private BigDecimal price;
-
     private String sku;
 
-    private int quantity;
-
-    @ManyToMany(mappedBy = "product")
-    private Set<Inventory> inventories;
-
     @ManyToOne
-    @JoinColumn(name = "category_id")
+    @JoinColumn(name = "category_id", nullable = false)
     private Category category;
 
     public Product() {}
 
-    public Product(int id, String name, BigDecimal price, String sku, int quantity) {
+    public Product(int id, String name, String description, BigDecimal price, Category category, String sku) {
         this.id = id;
         this.name = name;
+        this.description = description;
         this.price = price;
+        this.category = category;
         this.sku = sku;
-        this.quantity = quantity;
     }
 
     public int getId() {
@@ -77,28 +70,20 @@ public class Product {
         this.sku = sku;
     }
 
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
-
-    public Set<Inventory> getInventories() {
-        return inventories;
-    }
-
-    public void setInventories(Set<Inventory> inventories) {
-        this.inventories = inventories;
-    }
-
     public Category getCategory() {
         return category;
     }
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
 } 

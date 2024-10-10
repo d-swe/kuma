@@ -28,6 +28,7 @@ CREATE TABLE product (
     description TEXT,
     price DECIMAL(10, 2) NOT NULL,
     category_id INT NOT NULL,
+    sku VARCHAR(255) NOT NULL,
     FOREIGN KEY (category_id) REFERENCES category(id) ON DELETE CASCADE
 );
 
@@ -36,6 +37,7 @@ CREATE TABLE inventory (
     product_id INT NOT NULL,
     warehouse_id INT NOT NULL,
     quantity INT NOT NULL,
+    last_update DATE NOT NULL,
     FOREIGN KEY (product_id) REFERENCES product(id) ON DELETE CASCADE,
     FOREIGN KEY (warehouse_id) REFERENCES warehouse(id) ON DELETE CASCADE
 );
