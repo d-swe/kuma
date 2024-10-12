@@ -21,25 +21,23 @@ public class Warehouse {
     private int id;
 
     private String name;
-
     private String city;
-
     private String state;
-
-    private int capacity;
+    private int currentCapacity;
+    private int maxCapacity;
 
     @OneToMany(mappedBy = "warehouse")
     private Set<Inventory> inventories;
 
     public Warehouse() {}
 
-    public Warehouse(int id, String name, String city, String state, int capacity) {
+    public Warehouse(int id, String name, String city, String state, int maxCapacity) {
         this.id = id;
         this.name = name;
         this.city = city;
         this.state = state;
-        this.capacity = capacity;
-        // this.inventories = inventories;
+        this.currentCapacity = 0;
+        this.maxCapacity = maxCapacity;
     }
 
     public int getId() {
@@ -74,19 +72,19 @@ public class Warehouse {
         this.state = state;
     }
 
-    public int getCapacity() {
-        return capacity;
+    public int getCurrentCapacity() {
+        return currentCapacity;
     }
 
-    public void setCapacity(int capacity) {
-        this.capacity = capacity;
+    public void setCurrentCapacity(int currentCapacity) {
+        this.currentCapacity = currentCapacity;
     }
 
-    // public Set<Inventory> getInventories() {
-    //     return inventories;
-    // }
+    public int getMaxCapacity() {
+        return maxCapacity;
+    }
 
-    // public void setInventories(Set<Inventory> inventories) {
-    //     this.inventories = inventories;
-    // }
+    public void setMaxCapacity(int maxCapacity) {
+        this.maxCapacity = maxCapacity;
+    }
 }

@@ -36,7 +36,7 @@ CREATE TABLE inventory (
     id SERIAL PRIMARY KEY,
     product_id INT NOT NULL,
     warehouse_id INT NOT NULL,
-    quantity INT NOT NULL,
+    stock INT NOT NULL,
     last_update DATE NOT NULL,
     FOREIGN KEY (product_id) REFERENCES product(id) ON DELETE CASCADE,
     FOREIGN KEY (warehouse_id) REFERENCES warehouse(id) ON DELETE CASCADE

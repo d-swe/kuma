@@ -17,7 +17,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.kumacorp.kuma_ims.service.InventoryService;
+import com.kumacorp.kuma_ims.dto.InventoryCreateRequest;
 import com.kumacorp.kuma_ims.model.Inventory;
+import com.kumacorp.kuma_ims.model.Product;
+import com.kumacorp.kuma_ims.model.Warehouse;
 
 @RestController
 @RequestMapping("/inventories")
@@ -33,8 +36,12 @@ public class InventoryController {
     }
 
     @PostMapping
-    public Inventory createInventory(@RequestBody Inventory inventory) {
-        return inventoryService.saveInventory(inventory);
+    public ResponseEntity<Inventory> createInventory(@RequestBody InventoryCreateRequest request) {
+        Inventory inventory = inventoryService.saveInventory(request);
+        if(inventory != null)
+            return ResponseEntity.ok(inventory);
+        else
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
     @GetMapping("/{id}")

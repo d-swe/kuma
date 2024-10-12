@@ -2,6 +2,7 @@ package com.kumacorp.kuma_ims.model;
 
 import java.util.Set;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -17,16 +18,43 @@ public class Customer {
     
     private String firstName;
     private String lastName;
-
-    @OneToMany(mappedBy = "customer")
-    private Set<Order> orders;
+    private String email;
+    private String phone;
+    private String address;
 
     public Customer() {}
 
-    public Customer(int id, String firstName, String lastName) {
+    public Customer(int id, String firstName, String lastName, String email, String phone, String address) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.email = email;
+        this.phone = phone;
+        this.address = address;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public int getId() {
@@ -51,13 +79,5 @@ public class Customer {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
-    }
-
-    public Set<Order> getOrders() {
-        return orders;
-    }
-
-    public void setOrders(Set<Order> orders) {
-        this.orders = orders;
     }
 }

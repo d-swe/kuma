@@ -3,6 +3,8 @@ package com.kumacorp.kuma_ims.model;
 import java.time.LocalDate;
 import java.util.List;
 
+import org.springframework.cglib.core.Local;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -20,7 +22,7 @@ public class Inventory {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    private int quantity;
+    private int stock;
 
     private LocalDate lastUpdate;
 
@@ -35,10 +37,12 @@ public class Inventory {
 
     public Inventory() {}
 
-    public Inventory(int id, int quantity) {
+    public Inventory(int id, Product product, Warehouse warehouse, int stock, LocalDate lastUpdate) {
         this.id = id;
-        this.quantity = quantity;
-        this.lastUpdate = LocalDate.now();
+        this.product = product;
+        this.warehouse = warehouse;
+        this.stock = stock;
+        this.lastUpdate = lastUpdate;
     }
 
     public int getId() {
@@ -49,15 +53,35 @@ public class Inventory {
         this.id = id;
     }
 
-    public int getQuantity() {
-        return quantity;
+    public int getStock() {
+        return stock;
     }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
+    public void setStock(int stock) {
+        this.stock = stock;
     }
 
     public LocalDate getLastUpdate() {
         return lastUpdate;
+    }
+
+    public void setLastUpdate(LocalDate lastUpdate) {
+        this.lastUpdate = lastUpdate;
+    }
+
+    public Warehouse getWarehouse() {
+        return warehouse;
+    }
+
+    public void setWarehouse(Warehouse warehouse) {
+        this.warehouse = warehouse;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
     }
 }

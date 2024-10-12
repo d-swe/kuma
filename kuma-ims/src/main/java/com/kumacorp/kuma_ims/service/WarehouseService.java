@@ -40,7 +40,7 @@ public class WarehouseService {
                 warehouse.setName(newWarehouse.getName());
                 warehouse.setCity(newWarehouse.getCity());
                 warehouse.setState(newWarehouse.getState());
-                warehouse.setCapacity(newWarehouse.getCapacity());
+                warehouse.setMaxCapacity(newWarehouse.getMaxCapacity());
                 return warehouseRepository.save(warehouse);
             }).orElseThrow(() -> new EntityNotFoundException("Warehouse with id: " + id + " not found"));
     }

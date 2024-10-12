@@ -3,7 +3,14 @@ package com.kumacorp.kuma_ims.model;
 import java.time.LocalDate;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import java.math.BigDecimal;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -13,7 +20,7 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "purchase_order")
+@Table(name = "\"order\"")
 public class Order {
 
     @Id
@@ -22,21 +29,22 @@ public class Order {
 
     private LocalDate orderDate;
 
-    private double total;
+    private BigDecimal totalCost;
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "customer_id", nullable = false)
     private Customer customer;
 
     @OneToMany(mappedBy = "order")
+    @JsonIgnore
     private Set<OrderItem> orderItems;
 
     public Order() {}
 
-    public Order(int id, LocalDate orderDate, double total) {
+    public Order(int id, LocalDate orderDate, BigDecimal totalCost) {
         this.id = id;
         this.orderDate = orderDate;
-        this.total = total;
+        this.totalCost = totalCost;
     }
 
     public int getId() {
@@ -55,12 +63,12 @@ public class Order {
         this.orderDate = orderDate;
     }
 
-    public double getTotal() {
-        return total;
+    public BigDecimal getTotalCost() {
+        return totalCost;
     }
 
-    public void setTotal(double total) {
-        this.total = total;
+    public void setTotalCost(BigDecimal total) {
+        this.totalCost = total;
     }
 
     public Customer getCustomer() {

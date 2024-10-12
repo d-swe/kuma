@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.kumacorp.kuma_ims.dto.OrderCreateRequest;
 import com.kumacorp.kuma_ims.model.Order;
 import com.kumacorp.kuma_ims.service.OrderService;
 
@@ -46,7 +47,7 @@ public class OrderController {
     }
 
     @PostMapping
-    public Order createOrder(@RequestBody Order order) {
+    public Order createOrder(@RequestBody OrderCreateRequest order) {
         return orderService.createOrder(order);
     }
 
