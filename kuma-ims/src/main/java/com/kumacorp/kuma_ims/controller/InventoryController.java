@@ -19,8 +19,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.kumacorp.kuma_ims.service.InventoryService;
 import com.kumacorp.kuma_ims.dto.InventoryCreateRequest;
 import com.kumacorp.kuma_ims.model.Inventory;
-import com.kumacorp.kuma_ims.model.Product;
-import com.kumacorp.kuma_ims.model.Warehouse;
 
 @RestController
 @RequestMapping("/inventories")

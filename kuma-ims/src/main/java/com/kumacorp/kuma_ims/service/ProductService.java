@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import com.kumacorp.kuma_ims.repository.ProductRepository;
 
 import jakarta.persistence.EntityNotFoundException;
-import jakarta.transaction.Transactional;
 
 import com.kumacorp.kuma_ims.model.Product;
 

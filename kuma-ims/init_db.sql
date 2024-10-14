@@ -11,9 +11,10 @@ DROP TABLE IF EXISTS warehouse CASCADE;
 CREATE TABLE warehouse (
     id SERIAL PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
-	city VARCHAR(255) NOT NULL,
-	state VARCHAR(255) NOT NULL,
-    capacity INT
+	city VARCHAR(100) NOT NULL,
+	state VARCHAR(2) NOT NULL,
+    current_capacity INT,
+    max_capacity INT
 );
 
 CREATE TABLE category (
@@ -64,6 +65,7 @@ CREATE TABLE order_item (
     inventory_id INT NOT NULL,
     order_id INT NOT NULL,
     quantity INT NOT NULL,
+    price_per decimal(10,2) NOT NULL,
     FOREIGN KEY (order_id) REFERENCES "order"(id) ON DELETE CASCADE,
     FOREIGN KEY (inventory_id) REFERENCES inventory(id) ON DELETE CASCADE
 );
