@@ -56,7 +56,7 @@ CREATE TABLE "order" (
     id SERIAL PRIMARY KEY,
     customer_id INT NOT NULL,
     order_date DATE NOT NULL,
-    total_cost DECIMAL(10, 2) NOT NULL,
+    total_cost DECIMAL(10, 2),
     FOREIGN KEY (customer_id) REFERENCES customer(id) ON DELETE CASCADE
 );
 

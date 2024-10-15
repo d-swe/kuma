@@ -1,6 +1,8 @@
 package com.kumacorp.kuma_ims.service;
 
 import java.util.List;
+import java.math.BigDecimal;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -40,7 +42,22 @@ public class OrderItemService {
         OrderItem orderItem = new OrderItem();
         orderItem.setInventory(inventory);
         orderItem.setOrder(order);
-        orderItem.setQuantity(request.getQuantity());
+        orderItem.setPricePer(inventory.getProduct().getPrice());
+
+        if(inventory.getStock() >= request.getQuantity()) {
+            int newStock = inventory.getStock() - request.getQuantity();
+            inventory.setStock(newStock);
+            orderItem.setQuantity(request.getQuantity());
+            BigDecimal newTotalCost = inventory.getProduct().getPrice().multiply(BigDecimal.valueOf(request.getQuantity()));
+            if(order.getTotalCost() == null) {
+                order.setTotalCost(newTotalCost);
+            } else {
+                order.setTotalCost(order.getTotalCost().add(newTotalCost));
+            }
+        } else {
+            throw new RuntimeException("Cannot fulfill order. Order quantity exceeds current inventory stock. \nOrder quantity: " 
+            + request.getQuantity() + "\nProduct: " + inventory.getProduct().getName() + " current stock at: " + inventory.getStock());
+        }
 
         return orderItemRepository.save(orderItem);
     }

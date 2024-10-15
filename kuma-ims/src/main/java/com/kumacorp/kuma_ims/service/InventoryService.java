@@ -47,8 +47,13 @@ public class InventoryService {
         Inventory inventory = new Inventory();
         inventory.setProduct(product);
         inventory.setWarehouse(warehouse);
-        inventory.setStock(request.getStock());
         inventory.setLastUpdate(LocalDate.now());
+        if(request.getStock() <= (warehouse.getMaxCapacity() - warehouse.getCurrentCapacity())) {
+            inventory.setStock(request.getStock());
+            warehouse.setCurrentCapacity(warehouse.getCurrentCapacity() + request.getStock());
+        } else {
+            throw new RuntimeException("Stock exceeds warehouse capacity. Stock: " + request.getStock() + " Current warehouse capacity: " + (warehouse.getMaxCapacity() - warehouse.getCurrentCapacity()));
+        }
 
         return inventoryRepository.save(inventory);
     }

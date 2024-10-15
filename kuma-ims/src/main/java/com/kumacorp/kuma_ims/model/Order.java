@@ -41,7 +41,7 @@ public class Order {
     public Order(int id, LocalDate orderDate, BigDecimal totalCost) {
         this.id = id;
         this.orderDate = orderDate;
-        this.totalCost = totalCost;
+        this.totalCost = BigDecimal.ZERO;
     }
 
     public int getId() {
