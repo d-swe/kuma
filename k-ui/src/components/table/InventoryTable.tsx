@@ -50,6 +50,7 @@ export function InventoryTable() {
                     <TableHead>Warehouse</TableHead>
                     <TableHead>Stock</TableHead>
                     <TableHead>Last Update</TableHead>
+                    <TableHead>Actions</TableHead>
                 </TableRow>
             </TableHeader>
             <TableBody>
@@ -59,7 +60,10 @@ export function InventoryTable() {
                         <TableCell>{inventory.warehouse.name}</TableCell>
                         <TableCell>{inventory.stock}</TableCell>
                         <TableCell>{inventory.lastUpdate}</TableCell>
-                        <TableCell><Button>Edit</Button></TableCell>
+                        <TableCell>
+                            <Button>Edit</Button>
+                            <Button>Delete</Button>
+                        </TableCell>
                     </TableRow>
                 ))}
             </TableBody>

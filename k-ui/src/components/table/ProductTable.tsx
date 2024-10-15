@@ -51,6 +51,7 @@ export function ProductTable() {
                     <TableHead>Price</TableHead>
                     <TableHead>Category</TableHead>
                     <TableHead>SKU</TableHead>
+                    <TableHead>Actions</TableHead>
                 </TableRow>
             </TableHeader>
             <TableBody>
@@ -61,7 +62,10 @@ export function ProductTable() {
                         <TableCell>{warehouse.price}</TableCell>
                         <TableCell>{warehouse.category.name}</TableCell>
                         <TableCell>{warehouse.sku}</TableCell>
-                        <TableCell><Button>Edit</Button></TableCell>
+                        <TableCell>
+                            <Button>Edit</Button>
+                            <Button>Delete</Button>
+                        </TableCell>
                     </TableRow>
                 ))}
             </TableBody>

@@ -47,6 +47,7 @@ export function CustomerTable() {
                     <TableHead>Email</TableHead>
                     <TableHead>Phone</TableHead>
                     <TableHead>Address</TableHead>
+                    <TableHead>Actions</TableHead>
                 </TableRow>
             </TableHeader>
             <TableBody>
@@ -56,7 +57,10 @@ export function CustomerTable() {
                         <TableCell>{customer.email}</TableCell>
                         <TableCell>{customer.phone}</TableCell>
                         <TableCell>{customer.address}</TableCell>
-                        <TableCell><Button>Edit</Button></TableCell>
+                        <TableCell>
+                            <Button>Edit</Button>
+                            <Button>Delete</Button>
+                        </TableCell>
                     </TableRow>
                 ))}
             </TableBody>
