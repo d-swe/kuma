@@ -62,16 +62,15 @@ export const SideBar = () => {
 	return (
 		<NavigationMenu className="p-[20px]">
 			<NavigationMenuList className="cursor-pointer flex flex-col gap-2">
-				{menuItems.map((menuItem) => (
+				{menuItems.map((menuItem, index) => (
 					<NavigationMenuItem
+						key={index}
 						className={`${
-							activeTab === menuItem.nav ? "bg-gray-100" : ""
-						} rounded-md px-[40px] py-[5px] hover:bg-gray-100`}
+							activeTab === menuItem.nav ? "bg-gray-100 text-black !text-black" : ""
+						} rounded-md w-[200px] pl-[12px] pr-[30px] py-[5px] text-white hover:bg-gray-100 hover:text-black`}
+						onClick={() => handleNavigation(`${menuItem.nav}`)}
 					>
-						<NavigationMenuLink
-							onClick={() => handleNavigation(`${menuItem.nav}`)}
-							className="flex flex-row items-center justify-left gap-2"
-						>
+						<NavigationMenuLink className="flex flex-row items-center justify-left gap-2">
 							{menuItem.icon}
 							<span>{menuItem.name}</span>
 						</NavigationMenuLink>

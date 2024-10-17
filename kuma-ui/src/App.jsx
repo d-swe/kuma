@@ -13,6 +13,7 @@ function App() {
       <div className='app'>
       <SideBar/>
       <Routes>
+        {/* <Route path="/" element={} /> */}
         <Route path="/" element={<Dashboard />} />
         <Route path="/warehouse" element={<WarehouseView />} />
         <Route path="/product" element={<ProductView />} />

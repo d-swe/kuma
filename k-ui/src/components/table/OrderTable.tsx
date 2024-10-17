@@ -40,8 +40,8 @@ export function OrderTable() {
     }, []); // Run only on component mount
 
     return (
-        <div>
-        <Table className="border-full">
+        <div className="w-full">
+        <Table>
             <TableHeader>
                 <TableRow className="w-[200px]">
                     <TableHead>Name</TableHead>
@@ -56,9 +56,9 @@ export function OrderTable() {
                         <TableCell>{order.customer.firstName} {order.customer.lastName}</TableCell>
                         <TableCell>{order.orderDate}</TableCell>
                         <TableCell>{order.totalCost}</TableCell>
-                        <TableCell>
-                            <Button>Edit</Button>
-                            <Button>Delete</Button>
+                        <TableCell className="flex gap-2">
+                            <Button size="sm">Edit</Button>
+                            <Button size="sm">Delete</Button>
                         </TableCell>
                     </TableRow>
                 ))}

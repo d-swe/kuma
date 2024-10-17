@@ -35,12 +35,13 @@ export function CategoryTable() {
     }, []); // Run only on component mount
 
     return (
-        <div>
-        <Table className="border-full">
+        <div className="w-full">
+        <Table>
             <TableHeader>
                 <TableRow className="w-[200px]">
                     <TableHead>Name</TableHead>
                     <TableHead>Description</TableHead>
+                    <TableHead>Actions</TableHead>
                 </TableRow>
             </TableHeader>
             <TableBody>
@@ -48,9 +49,9 @@ export function CategoryTable() {
                     <TableRow key={index}>
                         <TableCell>{category.name}</TableCell>
                         <TableCell>{category.description}</TableCell>
-                        <TableCell>
-                            <Button>Edit</Button>
-                            <Button>Delete</Button>
+                        <TableCell className="flex gap-2">
+                            <Button size="sm">Edit</Button>
+                            <Button size="sm">Delete</Button>
                         </TableCell>
                     </TableRow>
                 ))}

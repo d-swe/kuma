@@ -9,6 +9,7 @@ import {
 } from "../ui/table";
 import { Button } from "../ui/button";
 import { WarehouseForm } from "../form/WarehouseForm";
+import { DeleteAlert } from "../modal/DeleteAlert";
 
 // Define the Warehouse type
 export type Warehouse = {
@@ -27,7 +28,18 @@ export function WarehouseTable() {
 	// Initialize state for warehouses as an array
 	const [warehouses, setWarehouses] = useState<Warehouse[]>([]);
 	const [isCreate, setIsCreate] = useState(false);
+	const [isEdit, setIsEdit] = useState(false);
+	const [editWarehouse, setEditWarehouse] = useState<Warehouse>();
+	const [showAlert, setShowAlert] = useState(false);
+	const [warehouseId, setWarehouseId] = useState<number | null>(null);
+
 	const url = "http://localhost:8080/warehouses";
+
+	const closeForm = () => {
+		setIsCreate(false);
+		setIsEdit(false);
+		setEditWarehouse(undefined);
+	};
 
 	useEffect(() => {
 		const fetchWarehouses = async () => {
@@ -53,33 +65,59 @@ export function WarehouseTable() {
 		setIsCreate(!isCreate);
 	};
 
-	const handleDeleteWarehouse = async (id: number) => {
+	const handleEditWarehouse = async (id: number) => {
 		try {
 			let url = `http://localhost:8080/warehouses/${id}`;
-			const response = await fetch(url, {
-				method: "DELETE",
-			});
-			console.log(response);
+			const response = await fetch(url);
+			if (!response.ok) {
+				throw new Error(`Error Status: ${response.status}`);
+			}
+			const data: Warehouse = await response.json();
+			setEditWarehouse(data); 
 		} catch (error) {
 			console.error("Error:", error);
 		}
+		setIsEdit(!isEdit);
+	};
+
+	const handleDeleteWarehouse = async (id: number) => {
+		setWarehouseId(id);
+		setShowAlert(true);
+	}
+
+	const confirmDelete = async () => {
+		if(warehouseId === null) return;
+		try {
+			let url = `http://localhost:8080/warehouses/${warehouseId}`;
+			const response = await fetch(url, {
+				method: "DELETE",
+			});
+		} catch (error) {
+			console.error("Error:", error);
+		}
+		setShowAlert(false);
+		setWarehouseId(null);
+		window.location.reload();
 	};
 
 	return (
-		<div>
+		<div className="w-full pr-12">
 			<Button onClick={handleCreate}>Add Warehouse</Button>
-			{isCreate ? (
-				<WarehouseForm />
+			{(isCreate || isEdit) ? (
+				<WarehouseForm 
+					data={editWarehouse}
+					onClose={closeForm}
+				/>
 			) : (
-				<Table className="border-full">
+				<Table>
 					<TableHeader>
-						<TableRow className="w-[200px]">
+						<TableRow className="">
 							<TableHead>Name</TableHead>
 							<TableHead>City</TableHead>
 							<TableHead>State</TableHead>
 							<TableHead>Current Capacity</TableHead>
 							<TableHead>Max Capacity</TableHead>
-							<TableHead>Actions</TableHead>
+							<TableHead className="text-right">Actions</TableHead>
 						</TableRow>
 					</TableHeader>
 					<TableBody>
@@ -90,9 +128,9 @@ export function WarehouseTable() {
 								<TableCell>{warehouse.state}</TableCell>
 								<TableCell>{warehouse.currentCapacity}</TableCell>
 								<TableCell>{warehouse.maxCapacity}</TableCell>
-								<TableCell>
-									<Button>Edit</Button>
-									<Button onClick={() => handleDeleteWarehouse(warehouse.id)}>
+								<TableCell className="flex flex-row justify-end gap-4">
+									<Button size="sm" onClick={() => handleEditWarehouse(warehouse.id)}>Edit</Button>
+									<Button size="sm" onClick={() => handleDeleteWarehouse(warehouse.id)}>
 										Delete
 									</Button>
 								</TableCell>
@@ -101,6 +139,7 @@ export function WarehouseTable() {
 					</TableBody>
 				</Table>
 			)}
+			<DeleteAlert showAlert={showAlert} setShowAlert={setShowAlert} onConfirm={confirmDelete}/>
 		</div>
 	);
 }

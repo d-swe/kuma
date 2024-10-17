@@ -14,12 +14,12 @@ function App() {
 	return (
     <>
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
-      <div className="flex flex-row">
+      <div className="flex flex-row bg-backlayer h-lvh pt-4">
         <BrowserRouter>
           <div className="flex w-[200px] h-max">
             <SideBar />
           </div>
-          <div className="flex-1 flex items-top">
+          <div className="flex-1 flex items-top border bg-background rounded-2xl p-10 ml-10">
             <Routes>
               <Route path="/warehouse" element={<WarehouseTable />} />
               <Route path="/product" element={<ProductTable />} />
@@ -29,7 +29,7 @@ function App() {
               <Route path="/category" element={<CategoryTable />} />
             </Routes>
           </div>
-          <div className="absolute top-0 right-0 p-4">
+          <div className="absolute top-0 right-0 pr-4 pt-8">
             <ModeToggle />
           </div>
         </BrowserRouter>
