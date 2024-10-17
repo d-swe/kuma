@@ -100,6 +100,7 @@ export function InventoryTable() {
 				<Table>
 					<TableHeader>
 						<TableRow className="">
+							<TableHead>Inventory Id</TableHead>
 							<TableHead>Product</TableHead>
 							<TableHead>Warehouse</TableHead>
 							<TableHead>Stock</TableHead>
@@ -110,6 +111,7 @@ export function InventoryTable() {
 					<TableBody>
 						{inventories.map((inventory, index) => (
 							<TableRow key={index}>
+								<TableCell>{inventory.id}</TableCell>
 								<TableCell>{inventory.product.name}</TableCell>
 								<TableCell>{inventory.warehouse.name}</TableCell>
 								<TableCell>{inventory.stock}</TableCell>

@@ -85,6 +85,7 @@ export interface inventory {
 }
 
 export type Order = {
+    id: number,
     customer: {
         firstName: string,
         lastName: string
@@ -110,6 +111,7 @@ export interface order {
 }
 
 export type Customer = {
+    id: number,
     firstName: string,
     lastName: string,
     email: string,
