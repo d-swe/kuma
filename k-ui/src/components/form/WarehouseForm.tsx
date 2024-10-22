@@ -13,7 +13,6 @@ import {
 import { Input } from "@/components/ui/input";
 import { states } from "../data/states";
 import { Warehouse } from "../data/items";
-import { useNavigate } from "react-router-dom";
 import {
 	Select,
 	SelectContent,

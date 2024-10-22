@@ -8,9 +8,7 @@
 - Order item is the middle man for modifying inventory stock and main info for orders
 
 ## TODO
-- [x] OrderItem
-	- [x] R/S/C:
-		- [x] when orderitem is created decrement quantity from inventory stock
-		- [x] get price from current product price
-- [x] Order
-	- [x] get all the orderitems with orderid and get total price
+- [ ] fix entity relationships
+- [ ] add / edit / delete order
+- [ ] warehouse stock decrement whenever an order is placed or an inventory is deleted
+- [ ] add search feature

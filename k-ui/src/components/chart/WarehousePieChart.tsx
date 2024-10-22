@@ -1,6 +1,5 @@
 "use client"
 
-import * as React from "react"
 import { TrendingUp } from "lucide-react"
 import { Label, Pie, PieChart } from "recharts"
 
@@ -19,23 +18,15 @@ import {
   ChartTooltipContent,
 } from "@/components/ui/chart"
 import { useEffect, useState } from "react"
-import { Category, Inventory, Warehouse } from "../data/items"
+import { Inventory } from "../data/items"
 
 export const description = "A donut chart with text"
 
-// const chartData = [
-//   { browser: "chrome", visitors: 275, fill: "var(--color-chrome)" },
-//   { browser: "safari", visitors: 200, fill: "var(--color-safari)" },
-//   { browser: "firefox", visitors: 287, fill: "var(--color-firefox)" },
-//   { browser: "edge", visitors: 173, fill: "var(--color-edge)" },
-//   { browser: "other", visitors: 190, fill: "var(--color-other)" },
-// ]
-
-type ChartData = [
-  product: string,
-  stock: number,
-  fill: string
-];
+// type ChartData = [
+//   product: string,
+//   stock: number,
+//   fill: string
+// ];
 
 type ProductStock = {
   name: string,
@@ -79,7 +70,7 @@ const chartConfig = {
 } satisfies ChartConfig
 
 export function WarehousePieChart() {
-  const [inventory, setInventories] = useState<Inventory[]>([]);
+  // const [inventory, setInventories] = useState<Inventory[]>([]);
   const [chartData, setChartData] = useState<WarehouseProductsMap>({});
   const generateRandomColor = () => {
     // Generate a random color in hex format
@@ -96,7 +87,7 @@ export function WarehousePieChart() {
         }
 
         const data: Inventory[] = await response.json();
-        setInventories(data);
+        // setInventories(data);
         const warehouseMap: WarehouseProductsMap = {};
 
         data.forEach((item) => {

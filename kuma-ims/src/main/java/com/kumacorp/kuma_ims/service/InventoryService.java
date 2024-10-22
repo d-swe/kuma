@@ -59,6 +59,14 @@ public class InventoryService {
     }
 
     public void deleteInventoryById(int id) {
+        Inventory inventory = inventoryRepository.findById(id)
+            .orElseThrow(() -> new EntityNotFoundException("Inventory with id: " + id + " not found"));
+        Warehouse warehouse = inventory.getWarehouse();
+        
+        int stock = inventory.getStock();
+        int newCap = warehouse.getCurrentCapacity() - stock;
+        warehouse.setCurrentCapacity(newCap);
+
         inventoryRepository.deleteById(id);
     }
 

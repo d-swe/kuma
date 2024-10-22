@@ -78,11 +78,11 @@ const handleAddOrder = async (data: Order) => {
 };
 
 const handleEditOrder = async (data: Order) => {
-	const addOrder: OrderCreateRequest = {
-		customerId: data.customer.id,
-		inventoryId: data.inventory.id,
-		quantity: data.quantity
-	}
+	// const addOrder: OrderCreateRequest = {
+	// 	customerId: data.customer.id,
+	// 	inventoryId: data.inventory.id,
+	// 	quantity: data.quantity
+	// }
 	console.log(data.id);
 	try {
 		let url = `http://localhost:8080/orders/${data.id}`;

@@ -1,7 +1,6 @@
 package com.kumacorp.kuma_ims.model;
 
 import java.time.LocalDate;
-import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -26,22 +25,26 @@ public class Order {
 
     private LocalDate orderDate;
 
-    private BigDecimal totalCost;
+    private BigDecimal perItemCost;
+
+    private int quantity;
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "customer_id", nullable = false)
     private Customer customer;
 
-    @OneToMany(mappedBy = "order")
+    @ManyToOne
+    @JoinColumn(name = "inventory_id")
     @JsonIgnore
-    private Set<OrderItem> orderItems;
+    private Inventory inventory;
 
     public Order() {}
 
-    public Order(int id, LocalDate orderDate, BigDecimal totalCost) {
+    public Order(int id, LocalDate orderDate, BigDecimal perItemCost, int quantity) {
         this.id = id;
         this.orderDate = orderDate;
-        this.totalCost = BigDecimal.ZERO;
+        this.perItemCost = BigDecimal.ZERO;
+        this.quantity = quantity;
     }
 
     public int getId() {
@@ -60,12 +63,12 @@ public class Order {
         this.orderDate = orderDate;
     }
 
-    public BigDecimal getTotalCost() {
-        return totalCost;
+    public BigDecimal getPerItemCost() {
+        return perItemCost;
     }
 
-    public void setTotalCost(BigDecimal total) {
-        this.totalCost = total;
+    public void setPerItemCost(BigDecimal perItemCost) {
+        this.perItemCost = perItemCost;
     }
 
     public Customer getCustomer() {
@@ -76,11 +79,19 @@ public class Order {
         this.customer = customer;
     }
 
-    public Set<OrderItem> getOrderItems() {
-        return orderItems;
+    public int getQuantity() {
+        return quantity;
     }
 
-    public void setOrderItems(Set<OrderItem> orderItems) {
-        this.orderItems = orderItems;
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public Inventory getInventory() {
+        return inventory;
+    }
+
+    public void setInventory(Inventory inventory) {
+        this.inventory = inventory;
     }
 }

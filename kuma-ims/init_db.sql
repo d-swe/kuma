@@ -1,5 +1,4 @@
 -- Drop tables if they exist
-DROP TABLE IF EXISTS order_item CASCADE;
 DROP TABLE IF EXISTS "order" CASCADE;
 DROP TABLE IF EXISTS inventory CASCADE;
 DROP TABLE IF EXISTS product CASCADE;
@@ -11,8 +10,8 @@ DROP TABLE IF EXISTS warehouse CASCADE;
 CREATE TABLE warehouse (
     id SERIAL PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
-	city VARCHAR(100) NOT NULL,
-	state VARCHAR(2) NOT NULL,
+    city VARCHAR(100) NOT NULL,
+    state VARCHAR(2) NOT NULL,
     current_capacity INT,
     max_capacity INT
 );
@@ -55,17 +54,53 @@ CREATE TABLE customer (
 CREATE TABLE "order" (
     id SERIAL PRIMARY KEY,
     customer_id INT NOT NULL,
+    inventory_id INT NOT NULL,
+    quantity INT NOT NULL,
+    per_item_cost DECIMAL(10, 2)
     order_date DATE NOT NULL,
-    total_cost DECIMAL(10, 2),
-    FOREIGN KEY (customer_id) REFERENCES customer(id) ON DELETE CASCADE
 );
 
-CREATE TABLE order_item (
-    id SERIAL PRIMARY KEY,
-    inventory_id INT NOT NULL,
-    order_id INT NOT NULL,
-    quantity INT NOT NULL,
-    price_per decimal(10,2) NOT NULL,
-    FOREIGN KEY (order_id) REFERENCES "order"(id) ON DELETE CASCADE,
-    FOREIGN KEY (inventory_id) REFERENCES inventory(id) ON DELETE CASCADE
-);
+-- Insert data into warehouse table with capacities over 10000
+INSERT INTO warehouse (name, city, state, current_capacity, max_capacity) VALUES
+    ('Capital Storage', 'Washington', 'DC', 1200, 15000),
+    ('Baltimore Bay Warehouse', 'Baltimore', 'MD', 1300, 16000),
+    ('Philly Central Depot', 'Philadelphia', 'PA', 1400, 17000);
+
+-- Insert data into category table
+INSERT INTO category (name, description) VALUES
+    ('Electronics', 'Electronic goods and devices'),
+    ('Furniture', 'Home and office furniture'),
+    ('Food', 'Groceries and consumables');
+
+-- Insert data into product table
+INSERT INTO product (name, description, price, category_id, sku) VALUES
+    ('Laptop', 'Portable computer', 899.99, 1, 'ELEC001'),
+    ('Smartphone', 'Mobile phone', 499.99, 1, 'ELEC002'),
+    ('Desk', 'Wooden office desk', 299.99, 2, 'FURN001'),
+    ('Chair', 'Ergonomic office chair', 199.99, 2, 'FURN002'),
+    ('Apples', 'Fresh apples', 1.99, 3, 'FOOD001'),
+    ('Bread', 'Whole grain bread', 2.99, 3, 'FOOD002');
+
+-- Insert data into customer table
+INSERT INTO customer (first_name, last_name, email, phone, address) VALUES
+    ('John', 'Doe', 'john.doe@example.com', '5715551234', '123 Maple St'),
+    ('Jane', 'Smith', 'jane.smith@example.com', '2305555678', '456 Oak St'),
+    ('Alice', 'Johnson', 'alice.johnson@example.com', '201555-8765', '789 Pine St');
+
+-- Insert data into inventory table, ensuring stock is consistent with current capacity
+-- Warehouse 1: Capital Storage, Washington, DC (current_capacity: 12000)
+INSERT INTO inventory (product_id, warehouse_id, stock, last_update) VALUES 
+    (1, 1, 400, CURRENT_DATE),
+    (2, 1, 300, CURRENT_DATE),
+    (5, 1, 500, CURRENT_DATE);
+
+-- Warehouse 2: Baltimore Bay Warehouse, Baltimore, MD (current_capacity: 13000)
+INSERT INTO inventory (product_id, warehouse_id, stock, last_update) VALUES 
+    (3, 2, 450, CURRENT_DATE),
+    (4, 2, 450, CURRENT_DATE),
+    (6, 2, 400, CURRENT_DATE);
+
+-- Warehouse 3: Philly Central Depot, Philadelphia, PA (current_capacity: 14000)
+INSERT INTO inventory (product_id, warehouse_id, stock, last_update) VALUES 
+    (5, 3, 600, CURRENT_DATE),
+    (6, 3, 800, CURRENT_DATE);

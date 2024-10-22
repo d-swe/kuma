@@ -22,7 +22,6 @@ import {
 	SelectValue,
 } from "../ui/select";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 const url = "http://localhost:8080/products";
 

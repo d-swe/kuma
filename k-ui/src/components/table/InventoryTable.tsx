@@ -80,6 +80,9 @@ export function InventoryTable() {
 			const response = await fetch(url, {
 				method: "DELETE",
 			});
+			if (!response.ok) {
+				throw new Error(`Error Status: ${response.status}`);
+			}
 		} catch (error) {
 			console.error("Error:", error);
 		}

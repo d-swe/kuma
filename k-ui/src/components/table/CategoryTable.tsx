@@ -81,6 +81,9 @@ export function CategoryTable() {
 			const response = await fetch(url, {
 				method: "DELETE",
 			});
+			if(!response.ok) {
+				
+			}
 		} catch (error) {
 			console.error("Error:", error);
 		}

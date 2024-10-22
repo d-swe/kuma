@@ -35,10 +35,11 @@ public class OrderController {
     @GetMapping("/{id}")
     public ResponseEntity<Order> findorderById(@PathVariable int id) {
         Optional<Order> order = orderService.findOrderById(id);
-        if (order.isPresent())
-        return ResponseEntity.ok(order.get());
-        else
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        if (order.isPresent()) {
+            return ResponseEntity.ok(order.get());
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 
     @GetMapping("/count")

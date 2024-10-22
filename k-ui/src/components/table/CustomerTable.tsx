@@ -79,6 +79,9 @@ export function CustomerTable() {
 			const response = await fetch(url, {
 				method: "DELETE",
 			});
+			if (!response.ok) {
+				throw new Error(`Error Status: ${response.status}`);
+			}
 		} catch (error) {
 			console.error("Error:", error);
 		}
@@ -86,6 +89,8 @@ export function CustomerTable() {
 		setCustomerId(null);
 		window.location.reload();
 	};
+
+	const description = "Deleting this will remove this customer permanently and cannot be undone.";
 
 	return (
 		<div className="w-full pr-12">
@@ -124,7 +129,7 @@ export function CustomerTable() {
 					</TableBody>
 				</Table>
 			)}
-			<DeleteAlert showAlert={showAlert} setShowAlert={setShowAlert} onConfirm={confirmDelete}/>
+			<DeleteAlert showAlert={showAlert} setShowAlert={setShowAlert} onConfirm={confirmDelete} description={description}/>
 		</div>
 	);
 }

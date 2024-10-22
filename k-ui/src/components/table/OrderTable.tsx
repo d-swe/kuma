@@ -8,10 +8,8 @@ import {
 	TableRow,
 } from "../ui/table";
 import { Button } from "../ui/button";
-import { InventoryForm } from "../form/InventoryForm";
 import { DeleteAlert } from "../modal/DeleteAlert";
 import { Order } from "../data/items";
-import { CustomerForm } from "../form/CustomerForm";
 import { OrderForm } from "../form/OrderForm";
 // import { OrderForm } from "../form/OrderForm";
 
@@ -84,6 +82,10 @@ export function OrderTable() {
 			const response = await fetch(url, {
 				method: "DELETE",
 			});
+			if(!response.ok) {
+
+			}
+
 		} catch (error) {
 			console.error("Error:", error);
 		}
