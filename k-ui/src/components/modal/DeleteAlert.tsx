@@ -7,15 +7,14 @@ import {
     AlertDialogFooter,
     AlertDialogHeader,
     AlertDialogTitle,
-    AlertDialogTrigger,
   } from "@/components/ui/alert-dialog"
-  import { Button } from "@/components/ui/button"
   import { Dispatch, SetStateAction } from "react";
   
-  export function DeleteAlert({ showAlert, setShowAlert, onConfirm} : {
+  export function DeleteAlert({ showAlert, setShowAlert, onConfirm, description} : {
     showAlert: boolean, 
     setShowAlert: Dispatch<SetStateAction<boolean>>,
-    onConfirm: () => void
+    onConfirm: () => void,
+    description: string
     }) {
 
     return (
@@ -24,8 +23,7 @@ import {
           <AlertDialogHeader>
             <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
             <AlertDialogDescription>
-              This action cannot be undone. This will permanently delete your
-              account and remove your data from our servers.
+              {description}
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>

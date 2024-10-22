@@ -73,6 +73,8 @@ export function CategoryTable() {
 	}
 
 	const confirmDelete = async () => {
+		console.log(categoryId);
+
 		if(categoryId === null) return;
 		try {
 			let url = `http://localhost:8080/categories/${categoryId}`;
@@ -84,8 +86,10 @@ export function CategoryTable() {
 		}
 		setShowAlert(false);
 		setCategoryId(null);
-		window.location.reload();
+		// window.location.reload();
 	};
+
+	const description = "Deleting this will remove this permanently and cannot be undone.";
 
 	return (
 		<div className="w-full pr-12">
@@ -120,7 +124,7 @@ export function CategoryTable() {
 					</TableBody>
 				</Table>
 			)}
-			<DeleteAlert showAlert={showAlert} setShowAlert={setShowAlert} onConfirm={confirmDelete}/>
+			<DeleteAlert showAlert={showAlert} setShowAlert={setShowAlert} onConfirm={confirmDelete} description={description}/>
 		</div>
 	);
 }

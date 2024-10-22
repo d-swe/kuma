@@ -3,6 +3,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from ".
 import { Button } from "../ui/button";
 import { Product } from "../data/items";
 import { ProductForm } from "../form/ProductForm";
+import { DeleteAlert } from "../modal/DeleteAlert";
 
 export function ProductTable() {
     // Initialize state for products as an array
@@ -10,6 +11,8 @@ export function ProductTable() {
 	const [isCreate, setIsCreate] = useState(false);
 	const [isEdit, setIsEdit] = useState(false);
     const [editProduct, setEditProduct] = useState<Product>();
+	const [showAlert, setShowAlert] = useState(false);
+    const [productId, setProductId] = useState<number | null>(null);
 
 	const closeForm = () => {
 		setIsCreate(false);
@@ -56,18 +59,27 @@ export function ProductTable() {
 		}
 		setIsEdit(true);
 	};
-
+    
 	const handleDeleteProduct = async (id: number) => {
+		setProductId(id);
+		setShowAlert(true);
+	}
+
+	const confirmDelete = async () => {
+        if(productId === null) return;
 		try {
-			let url = `http://localhost:8080/products/${id}`;
+			let url = `http://localhost:8080/products/${productId}`;
 			const response = await fetch(url, {
 				method: "DELETE",
 			});
 		} catch (error) {
 			console.error("Error:", error);
 		}
-		window.location.reload();
+        setShowAlert(false);
+        setProductId(null);
 	};
+
+	const description = "Deleting this will remove any inventories associated with this product permanently and cannot be undone."
 
     return (
         <div className="w-full pr-12">
@@ -106,6 +118,7 @@ export function ProductTable() {
             </TableBody>
         </Table>
             )}
+			<DeleteAlert showAlert={showAlert} setShowAlert={setShowAlert} onConfirm={confirmDelete} description={description}/>
         </div>
     );
 }

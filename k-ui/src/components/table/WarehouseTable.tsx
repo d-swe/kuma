@@ -21,9 +21,6 @@ export type Warehouse = {
 	maxCapacity: number;
 };
 
-// Define the columns for your table if needed (this is just an example)
-// export const columns: ColumnDef<Warehouse>[] = [];
-
 export function WarehouseTable() {
 	// Initialize state for warehouses as an array
 	const [warehouses, setWarehouses] = useState<Warehouse[]>([]);
@@ -100,6 +97,8 @@ export function WarehouseTable() {
 		window.location.reload();
 	};
 
+	const description = "Deleting this will remove any inventories associated with this warehouse and cannot be undone."
+
 	return (
 		<div className="w-full pr-12">
 			<Button onClick={handleCreate}>Add Warehouse</Button>
@@ -139,7 +138,7 @@ export function WarehouseTable() {
 					</TableBody>
 				</Table>
 			)}
-			<DeleteAlert showAlert={showAlert} setShowAlert={setShowAlert} onConfirm={confirmDelete}/>
+			<DeleteAlert showAlert={showAlert} setShowAlert={setShowAlert} onConfirm={confirmDelete} description={description}/>
 		</div>
 	);
 }

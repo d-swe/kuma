@@ -9,6 +9,7 @@ import { SideBar } from "./components/SideBar"
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { ThemeProvider } from "./components/ui/theme-provider";
 import { ModeToggle } from "./components/ui/mode-toggle";
+import { Dashboard } from "./components/Dashboard";
 
 function App() {
 	return (
@@ -19,8 +20,9 @@ function App() {
           <div className="flex w-[200px] h-max">
             <SideBar />
           </div>
-          <div className="flex-1 flex items-top border bg-background rounded-2xl p-10 ml-10">
+          <div className="flex-1 flex items-top border bg-background rounded-tl-2xl p-10 ml-10">
             <Routes>
+              <Route path="/" element={<Dashboard />} />
               <Route path="/warehouse" element={<WarehouseTable />} />
               <Route path="/product" element={<ProductTable />} />
               <Route path="/inventory" element={<InventoryTable />} />

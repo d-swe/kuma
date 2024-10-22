@@ -30,7 +30,7 @@ export type Product = {
     price: number,
     category: {
         id: number,
-        name: string
+        name: string,
     },
     sku: string
 };
@@ -57,7 +57,8 @@ export type Inventory = {
     id: number,
     product: {
         id: number,
-        name: string
+        name: string,
+        price: number
     },
     warehouse: {
         id: number,
@@ -87,11 +88,24 @@ export interface inventory {
 export type Order = {
     id: number,
     customer: {
+        id: number,
         firstName: string,
         lastName: string
     },
-    orderDate: number,
-    totalCost: number
+    inventory: {
+        id: number,
+        product: {
+            id: number,
+            price: number
+        }
+        warehouse: {
+            id: number,
+            name: string
+        }
+    },
+    quantity: number,
+    orderDate: string,
+    perItemCost: number
 };
 
 export const orderHeaders = [

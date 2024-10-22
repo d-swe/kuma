@@ -29,12 +29,13 @@ const formSchema = z.object({
 	product: z.object({
 		id: z.number(),
 		name: z.string(),
+		price: z.number(),
 	}),
 	warehouse: z.object({
 		id: z.number(),
 		name: z.string(),
 	}),
-	stock: z.coerce.number().min(1, {}).max(1000000000),
+	stock: z.coerce.number(),
 	lastUpdate: z.string(),
 });
 
@@ -100,6 +101,7 @@ export function InventoryForm({
 			product: {
 				id: data?.product.id || 0,
 				name: data?.product.name || "",
+				price: data?.product.price || 0,
 			},
 			warehouse: {
 				id: data?.warehouse.id || 0,
@@ -156,7 +158,8 @@ export function InventoryForm({
 		onClose();
 		// window.location.reload();
 	}
-
+	const errors = form.formState.errors;
+	console.log(errors)
 	return (
 		<div className="py-12 w-1/2">
 			<Form {...form}>
@@ -173,7 +176,7 @@ export function InventoryForm({
 											field.onChange(Number(value));
 										}}
 									>
-										<SelectTrigger className="w-[180px]">
+										<SelectTrigger>
 											<SelectValue placeholder="Select a Product" />
 										</SelectTrigger>
 										<SelectContent {...field}>
@@ -206,7 +209,7 @@ export function InventoryForm({
 											field.onChange(Number(value));
 										}}
 									>
-										<SelectTrigger className="w-[180px]">
+										<SelectTrigger>
 											<SelectValue placeholder="Select a Warehouse" />
 										</SelectTrigger>
 										<SelectContent {...field}>

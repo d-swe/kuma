@@ -88,6 +88,8 @@ export function InventoryTable() {
 		window.location.reload();
 	};
 
+	const description = "Deleting this will remove it permnanently and cannot be undone."
+
 	return (
 		<div className="w-full pr-12">
 			<Button onClick={handleCreate}>Add Inventory</Button>
@@ -127,7 +129,7 @@ export function InventoryTable() {
 					</TableBody>
 				</Table>
 			)}
-			<DeleteAlert showAlert={showAlert} setShowAlert={setShowAlert} onConfirm={confirmDelete}/>
+			<DeleteAlert showAlert={showAlert} setShowAlert={setShowAlert} onConfirm={confirmDelete} description={description}/>
 		</div>
 	);
 }

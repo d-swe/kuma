@@ -11,6 +11,8 @@ import { Button } from "../ui/button";
 import { InventoryForm } from "../form/InventoryForm";
 import { DeleteAlert } from "../modal/DeleteAlert";
 import { Order } from "../data/items";
+import { CustomerForm } from "../form/CustomerForm";
+import { OrderForm } from "../form/OrderForm";
 // import { OrderForm } from "../form/OrderForm";
 
 export function OrderTable() {
@@ -50,10 +52,12 @@ export function OrderTable() {
 	}, []); // Run only on component mount
 
 	const handleCreate = () => {
-		setIsCreate(!isCreate);
+		setIsCreate(true);
+		setIsEdit(false);
 	};
 
 	const handleEditorder = async (id: number) => {
+		setIsCreate(false);
 		try {
 			let url = `http://localhost:8080/orders/${id}`;
 			const response = await fetch(url);
@@ -65,7 +69,7 @@ export function OrderTable() {
 		} catch (error) {
 			console.error("Error:", error);
 		}
-		setIsEdit(!isEdit);
+		setIsEdit(true);
 	};
 
 	const handleDeleteOrder = async (id: number) => {
@@ -88,11 +92,13 @@ export function OrderTable() {
 		window.location.reload();
 	};
 
+	const description = "Deleting this will remove it permanently and cannot be undone."
+
 	return (
 		<div className="w-full pr-12">
-			<Button onClick={handleCreate}>Add order</Button>
+			<Button onClick={handleCreate}>Add Order</Button>
 			{(isCreate || isEdit) ? (
-				<InventoryForm 
+				<OrderForm 
 					data={editOrder}
 					onClose={closeForm}
 				/>
@@ -103,7 +109,8 @@ export function OrderTable() {
 							<TableHead>Order Id</TableHead>
 							<TableHead>Customer Name</TableHead>
 							<TableHead>Order Date</TableHead>
-							<TableHead>Total Cost</TableHead>
+							<TableHead>Per Item Cost</TableHead>
+							<TableHead>Quantity</TableHead>
 							<TableHead className="text-right">Actions</TableHead>
 						</TableRow>
 					</TableHeader>
@@ -113,7 +120,8 @@ export function OrderTable() {
 								<TableCell>{order.id}</TableCell>
 								<TableCell>{order.customer.firstName}, {order.customer.lastName}</TableCell>
 								<TableCell>{order.orderDate}</TableCell>
-								<TableCell>{order.totalCost}</TableCell>
+								<TableCell>{order.perItemCost}</TableCell>
+								<TableCell>{order.quantity}</TableCell>
 								<TableCell className="flex flex-row justify-end gap-4">
 									<Button size="sm" onClick={() => handleEditorder(order.id)}>Edit</Button>
 									<Button size="sm" onClick={() => handleDeleteOrder(order.id)}>
@@ -125,7 +133,7 @@ export function OrderTable() {
 					</TableBody>
 				</Table>
 			)}
-			<DeleteAlert showAlert={showAlert} setShowAlert={setShowAlert} onConfirm={confirmDelete}/>
+			<DeleteAlert showAlert={showAlert} setShowAlert={setShowAlert} onConfirm={confirmDelete} description={description}/>
 		</div>
 	);
 }
