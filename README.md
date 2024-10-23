@@ -12,3 +12,4 @@
 - [ ] add / edit / delete order
 - [x] warehouse stock decrement whenever an order is placed or an inventory is deleted
 - [x] add search feature
+- [ ] set up jenkins pipeline
