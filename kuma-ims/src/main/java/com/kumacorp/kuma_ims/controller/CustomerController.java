@@ -20,7 +20,8 @@ import com.kumacorp.kuma_ims.model.Customer;
 
 @RestController
 @RequestMapping("customers")
-@CrossOrigin(origins = "http://localhost:5173")
+// @CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(origins = "http://kuma-frontend.s3-website-us-east-1.amazonaws.com")
 public class CustomerController {
     
     @Autowired
