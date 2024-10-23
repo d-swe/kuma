@@ -8,7 +8,7 @@
 - Order item is the middle man for modifying inventory stock and main info for orders
 
 ## TODO
-- [ ] fix entity relationships
+- [x] fix entity relationships
 - [ ] add / edit / delete order
-- [ ] warehouse stock decrement whenever an order is placed or an inventory is deleted
-- [ ] add search feature
+- [x] warehouse stock decrement whenever an order is placed or an inventory is deleted
+- [x] add search feature
