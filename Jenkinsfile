@@ -1,6 +1,13 @@
 pipeline {
     agent any
 
+    environment {
+        DB_CREDENTIALS = credentials('db_cred')
+        DB_URL = credenials('db_url')
+        DB_USERNAME = DB_CREDENTIALS.username
+        DB_PASSWORD = DB_CREDENTIALS.password
+    }
+
     stages {
         stage('Build Frontend') {
             steps {
@@ -11,8 +18,14 @@ pipeline {
 
         stage('Build Backend') {
             steps {
-                sh "echo Building Backend..."
-                sh "cd kuma-ims && mvn clean install"
+                    sh """
+                        echo Building Backend...
+                        cd kuma-ims
+                        mvn clean install \
+                            -Dspring.datasource.url=${DB_URL} \
+                            -Dspring.datasource.username=${DB_USERNAME} \
+                            -Dspring.datasource.password=${DB_PASSWORD}
+                    """
             }
         }
         
