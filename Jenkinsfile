@@ -2,10 +2,9 @@ pipeline {
     agent any
 
     environment {
-        DB_CREDENTIALS = credentials('db_cred')
-        DB_URL = credenials('db_url')
-        DB_USERNAME = DB_CREDENTIALS.username
-        DB_PASSWORD = DB_CREDENTIALS.password
+        DB_URL = credentials('db_url')
+        DB_USERNAME = credentials('db_user')
+        DB_PASSWORD = credentials('db_pass')
     }
 
     stages {
