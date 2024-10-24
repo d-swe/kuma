@@ -36,11 +36,12 @@ public class Order {
 
     public Order() {}
 
-    public Order(int id, LocalDate orderDate, BigDecimal perItemCost, int quantity) {
+    public Order(int id, LocalDate orderDate, BigDecimal perItemCost, int quantity, Inventory inventory) {
         this.id = id;
         this.orderDate = orderDate;
         this.perItemCost = BigDecimal.ZERO;
         this.quantity = quantity;
+        this.inventory = inventory;
     }
 
     public int getId() {
