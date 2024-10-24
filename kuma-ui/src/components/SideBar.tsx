@@ -25,32 +25,32 @@ export const SideBar = () => {
 		{
 			name: "Warehouse",
 			icon: <BsBoxes />,
-			nav: "/warehouse",
+			nav: "/warehouses",
 		},
 		{
 			name: "Inventory",
 			icon: <MdOutlineInventory2 />,
-			nav: "/inventory",
+			nav: "/inventories",
 		},
 		{
 			name: "Product",
 			icon: <BsBoxSeam />,
-			nav: "/product",
+			nav: "/products",
 		},
 		{
 			name: "Order",
 			icon: <HiOutlineShoppingBag />,
-			nav: "/order",
+			nav: "/orders",
 		},
 		{
 			name: "Customer",
 			icon: <IoPersonOutline />,
-			nav: "/customer",
+			nav: "/customers",
 		},
 		{
 			name: "Category",
 			icon: <AiOutlineAppstore />,
-			nav: "/category",
+			nav: "/categories",
 		},
 	];
 

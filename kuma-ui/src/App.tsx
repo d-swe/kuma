@@ -23,12 +23,12 @@ function App() {
           <div className="flex-1 flex items-top border bg-background rounded-tl-2xl p-10 ml-10">
             <Routes>
               <Route path="/" element={<Dashboard />} />
-              <Route path="/warehouse" element={<WarehouseTable />} />
-              <Route path="/product" element={<ProductTable />} />
-              <Route path="/inventory" element={<InventoryTable />} />
-              <Route path="/order" element={<OrderTable />} />
-              <Route path="/customer" element={<CustomerTable />} />
-              <Route path="/category" element={<CategoryTable />} />
+              <Route path="/warehouses" element={<WarehouseTable />} />
+              <Route path="/products" element={<ProductTable />} />
+              <Route path="/inventories" element={<InventoryTable />} />
+              <Route path="/orders" element={<OrderTable />} />
+              <Route path="/customers" element={<CustomerTable />} />
+              <Route path="/categories" element={<CategoryTable />} />
             </Routes>
           </div>
           <div className="absolute top-0 right-0 pr-4 pt-8">
