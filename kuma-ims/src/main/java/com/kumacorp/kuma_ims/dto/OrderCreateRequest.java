@@ -1,7 +1,5 @@
 package com.kumacorp.kuma_ims.dto;
 
-import java.math.BigDecimal;
-
 public class OrderCreateRequest {
     private int customerId;
     private int inventoryId;

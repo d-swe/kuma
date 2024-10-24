@@ -16,7 +16,6 @@ import com.kumacorp.kuma_ims.model.Warehouse;
 import com.kumacorp.kuma_ims.repository.CustomerRepository;
 import com.kumacorp.kuma_ims.repository.InventoryRepository;
 import com.kumacorp.kuma_ims.repository.OrderRepository;
-import com.kumacorp.kuma_ims.repository.WarehouseRepository;
 
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
@@ -32,9 +31,6 @@ public class OrderService {
 
     @Autowired
     private InventoryRepository inventoryRepository;
-
-    @Autowired
-    private WarehouseRepository warehouseRepository;
 
     public List<Order> findAllOrders() {
         return orderRepository.findAll();
