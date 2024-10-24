@@ -48,13 +48,4 @@ public class ProductService {
     public long getProductCount() {
         return productRepository.count();
     }
-
-    // public List<Product> findProductsByWarehouseId(int warehouseId) {
-    //     return productRepository.findProductsByWarehouseId(warehouseId);
-    // }
-
-    // @Transactional
-    // public void decreaseProductQuantity(Long productId, int amount) {
-    //     productRepository.decrementProductQuantity(productId, amount);
-    // }
 }

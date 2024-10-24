@@ -20,9 +20,9 @@ const formSchema = z.object({
 	id: z.number(),
 	firstName: z.string().min(2, { message: "First name is required" }).max(50),
 	lastName: z.string().min(2, { message: "Last name is required" }).max(50),
-	email: z.string().min(2, { message: "City is required" }).max(20),
-	phone: z.string().min(7, { message: "State is required" }).max(10),
-	address: z.string().min(2, { message: "State is required" }).max(100),
+	email: z.string().email({ message: "Invalid email missing @"}).min(2, { message: "City is required" }).max(20),
+	phone: z.string().min(10, { message: "Phone number is required" }).max(10),
+	address: z.string().min(2, { message: "Address is required" }).max(100),
 });
 
 const handleAddCustomer = async (data: Customer) => {

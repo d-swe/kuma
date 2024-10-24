@@ -23,12 +23,6 @@ import { API_URL } from "@/config"
 
 export const description = "A donut chart with text"
 
-// type ChartData = [
-//   product: string,
-//   stock: number,
-//   fill: string
-// ];
-
 type ProductStock = {
   name: string,
   stock: number
@@ -125,7 +119,7 @@ export function WarehousePieChart() {
   }, []);
 
   return (
-    <div className="flex flex-row space-x-6">
+    <div className="flex flex-row space-x-6 align-center">
       {Object.entries(chartData).map(([warehouseId, warehouseData]) => {
         const totalStock = warehouseData.products.reduce(
           (acc, product) => acc + product.stock,
@@ -154,7 +148,7 @@ export function WarehousePieChart() {
                     nameKey="name"
                     innerRadius={60}
                     strokeWidth={5}
-                    fill={generateRandomColor()}
+                    fill="fill"
                   >
                     <Label
                       content={({ viewBox }) => {

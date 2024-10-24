@@ -79,11 +79,11 @@ const handleAddOrder = async (data: Order) => {
 };
 
 const handleEditOrder = async (data: Order) => {
-	// const addOrder: OrderCreateRequest = {
-	// 	customerId: data.customer.id,
-	// 	inventoryId: data.inventory.id,
-	// 	quantity: data.quantity
-	// }
+	const addOrder: OrderCreateRequest = {
+		customerId: data.customer.id,
+		inventoryId: data.inventory.id,
+		quantity: data.quantity
+	}
 	console.log(data.id);
 	try {
 		let url = `${API_URL}/orders/${data.id}`;
@@ -93,7 +93,7 @@ const handleEditOrder = async (data: Order) => {
 			headers: {
 				"Content-Type": "application/json",
 			},
-			body: JSON.stringify(data),
+			body: JSON.stringify(addOrder),
 		});
 
 		if (!response.ok) {
@@ -123,14 +123,14 @@ export function OrderForm({
 				lastName: data?.customer.lastName || ""
 			},
 			inventory: {
-				id: data?.inventory.id || 0,
+				id: data?.inventory?.id || 0,
 				product: {
-					id: data?.inventory.product.id || 0,
-					price: data?.inventory.product.price || 0
+					id: data?.inventory?.product?.id || 0,
+					price: data?.inventory?.product?.price || 0
 				},
 				warehouse: {
-					id: data?.inventory.warehouse.id || 0,
-					name: data?.inventory.warehouse.name || ""
+					id: data?.inventory?.warehouse?.id || 0,
+					name: data?.inventory?.warehouse?.name || ""
 				}
 			},
 			quantity: data?.quantity || 0,

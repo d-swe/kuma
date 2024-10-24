@@ -58,7 +58,7 @@ public class InventoryController {
     }
 
     @PutMapping("/{id}")
-    public Inventory updateInventory(@PathVariable int id, Inventory inventory) {
+    public Inventory updateInventory(@PathVariable int id, @RequestBody Inventory inventory) {
         return inventoryService.updateInventory(id, inventory);
     }
 

@@ -5,6 +5,7 @@ import { Product } from "../data/items";
 import { ProductForm } from "../form/ProductForm";
 import { DeleteAlert } from "../modal/DeleteAlert";
 import { API_URL } from "@/config";
+import { priceFormatter } from "../data/NumberFormat";
 
 export function ProductTable() {
     // Initialize state for products as an array
@@ -110,7 +111,7 @@ export function ProductTable() {
                     <TableRow key={index}>
                         <TableCell>{product.name}</TableCell>
                         <TableCell>{product.description}</TableCell>
-                        <TableCell>{product.price}</TableCell>
+                        <TableCell>{priceFormatter(product.price)}</TableCell>
                         <TableCell>{product.category.name}</TableCell>
                         <TableCell>{product.sku}</TableCell>
                         <TableCell className="flex flex-row justify-end gap-4">

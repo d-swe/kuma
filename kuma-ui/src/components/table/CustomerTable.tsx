@@ -12,6 +12,7 @@ import { DeleteAlert } from "../modal/DeleteAlert";
 import { Customer } from "../data/items";
 import { CustomerForm } from "../form/CustomerForm";
 import { API_URL } from "@/config";
+import { phoneFormatter } from "../data/NumberFormat";
 
 export function CustomerTable() {
 	const [customers, setCustomers] = useState<Customer[]>([]);
@@ -36,9 +37,8 @@ export function CustomerTable() {
 				if (!response.ok) {
 					throw new Error(`Error Status: ${response.status}`);
 				}
-				// Expecting an array of order objects
 				const data: Customer[] = await response.json();
-				setCustomers(data); // Update the state with the fetched data
+				setCustomers(data); 
 			} catch (err) {
 				console.error(
 					err instanceof Error ? err.message : "Unknown error occurred"
@@ -117,7 +117,7 @@ export function CustomerTable() {
 							<TableRow key={index}>
 								<TableCell>{customer.firstName}, {customer.lastName}</TableCell>
 								<TableCell>{customer.email}</TableCell>
-								<TableCell>{customer.phone}</TableCell>
+								<TableCell>{phoneFormatter(customer.phone)}</TableCell>
 								<TableCell>{customer.address}</TableCell>
 								<TableCell className="flex flex-row justify-end gap-4">
 									<Button size="sm" onClick={() => handleEditCustomer(customer.id)}>Edit</Button>

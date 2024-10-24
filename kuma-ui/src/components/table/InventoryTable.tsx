@@ -84,12 +84,12 @@ export function InventoryTable() {
 			if (!response.ok) {
 				throw new Error(`Error Status: ${response.status}`);
 			}
+			setInventories(inventories.filter(i => i.id !== inventoryId))
 		} catch (error) {
 			console.error("Error:", error);
 		}
 		setShowAlert(false);
 		setInventoryId(null);
-		window.location.reload();
 	};
 
 	const description = "Deleting this will remove it permnanently and cannot be undone."

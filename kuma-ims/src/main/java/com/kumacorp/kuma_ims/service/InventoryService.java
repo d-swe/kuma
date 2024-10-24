@@ -74,6 +74,9 @@ public class InventoryService {
         return inventoryRepository.findById(id)
         .map(inventory -> {
             inventory.setStock(newInventory.getStock());
+            inventory.setLastUpdate(LocalDate.now());
+            inventory.setProduct(newInventory.getProduct());
+            inventory.setWarehouse(newInventory.getWarehouse());
             return inventoryRepository.save(inventory);
         }).orElseThrow(() -> new EntityNotFoundException("Inventory with id: " + id + " not found"));
     }

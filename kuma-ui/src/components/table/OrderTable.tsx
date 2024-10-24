@@ -12,7 +12,7 @@ import { DeleteAlert } from "../modal/DeleteAlert";
 import { Order } from "../data/items";
 import { OrderForm } from "../form/OrderForm";
 import { API_URL } from "@/config";
-// import { OrderForm } from "../form/OrderForm";
+import { priceFormatter } from "../data/NumberFormat";
 
 export function OrderTable() {
 	const [orders, setOrders] = useState<Order[]>([]);
@@ -114,6 +114,7 @@ export function OrderTable() {
 							<TableHead>Order Date</TableHead>
 							<TableHead>Per Item Cost</TableHead>
 							<TableHead>Quantity</TableHead>
+							<TableHead>Total</TableHead>
 							<TableHead className="text-right">Actions</TableHead>
 						</TableRow>
 					</TableHeader>
@@ -123,8 +124,9 @@ export function OrderTable() {
 								<TableCell>{order.id}</TableCell>
 								<TableCell>{order.customer.firstName}, {order.customer.lastName}</TableCell>
 								<TableCell>{order.orderDate}</TableCell>
-								<TableCell>{order.perItemCost}</TableCell>
+								<TableCell>{priceFormatter(order.perItemCost)}</TableCell>
 								<TableCell>{order.quantity}</TableCell>
+								<TableCell>{priceFormatter(order.perItemCost * order.quantity)}</TableCell>
 								<TableCell className="flex flex-row justify-end gap-4">
 									<Button size="sm" onClick={() => handleEditorder(order.id)}>Edit</Button>
 									<Button size="sm" onClick={() => handleDeleteOrder(order.id)}>
