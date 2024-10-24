@@ -7,6 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kumacorp.kuma_ims.repository.CategoryRepository;
+
+import jakarta.persistence.EntityNotFoundException;
+
 import com.kumacorp.kuma_ims.model.Category;
 
 @Service
@@ -33,5 +36,14 @@ public class CategoryService {
 
     public long getCategoryCount() {
         return categoryRepository.count();
+    }
+
+    public Category updateCategory(int id, Category newCategory) {
+        return categoryRepository.findById(id)
+        .map(category -> {
+            category.setDescription(newCategory.getDescription());
+            category.setName(newCategory.getName());
+            return categoryRepository.save(category);
+        }).orElseThrow(() -> new EntityNotFoundException("Category with id: " + id + " not found"));
     }
 }

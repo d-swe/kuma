@@ -193,6 +193,7 @@ export function ProductForm({
 								<FormLabel>Category</FormLabel>
 								<FormControl>
 									<Select
+										value={field.value.toString()}
 										onValueChange={(value) => {
 											field.onChange(Number(value));
 										}}

@@ -20,7 +20,7 @@ const formSchema = z.object({
 	id: z.number(),
 	firstName: z.string().min(2, { message: "First name is required" }).max(50),
 	lastName: z.string().min(2, { message: "Last name is required" }).max(50),
-	email: z.string().email({ message: "Invalid email missing @"}).min(2, { message: "City is required" }).max(20),
+	email: z.string().email({ message: "Invalid email missing @"}).min(2, { message: "Email is required" }).max(100),
 	phone: z.string().min(10, { message: "Phone number is required" }).max(10),
 	address: z.string().min(2, { message: "Address is required" }).max(100),
 });
@@ -46,7 +46,7 @@ const handleAddCustomer = async (data: Customer) => {
 const handleEditCustomer = async (data: Customer) => {
 	console.log(data.id);
 	try {
-		let url = `http://${API_URL}/customers/${data.id}`;
+		let url = `${API_URL}/customers/${data.id}`;
 
 		const response = await fetch(url, {
 			method: "PUT",
@@ -71,6 +71,7 @@ export function CustomerForm({
 	data?: Customer;
 	onClose: () => void;
 }) {
+	console.log("Received data:", data);
 	const form = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),
 		defaultValues: {
@@ -91,7 +92,6 @@ export function CustomerForm({
 			await handleAddCustomer(values);
 		}
 		onClose();
-		window.location.reload();
 	}
 
 	return (

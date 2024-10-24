@@ -42,7 +42,6 @@ public class OrderService {
 
     @Transactional
     public Order createOrder(OrderCreateRequest request) {
-        System.out.println("Saving new order");
         Customer customer = customerRepository.findById(request.getCustomerId())
             .orElseThrow(() -> new EntityNotFoundException("Customer with id: " + request.getCustomerId() + " not found"));
         Inventory inventory = inventoryRepository.findById(request.getInventoryId())
@@ -79,5 +78,27 @@ public class OrderService {
 
     public long getOrderCount() {
         return orderRepository.count();
+    }
+
+    public Order updateOrder(int id, OrderCreateRequest request) {
+        Customer customer = customerRepository.findById(request.getCustomerId())
+            .orElseThrow(() -> new EntityNotFoundException("Customer with id: " + request.getCustomerId() + " not found"));
+        Inventory inventory = inventoryRepository.findById(request.getInventoryId())
+            .orElseThrow(() -> new EntityNotFoundException("Inventory with id: " + request.getInventoryId() + " not found"));
+        return orderRepository.findById(id)
+        .map(order -> {
+            order.setCustomer(customer);
+            order.setInventory(inventory);
+            order.setOrderDate(LocalDate.now());
+            order.setPerItemCost(inventory.getProduct().getPrice());
+            if(inventory.getStock() >= request.getQuantity()) {
+                order.setQuantity(request.getQuantity());
+            } else {
+                throw new RuntimeException("Cannot fulfill order. Order quantity exceeds current inventory stock. \nOrder quantity: " 
+                + request.getQuantity() + "\nProduct: " + inventory.getProduct().getName() + " current stock at: " + inventory.getStock());
+            }
+
+            return orderRepository.save(order);
+        }).orElseThrow(() -> new EntityNotFoundException("Order with id: " + id + " not found"));
     }
 }

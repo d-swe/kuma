@@ -66,7 +66,6 @@ const handleAddInventory = async (data: Inventory) => {
 };
 
 const handleEditInventory = async (data: Inventory) => {
-	console.log(data.id);
 	try {
 		let url = `${API_URL}/inventories/${data.id}`;
 
@@ -173,6 +172,7 @@ export function InventoryForm({
 								<FormLabel>Product</FormLabel>
 								<FormControl>
 									<Select
+										value={field.value.toString()}
 										onValueChange={(value) => {
 											field.onChange(Number(value));
 										}}
@@ -206,6 +206,7 @@ export function InventoryForm({
 								<FormLabel>Warehouse</FormLabel>
 								<FormControl>
 									<Select
+										value={field.value.toString()}
 										onValueChange={(value) => {
 											field.onChange(Number(value));
 										}}

@@ -65,6 +65,7 @@ export function OrderTable() {
 			}
 			const data: Order = await response.json();
 			setEditOrder(data); 
+			console.log("Edit order data:",data);
 		} catch (error) {
 			console.error("Error:", error);
 		}

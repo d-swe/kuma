@@ -192,6 +192,7 @@ export function OrderForm({
 	console.log(errors)
 	// const totalCost = form.watch("quantity") * form.watch("perItemCost");
 
+	console.log(data);
 	return (
 		<div className="py-12 w-1/2">
 			<Form {...form}>
@@ -204,6 +205,7 @@ export function OrderForm({
 								<FormLabel>Customer Name</FormLabel>
 								<FormControl>
 									<Select
+										value={field.value.toString()}
 										onValueChange={(value) => {
 											field.onChange(Number(value));
 										}}
@@ -237,6 +239,7 @@ export function OrderForm({
 								<FormLabel>Product - Warehouse</FormLabel>
 								<FormControl>
 									<Select
+										value={field.value?.toString() || ""}
 										onValueChange={(value) => {
 											field.onChange(Number(value));
 										}}

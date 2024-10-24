@@ -73,7 +73,14 @@ public class InventoryService {
     public Inventory updateInventory(int id, Inventory newInventory) {
         return inventoryRepository.findById(id)
         .map(inventory -> {
-            inventory.setStock(newInventory.getStock());
+            Warehouse warehouse = newInventory.getWarehouse();
+            int newStock = newInventory.getStock() - inventory.getStock();
+            if((newStock + warehouse.getCurrentCapacity()) <= warehouse.getMaxCapacity()) {
+                warehouse.setCurrentCapacity(warehouse.getCurrentCapacity() + newStock);
+                inventory.setStock(newInventory.getStock());
+            } else {
+                throw new RuntimeException("Stock exceeds warehouse capacity. Stock: " + newInventory.getStock() + " Current warehouse capacity: " + (warehouse.getMaxCapacity() - warehouse.getCurrentCapacity()));
+            }
             inventory.setLastUpdate(LocalDate.now());
             inventory.setProduct(newInventory.getProduct());
             inventory.setWarehouse(newInventory.getWarehouse());

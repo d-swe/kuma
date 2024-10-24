@@ -63,6 +63,7 @@ export function InventoryTable() {
 			}
 			const data: Inventory = await response.json();
 			setEditInventory(data); 
+			console.log(data)
 		} catch (error) {
 			console.error("Error:", error);
 		}
@@ -93,7 +94,6 @@ export function InventoryTable() {
 	};
 
 	const description = "Deleting this will remove it permnanently and cannot be undone."
-
 	return (
 		<div className="w-full pr-12">
 			<Button onClick={handleCreate}>Add Inventory</Button>

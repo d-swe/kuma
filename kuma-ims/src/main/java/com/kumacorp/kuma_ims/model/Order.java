@@ -2,8 +2,6 @@ package com.kumacorp.kuma_ims.model;
 
 import java.time.LocalDate;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import java.math.BigDecimal;
 
 import jakarta.persistence.Entity;
@@ -34,7 +32,6 @@ public class Order {
 
     @ManyToOne
     @JoinColumn(name = "inventory_id")
-    @JsonIgnore
     private Inventory inventory;
 
     public Order() {}
