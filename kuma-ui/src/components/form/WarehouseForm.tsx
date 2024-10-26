@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { states } from "../data/states";
-import { Warehouse } from "../data/items";
+import { Warehouse } from "../data/WarehouseData";
 import {
 	Select,
 	SelectContent,

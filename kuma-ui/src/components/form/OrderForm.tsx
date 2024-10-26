@@ -11,7 +11,9 @@ import {
 	FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Order, Inventory, Customer } from "../data/items";
+import { Order } from "../data/OrderData";
+import { Inventory } from "../data/InventoryData";
+import { Customer } from "../data/CustomerData";
 import {
 	Select,
 	SelectContent,
@@ -44,6 +46,7 @@ const formSchema = z.object({
 		product: z.object({
 			id: z.number(),
 			price: z.number(),
+			name: z.string()
 		}),
 		warehouse: z.object({
 			id: z.number(),
@@ -127,7 +130,7 @@ export function OrderForm({
 				id: data?.inventory?.id || 0,
 				product: {
 					id: data?.inventory?.product?.id || 0,
-					price: data?.inventory?.product?.price || 0
+					price: data?.inventory?.product?.price || 0,
 				},
 				warehouse: {
 					id: data?.inventory?.warehouse?.id || 0,

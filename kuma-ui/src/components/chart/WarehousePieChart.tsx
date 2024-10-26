@@ -18,7 +18,7 @@ import {
   ChartTooltipContent,
 } from "@/components/ui/chart"
 import { useEffect, useState } from "react"
-import { Inventory } from "../data/items"
+import { Inventory } from "../data/InventoryData"
 import { API_URL } from "@/config"
 
 export const description = "A donut chart with text"
@@ -38,39 +38,22 @@ type WarehouseProductsMap = {
   [warehouseId: number]: WarehouseProducts
 }
 
+const colors = [
+  "hsl(var(--chart-1))", 
+  "hsl(var(--chart-2))", 
+  "hsl(var(--chart-3))", 
+  "hsl(var(--chart-4))", 
+  "hsl(var(--chart-5))"
+];
+
 const chartConfig = {
-  visitors: {
-    label: "Visitors",
-  },
-  chrome: {
-    label: "Chrome",
-    color: "hsl(var(--chart-1))",
-  },
-  safari: {
-    label: "Safari",
-    color: "hsl(var(--chart-2))",
-  },
-  firefox: {
-    label: "Firefox",
-    color: "hsl(var(--chart-3))",
-  },
-  edge: {
-    label: "Edge",
-    color: "hsl(var(--chart-4))",
-  },
-  other: {
-    label: "Other",
-    color: "hsl(var(--chart-5))",
-  },
+  products: {
+    label: "Products",
+  }
 } satisfies ChartConfig
 
 export function WarehousePieChart() {
-  // const [inventory, setInventories] = useState<Inventory[]>([]);
   const [chartData, setChartData] = useState<WarehouseProductsMap>({});
-  const generateRandomColor = () => {
-    // Generate a random color in hex format
-    return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
-  };
   
   useEffect(() => {
     const url = `${API_URL}/inventories`;
@@ -85,6 +68,7 @@ export function WarehousePieChart() {
         // setInventories(data);
         const warehouseMap: WarehouseProductsMap = {};
 
+        let count = 0;
         data.forEach((item) => {
           const { warehouse, product, stock} = item;
 
@@ -95,20 +79,18 @@ export function WarehousePieChart() {
             };
           }
 
+          if(count >= colors.length) {
+            count = 0
+          }
+
           warehouseMap[warehouse.id].products.push({
             name: product.name,
             stock: stock,
-            fill: generateRandomColor()
+            fill: colors[count++]
           });
         });
 
         setChartData(warehouseMap);
-        // const mappedInventories = data.map(inventory => ({
-        //   product: inventory.product.name,
-        //   stock: inventory.stock,
-        //   fill: generateRandomColor()
-        // }));
-        // setChartData(mappedInventories);
       } catch (err) {
         console.error(
           err instanceof Error ? err.message : "Unknown error."

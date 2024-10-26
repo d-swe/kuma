@@ -11,7 +11,7 @@ import {
 	FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Customer } from "../data/items";
+import { Customer } from "../data/CustomerData";
 import { API_URL } from "@/config";
 
 const url = `${API_URL}/customers`;

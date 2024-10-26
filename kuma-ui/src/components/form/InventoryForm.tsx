@@ -11,7 +11,6 @@ import {
 	FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Inventory, Product, Warehouse } from "../data/items";
 import {
 	Select,
 	SelectContent,
@@ -22,6 +21,9 @@ import {
 } from "../ui/select";
 import { useEffect, useState } from "react";
 import { API_URL } from "@/config";
+import {Inventory} from "../data/InventoryData";
+import { Warehouse } from "../data/WarehouseData";
+import { Product } from "../data/ProductData";
 
 const url = `${API_URL}/inventories`;
 

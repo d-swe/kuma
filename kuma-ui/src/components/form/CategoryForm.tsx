@@ -11,7 +11,7 @@ import {
 	FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Category } from "../data/items";
+import { Category } from "../data/CategoryData";
 import { Textarea } from "../ui/textarea";
 import { API_URL } from "@/config";
 
