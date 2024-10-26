@@ -101,7 +101,6 @@ export function WarehouseForm({
 			await handleAddWarehouse(values);
 		}
 		onClose();
-		window.location.reload();
 	}
 
 	return (

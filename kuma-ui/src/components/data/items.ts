@@ -96,7 +96,7 @@ export type Order = {
         id: number,
         product: {
             id: number,
-            price: number
+            price: number,
         }
         warehouse: {
             id: number,

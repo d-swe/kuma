@@ -29,7 +29,7 @@ const url = `${API_URL}/products`;
 const formSchema = z.object({
 	id: z.number(),
 	name: z.string().min(2, { message: "Product name is required" }).max(20),
-	description: z.string().min(2, { message: "City is required" }).max(250),
+	description: z.string().min(2, { message: "Description is required" }).max(250),
 	price: z.coerce.number().min(1, { message: "Price is required" }),
 	category: z.object({
 		id: z.number(),

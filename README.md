@@ -9,7 +9,9 @@
 
 ## TODO
 - [x] fix entity relationships
-- [ ] add / edit / delete order
+- [x] add / edit / delete order
 - [x] warehouse stock decrement whenever an order is placed or an inventory is deleted
 - [x] add search feature
-- [ ] set up jenkins pipeline
+- [x] set up jenkins pipeline
+- [ ] fix filter for inventory, orders, customers
+

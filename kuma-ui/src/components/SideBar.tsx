@@ -18,7 +18,7 @@ export const SideBar = () => {
 
 	const menuItems: { name: string; icon: ReactNode; nav: string }[] = [
 		{
-			name: "Landing",
+			name: "Dashboard",
 			icon: <BsHouseDoor />,
 			nav: "/",
 		},

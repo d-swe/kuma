@@ -66,6 +66,12 @@ const handleAddInventory = async (data: Inventory) => {
 };
 
 const handleEditInventory = async (data: Inventory) => {
+	const newInventory = {
+			stock: data.stock,
+			productId: data.product.id,
+			warehouseId: data.warehouse.id
+	}
+
 	try {
 		let url = `${API_URL}/inventories/${data.id}`;
 
@@ -74,7 +80,7 @@ const handleEditInventory = async (data: Inventory) => {
 			headers: {
 				"Content-Type": "application/json",
 			},
-			body: JSON.stringify(data),
+			body: JSON.stringify(newInventory),
 		});
 
 		if (!response.ok) {
@@ -156,10 +162,11 @@ export function InventoryForm({
 			await handleAddInventory(values);
 		}
 		onClose();
-		// window.location.reload();
 	}
+
 	const errors = form.formState.errors;
 	console.log(errors)
+
 	return (
 		<div className="py-12 w-1/2">
 			<Form {...form}>

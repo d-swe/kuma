@@ -22,6 +22,7 @@ import {
 } from "../ui/select";
 import { useEffect, useState } from "react";
 import { API_URL } from "@/config";
+import { priceFormatter } from "../data/NumberFormat";
 
 type OrderCreateRequest = {
 	customerId: number,
@@ -190,7 +191,7 @@ export function OrderForm({
 
 	const errors = form.formState.errors;
 	console.log(errors)
-	// const totalCost = form.watch("quantity") * form.watch("perItemCost");
+	const totalCost = form.watch("quantity") * form.watch("perItemCost");
 
 	console.log(data);
 	return (
@@ -241,7 +242,11 @@ export function OrderForm({
 									<Select
 										value={field.value?.toString() || ""}
 										onValueChange={(value) => {
+											const selectInv = inventories.find(inv => inv.id === Number(value));
 											field.onChange(Number(value));
+											if(selectInv) {
+												form.setValue("perItemCost", selectInv.product.price);
+											}
 										}}
 									>
 										<SelectTrigger>
@@ -278,13 +283,22 @@ export function OrderForm({
 							</FormItem>
 						)}
 					/>
-					<div className="mt-4">
-						<FormLabel>Cost Per Item</FormLabel>
-						<Input value="20" disabled />
-					</div>
+					<FormField
+						control={form.control}
+						name="perItemCost"
+						render={({ field }) => (
+							<FormItem>
+								<FormLabel>Cost Per Item</FormLabel>
+								<FormControl>
+									<Input type="number" disabled {...field}/>
+								</FormControl>
+								<FormMessage />
+							</FormItem>
+						)}
+					/>
 					<div className="mt-4">
 						<FormLabel>Total Cost</FormLabel>
-						{/* <Input value={totalCost | 0} disabled /> */}
+						<Input value={priceFormatter(totalCost | 0)} disabled />
 					</div>
 					<div className="pt-8 flex flex-row gap-4">
 						<Button type="submit">Submit</Button>

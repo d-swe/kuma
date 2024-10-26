@@ -70,20 +70,23 @@ public class InventoryService {
         inventoryRepository.deleteById(id);
     }
 
-    public Inventory updateInventory(int id, Inventory newInventory) {
+    public Inventory updateInventory(int id, InventoryCreateRequest request) {
+        Product product = productRepository.findById(request.getProductId())
+            .orElseThrow(() -> new EntityNotFoundException("Product with id: " + request.getProductId() + " not found")); 
+        Warehouse warehouse = warehouseRepository.findById(request.getWarehouseId())
+            .orElseThrow(() -> new EntityNotFoundException("Warehouse with id: " + request.getWarehouseId() + " not found"));
         return inventoryRepository.findById(id)
         .map(inventory -> {
-            Warehouse warehouse = newInventory.getWarehouse();
-            int newStock = newInventory.getStock() - inventory.getStock();
+            int newStock = request.getStock() - inventory.getStock();
             if((newStock + warehouse.getCurrentCapacity()) <= warehouse.getMaxCapacity()) {
                 warehouse.setCurrentCapacity(warehouse.getCurrentCapacity() + newStock);
-                inventory.setStock(newInventory.getStock());
+                inventory.setStock(request.getStock());
             } else {
-                throw new RuntimeException("Stock exceeds warehouse capacity. Stock: " + newInventory.getStock() + " Current warehouse capacity: " + (warehouse.getMaxCapacity() - warehouse.getCurrentCapacity()));
+                throw new RuntimeException("Stock exceeds warehouse capacity. Stock: " + request.getStock() + " Current warehouse capacity: " + (warehouse.getMaxCapacity() - warehouse.getCurrentCapacity()));
             }
             inventory.setLastUpdate(LocalDate.now());
-            inventory.setProduct(newInventory.getProduct());
-            inventory.setWarehouse(newInventory.getWarehouse());
+            inventory.setProduct(product);
+            inventory.setWarehouse(warehouse);
             return inventoryRepository.save(inventory);
         }).orElseThrow(() -> new EntityNotFoundException("Inventory with id: " + id + " not found"));
     }
