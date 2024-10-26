@@ -140,7 +140,8 @@ import { CustomerForm } from "../form/CustomerForm";
 
 export default function CustomerTable() {
 	const endpoint = "customers"
+	const description = "Deleting this will remove this customer permanently and cannot be undone.";
 	return (
-		<DefaultTable<Customer> columns={columns} endpoint={endpoint} FormComponent={CustomerForm}/>
+		<DefaultTable<Customer> columns={columns} endpoint={endpoint} FormComponent={CustomerForm} description={description}/>
 	);
 }

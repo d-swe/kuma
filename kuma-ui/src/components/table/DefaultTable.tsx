@@ -133,10 +133,10 @@ export function DefaultTable<T extends DataItem>({
 		setEditData(undefined);
 	};
 
-	const handleDelete = async (id: number) => {
-		setDataId(id);
-		setShowAlert(true);
-	}
+	// const handleDelete = async (id: number) => {
+	// 	setDataId(id);
+	// 	setShowAlert(true);
+	// }
 
   const confirmDelete = async () => {
 		if(dataId === null) return;
