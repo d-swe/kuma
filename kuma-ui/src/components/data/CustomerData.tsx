@@ -37,21 +37,41 @@ export const columns: ColumnDef<Customer>[] = [
     enableHiding: false,
   },
   {
-    accessorKey: "name",
+    id: "customer.firstName",
+    accessorKey: "customer.firstName",
     header: ({ column }) => (
       <Button
         variant="ghost"
         onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
       >
-        Customer Name
+        First Name
         <ArrowUpDown className="ml-2 h-4 w-4" />
       </Button>
     ),
     cell: ({ row }) => {
         return (
           <div key={row.original.id} className="flex flex-row items-center gap-x-2">
-                 <div> {row.getValue("customer.id")} </div>
-               <div> {row.original.firstName} {row.original.lastName} </div>
+               <div>{row.original.firstName}</div>
+          </div>
+        );
+      },
+  },
+  {
+    id: "customer.lastName",
+    accessorKey: "customer.lastName",
+    header: ({ column }) => (
+      <Button
+        variant="ghost"
+        onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+      >
+        Last Name
+        <ArrowUpDown className="ml-2 h-4 w-4" />
+      </Button>
+    ),
+    cell: ({ row }) => {
+        return (
+          <div key={row.original.id} className="flex flex-row items-center gap-x-2">
+               <div>{row.original.lastName} </div>
           </div>
         );
       },

@@ -26,7 +26,7 @@ export type Order = {
     quantity: number,
     orderDate: string,
     perItemCost: number
-};;
+};
 
 export const columns: ColumnDef<Order>[] = [
   {
@@ -65,27 +65,48 @@ export const columns: ColumnDef<Order>[] = [
     cell: ({ row }) => <div className="capitalize">{row.getValue("id")}</div>,
   },
   {
-    accessorKey: "customer.name",
+    id: "customer.firstName",
+    accessorKey: "customer.firstName",
     header: ({ column }) => (
       <Button
         variant="ghost"
         onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
       >
-        Customer Name
+        First Name
         <ArrowUpDown className="ml-2 h-4 w-4" />
       </Button>
     ),
     cell: ({ row }) => {
         return (
           <div key={row.original.id} className="flex flex-row items-center gap-x-2">
-                 <div> {row.getValue("customer.name")} </div>
-               <div> {row.original.customer.firstName} {row.original.customer.lastName}</div>
+               <div> {row.original.customer.firstName}</div>
           </div>
         );
       },
   },
   {
-    accessorKey: "product.name",
+    id: "customer.lastName",
+    accessorKey: "customer.lastName",
+    header: ({ column }) => (
+      <Button
+        variant="ghost"
+        onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+      >
+        Last Name
+        <ArrowUpDown className="ml-2 h-4 w-4" />
+      </Button>
+    ),
+    cell: ({ row }) => {
+        return (
+          <div key={row.original.id} className="flex flex-row items-center gap-x-2">
+            
+               <div>{row.original.customer.lastName}</div>
+          </div>
+        );
+      },
+  },
+  {
+    id: "product.name",
     header: ({ column }) => (
       <Button
         variant="ghost"
@@ -95,11 +116,11 @@ export const columns: ColumnDef<Order>[] = [
         <ArrowUpDown className="ml-2 h-4 w-4" />
       </Button>
     ),
+    accessorFn: (row) => row.inventory.product.name,
     cell: ({ row }) => {
         return (
           <div key={row.original.id} className="flex flex-row items-center gap-x-2">
-                 <div> {row.getValue("product.name")} </div>
-               <div> {row.original.inventory.product.name} </div>
+            <div>{row.original.inventory.product.name}</div>
           </div>
         );
       },
@@ -118,7 +139,8 @@ export const columns: ColumnDef<Order>[] = [
     cell: ({ row }) => <div>{row.getValue("quantity")}</div>,
   },
   {
-    accessorKey: "product.price",
+    id: "inventory.product.price",
+    accessorKey: "inventory.product.price",
     header: ({ column }) => (
       <Button
         variant="ghost"
@@ -131,7 +153,6 @@ export const columns: ColumnDef<Order>[] = [
     cell: ({ row }) => {
         return (
           <div key={row.original.id} className="flex flex-row items-center gap-x-2">
-                 <div> {row.getValue("product.price")} </div>
                <div> {priceFormatter(row.original.inventory.product.price)} </div>
           </div>
         );

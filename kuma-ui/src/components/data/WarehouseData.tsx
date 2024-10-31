@@ -1,4 +1,4 @@
-import { ColumnDef } from "@tanstack/react-table";
+import { ColumnDef, Row } from "@tanstack/react-table";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
 import { ArrowUpDown } from "lucide-react";
@@ -10,6 +10,7 @@ export type Warehouse = {
 	state: string,
 	maxCapacity: number
 };
+
 
 export const columns: ColumnDef<Warehouse>[] = [
   {

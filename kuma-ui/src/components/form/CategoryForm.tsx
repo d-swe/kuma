@@ -86,7 +86,6 @@ export function CategoryForm({
 			await handleAddCategory(values);
 		}
 		onClose();
-		window.location.reload();
 	}
 
 	return (

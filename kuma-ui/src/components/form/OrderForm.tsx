@@ -131,6 +131,7 @@ export function OrderForm({
 				product: {
 					id: data?.inventory?.product?.id || 0,
 					price: data?.inventory?.product?.price || 0,
+					name: data?.inventory?.product?.name || "",
 				},
 				warehouse: {
 					id: data?.inventory?.warehouse?.id || 0,
@@ -142,8 +143,6 @@ export function OrderForm({
 			perItemCost: data?.perItemCost || 0
 		},
 	});
-
-	console.log(data);
 
 	useEffect(() => {
 		const fetchCustomers = async () => {
@@ -189,7 +188,6 @@ export function OrderForm({
 			await handleAddOrder(values);
 		}
 		onClose();
-		// window.location.reload();
 	}
 
 	const errors = form.formState.errors;

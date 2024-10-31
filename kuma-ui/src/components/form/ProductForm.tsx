@@ -140,7 +140,6 @@ export function ProductForm({
 			await handleAddProduct(productData);
 		}
 		onClose();
-		// window.location.reload();
 	}
 
 	return (

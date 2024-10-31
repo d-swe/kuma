@@ -60,7 +60,7 @@ CREATE TABLE "order" (
     order_date DATE NOT NULL
 );
 
--- Insert more data into warehouse table
+-- Insert data into warehouse table
 INSERT INTO warehouse (name, city, state, current_capacity, max_capacity) VALUES
     ('Sunset Storage', 'Los Angeles', 'CA', 1500, 20000),
     ('Chicago Cold Storage', 'Chicago', 'IL', 800, 12000),
@@ -68,7 +68,7 @@ INSERT INTO warehouse (name, city, state, current_capacity, max_capacity) VALUES
     ('Phoenix Valley Depot', 'Phoenix', 'AZ', 1300, 18000),
     ('Seattle Shipping Center', 'Seattle', 'WA', 1700, 22000);
 
--- Insert more data into category table
+-- Insert data into category table
 INSERT INTO category (name, description) VALUES
     ('Clothing', 'Apparel and fashion items'),
     ('Books', 'Literature and reading materials'),
@@ -76,7 +76,7 @@ INSERT INTO category (name, description) VALUES
     ('Tools', 'Hardware and tools for construction'),
     ('Health', 'Health and beauty products');
 
--- Insert more data into product table
+-- Insert data into product table
 INSERT INTO product (name, description, price, category_id, sku) VALUES
     ('T-shirt', 'Cotton t-shirt in various sizes', 19.99, 1, 'CLOTH001'),
     ('Jeans', 'Denim jeans with a comfortable fit', 49.99, 1, 'CLOTH002'),
@@ -89,7 +89,7 @@ INSERT INTO product (name, description, price, category_id, sku) VALUES
     ('Shampoo', 'Moisturizing shampoo for all hair types', 9.99, 5, 'HEALTH001'),
     ('Vitamins', 'Daily multivitamins for adults', 19.99, 5, 'HEALTH002');
 
--- Insert more data into customer table
+-- Insert data into customer table
 INSERT INTO customer (first_name, last_name, email, phone, address) VALUES
     ('Tom', 'Brown', 'tom.brown@example.com', '2025551234', '321 Birch St'),
     ('Emily', 'Davis', 'emily.davis@example.com', '3015555678', '654 Cedar St'),
@@ -97,7 +97,8 @@ INSERT INTO customer (first_name, last_name, email, phone, address) VALUES
     ('Sarah', 'Taylor', 'sarah.taylor@example.com', '5715554321', '258 Willow St'),
     ('David', 'Anderson', 'david.anderson@example.com', '2025559876', '369 Ash St');
 
--- Extended Inventory Data for Random Products and Warehouses
+-- Insert data into inventory table for different warehouses and products
+
 -- Warehouse 1: Sunset Storage
 INSERT INTO inventory (product_id, warehouse_id, stock, last_update) VALUES 
     (1, 1, 200, CURRENT_DATE),
@@ -137,3 +138,56 @@ INSERT INTO inventory (product_id, warehouse_id, stock, last_update) VALUES
     (3, 5, 320, CURRENT_DATE),
     (8, 5, 200, CURRENT_DATE),
     (9, 5, 150, CURRENT_DATE);
+
+-- Insert data into the order table
+INSERT INTO "order" (customer_id, inventory_id, quantity, per_item_cost, order_date) VALUES
+    (1, 1, 2, 19.99, '2024-07-03'),
+    (2, 2, 1, 49.99, '2024-07-05'),
+    (3, 3, 3, 14.99, '2024-07-07'),
+    (4, 4, 5, 29.99, '2024-07-09'),
+    (5, 5, 2, 12.99, '2024-07-11'),
+    (1, 6, 4, 15.99, '2024-07-13'),
+    (2, 7, 1, 29.99, '2024-07-15'),
+    (3, 8, 2, 9.99, '2024-07-17'),
+    (4, 9, 6, 19.99, '2024-07-19'),
+    (5, 10, 3, 49.99, '2024-07-21'),
+    (1, 1, 1, 14.99, '2024-07-23'),
+    (2, 2, 7, 29.99, '2024-07-25'),
+    (3, 3, 2, 12.99, '2024-07-27'),
+    (4, 4, 3, 15.99, '2024-07-29'),
+    (5, 5, 4, 29.99, '2024-07-31'),
+    (1, 6, 1, 9.99, '2024-08-02'),
+    (2, 7, 5, 19.99, '2024-08-04'),
+    (3, 8, 3, 49.99, '2024-08-06'),
+    (4, 9, 2, 14.99, '2024-08-08'),
+    (5, 10, 1, 29.99, '2024-08-10'),
+    (1, 1, 3, 12.99, '2024-08-12'),
+    (2, 2, 4, 15.99, '2024-08-14'),
+    (3, 3, 2, 29.99, '2024-08-16'),
+    (4, 4, 5, 9.99, '2024-08-18'),
+    (5, 5, 3, 19.99, '2024-08-20'),
+    (1, 6, 6, 49.99, '2024-08-22'),
+    (2, 7, 1, 14.99, '2024-08-24'),
+    (3, 8, 7, 29.99, '2024-08-26'),
+    (4, 9, 2, 12.99, '2024-08-28'),
+    (5, 10, 3, 15.99, '2024-08-30'),
+    (1, 1, 5, 29.99, '2024-09-01'),
+    (2, 2, 2, 9.99, '2024-09-03'),
+    (3, 3, 4, 19.99, '2024-09-05'),
+    (4, 4, 3, 49.99, '2024-09-07'),
+    (5, 5, 1, 14.99, '2024-09-09'),
+    (1, 6, 7, 29.99, '2024-09-11'),
+    (2, 7, 2, 12.99, '2024-09-13'),
+    (3, 8, 6, 15.99, '2024-09-15'),
+    (4, 9, 4, 29.99, '2024-09-17'),
+    (5, 10, 5, 9.99, '2024-09-19'),
+    (1, 1, 3, 19.99, '2024-09-21'),
+    (2, 2, 2, 49.99, '2024-09-23'),
+    (3, 3, 5, 14.99, '2024-09-25'),
+    (4, 4, 7, 29.99, '2024-09-27'),
+    (5, 5, 4, 12.99, '2024-09-29'),
+    (1, 6, 6, 15.99, '2024-10-01'),
+    (2, 7, 2, 29.99, '2024-10-03'),
+    (3, 8, 1, 9.99, '2024-10-05'),
+    (4, 9, 3, 19.99, '2024-10-07'),
+    (5, 10, 4, 49.99, '2024-10-09');
